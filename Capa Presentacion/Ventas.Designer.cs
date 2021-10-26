@@ -34,14 +34,14 @@ namespace SistemaRest.Capa_Presentacion
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -98,62 +98,17 @@ namespace SistemaRest.Capa_Presentacion
             this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(21, 364);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(214, 151);
+            this.panel1.Size = new System.Drawing.Size(234, 151);
             this.panel1.TabIndex = 4;
             // 
-            // button1
+            // button8
             // 
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 54);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "NUEVA CUENTA";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(0, 48);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(102, 54);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "LISTA CUENTAS";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(0, 96);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(102, 54);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "SALIR";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(98, 48);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(116, 54);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "COBRAR";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(98, 0);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(57, 54);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "MESA";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(157, 0);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(57, 54);
-            this.button6.TabIndex = 7;
-            this.button6.Text = "GUARDAR";
-            this.button6.UseVisualStyleBackColor = true;
+            this.button8.Location = new System.Drawing.Point(161, 97);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(73, 54);
+            this.button8.TabIndex = 7;
+            this.button8.Text = "CUENTA";
+            this.button8.UseVisualStyleBackColor = true;
             // 
             // button7
             // 
@@ -164,14 +119,59 @@ namespace SistemaRest.Capa_Presentacion
             this.button7.Text = "PRE ORDEN";
             this.button7.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // button6
             // 
-            this.button8.Location = new System.Drawing.Point(157, 97);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(57, 54);
-            this.button8.TabIndex = 7;
-            this.button8.Text = "CUENTA";
-            this.button8.UseVisualStyleBackColor = true;
+            this.button6.Location = new System.Drawing.Point(161, 0);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(73, 54);
+            this.button6.TabIndex = 7;
+            this.button6.Text = "GUARDAR";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(98, 0);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(57, 54);
+            this.button5.TabIndex = 6;
+            this.button5.Text = "MESA";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(98, 48);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(136, 54);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "COBRAR";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(0, 96);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(102, 54);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "SALIR";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(0, 48);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(102, 54);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "LISTA CUENTAS";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 54);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "NUEVA CUENTA";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // dataGridView2
             // 
