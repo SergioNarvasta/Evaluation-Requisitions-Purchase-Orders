@@ -96,7 +96,7 @@ namespace SistemaRest.Capa_Presentacion
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(21, 364);
+            this.panel1.Location = new System.Drawing.Point(21, 342);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(234, 151);
             this.panel1.TabIndex = 4;
@@ -179,7 +179,7 @@ namespace SistemaRest.Capa_Presentacion
             this.dataGridView2.Location = new System.Drawing.Point(279, 65);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(492, 382);
+            this.dataGridView2.Size = new System.Drawing.Size(406, 368);
             this.dataGridView2.TabIndex = 5;
             // 
             // label4
@@ -195,7 +195,7 @@ namespace SistemaRest.Capa_Presentacion
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(687, 27);
+            this.label5.Location = new System.Drawing.Point(624, 25);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 15);
             this.label5.TabIndex = 7;
@@ -205,7 +205,7 @@ namespace SistemaRest.Capa_Presentacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 537);
+            this.ClientSize = new System.Drawing.Size(696, 537);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dataGridView2);

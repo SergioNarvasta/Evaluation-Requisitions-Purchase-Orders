@@ -92,7 +92,7 @@ namespace SistemaRest.Capa_Presentacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 450);
+            this.ClientSize = new System.Drawing.Size(298, 388);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -100,7 +100,7 @@ namespace SistemaRest.Capa_Presentacion
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "InicioSesion";
-            this.Text = "Form1";
+            this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 
