@@ -10,9 +10,6 @@
     <Compile Update="Capa Presentacion\Mesas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Capa Presentacion\Principal.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Capa Presentacion\InicioSesion.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace SistemaRest.Capa_Presentacion
 {
-    public partial class Form1 : Form
+    public partial class PrincipalAdm : Form
     {
-        public Form1()
+        public PrincipalAdm()
         {
             InitializeComponent();
         }
