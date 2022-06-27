@@ -2,9 +2,9 @@ IF EXISTS ( SELECT name FROM sysdatabases WHERE name = 'ParkingSystem' )
 	DROP DATABASE ParkingSystem
 GO
 
-CREATE DATABASE dbparqueo
+CREATE DATABASE ParkingSystem
 GO
-USE dbparqueo
+USE ParkingSystem
 GO
 
 CREATE TABLE Cliente
@@ -22,7 +22,7 @@ CREATE TABLE Cliente
    /*DBCC CHECKIDENT (Comprobante, RESEED,0)*/
  GO
   CREATE TABLE Comprobante
-  (	   id_comp int PRIMARY KEY IDENTITY(1,1),
+  (	    id_comp int PRIMARY KEY IDENTITY(1,1),
 		fech_comp varchar(10),
 		codi_clie varchar(10),
 		nomb_clie varchar(50),
