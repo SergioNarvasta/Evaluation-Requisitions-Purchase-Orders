@@ -1,11 +1,12 @@
-IF EXISTS ( SELECT name FROM sysdatabases WHERE name = 'dbparqueo' )
-	DROP DATABASE dbparqueo
+IF EXISTS ( SELECT name FROM sysdatabases WHERE name = 'ParkingSystem' )
+	DROP DATABASE ParkingSystem
 GO
 
 CREATE DATABASE dbparqueo
 GO
 USE dbparqueo
 GO
+
 CREATE TABLE Cliente
   (	   codiClie         int IDENTITY (1,1),
 	   nombClie	   		char(31),
@@ -31,6 +32,7 @@ CREATE TABLE Cliente
 		descuento varchar(50),
 		mont_comp decimal(10)
    ) 
+
    CREATE TABLE ImpresionTemp
   (	   id_comp1 int PRIMARY KEY,
 		fech_comp1 varchar(10),
