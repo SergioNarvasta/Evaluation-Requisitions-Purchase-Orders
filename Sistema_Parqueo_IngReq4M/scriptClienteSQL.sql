@@ -18,8 +18,10 @@ CREATE TABLE Cliente
 	   fechClie			varchar(30),
 	   horaClie			varchar(30)
    ) 
+
    /*DBCC CHECKIDENT (Cliente, RESEED,0)*/
    /*DBCC CHECKIDENT (Comprobante, RESEED,0)*/
+
  GO
   CREATE TABLE Comprobante
   (	    id_comp int PRIMARY KEY IDENTITY(1,1),
