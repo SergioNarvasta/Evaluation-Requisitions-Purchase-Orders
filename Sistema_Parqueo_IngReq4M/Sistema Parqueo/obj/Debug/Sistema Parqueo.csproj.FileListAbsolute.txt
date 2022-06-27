@@ -1,0 +1,12 @@
+c:\users\jheysonb\documents\visual studio 2015\Projects\Sistema Parqueo\Sistema Parqueo\bin\Debug\Sistema Parqueo.exe.config
+C:\Users\JheysonB\documents\visual studio 2015\Projects\Sistema Parqueo\Sistema Parqueo\bin\Debug\Sistema Parqueo.exe
+C:\Users\JheysonB\documents\visual studio 2015\Projects\Sistema Parqueo\Sistema Parqueo\bin\Debug\Sistema Parqueo.pdb
+C:\Users\JheysonB\documents\visual studio 2015\Projects\Sistema Parqueo\Sistema Parqueo\obj\Debug\Sistema Parqueo.csprojResolveAssemblyReference.cache
+C:\Users\JheysonB\documents\visual studio 2015\Projects\Sistema Parqueo\Sistema Parqueo\obj\Debug\Sistema_Parqueo.BuscarCliente.resources
+C:\Users\JheysonB\documents\visual studio 2015\Projects\Sistema Parqueo\Sistema Parqueo\obj\Debug\Sistema_Parqueo.Form1.resources
+C:\Users\JheysonB\documents\visual studio 2015\Projects\Sistema Parqueo\Sistema Parqueo\obj\Debug\Sistema_Parqueo.Generar_Comprobante.resources
+C:\Users\JheysonB\documents\visual studio 2015\Projects\Sistema Parqueo\Sistema Parqueo\obj\Debug\Sistema_Parqueo.Properties.Resources.resources
+C:\Users\JheysonB\documents\visual studio 2015\Projects\Sistema Parqueo\Sistema Parqueo\obj\Debug\Sistema_Parqueo.Registrar_cliente.resources
+C:\Users\JheysonB\documents\visual studio 2015\Projects\Sistema Parqueo\Sistema Parqueo\obj\Debug\Sistema Parqueo.csproj.GenerateResource.Cache
+C:\Users\JheysonB\documents\visual studio 2015\Projects\Sistema Parqueo\Sistema Parqueo\obj\Debug\Sistema Parqueo.exe
+C:\Users\JheysonB\documents\visual studio 2015\Projects\Sistema Parqueo\Sistema Parqueo\obj\Debug\Sistema Parqueo.pdb
