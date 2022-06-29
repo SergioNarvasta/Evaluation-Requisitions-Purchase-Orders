@@ -109,8 +109,6 @@ namespace Sistema_Parqueo
                   MessageBox.Show("Error ...!!!" + e.Message);
                   return false;
               }
-
-
           }
 
        /* public Boolean modificarRegistro(int busqueda, Cliente oCliente)
