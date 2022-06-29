@@ -140,8 +140,6 @@ namespace Sistema_Parqueo
             }
         }*/
         /////////////////////////////////////////////////
-        
-
 
         public int buscarRegistro(int busqueda)
         {

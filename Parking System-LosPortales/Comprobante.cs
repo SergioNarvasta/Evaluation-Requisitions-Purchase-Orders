@@ -33,7 +33,6 @@ namespace Sistema_Parqueo
             mont_comp = monto;
         }
 
-
     }
    
 }

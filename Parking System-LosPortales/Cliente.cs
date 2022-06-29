@@ -18,11 +18,8 @@ namespace Sistema_Parqueo
         public String fechClie { get; set; }
         public String horaClie { get; set; }
         public Cliente()
-        {
-            
-            
+        { 
         }
-        
         public Cliente(int codi, String nomb, int dni, String telf, String plac, String mode, String colo,String fini,String hocli)
         {
             codiClie = codi;

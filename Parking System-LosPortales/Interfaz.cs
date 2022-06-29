@@ -14,16 +14,13 @@ namespace Sistema_Parqueo
     {
         public Form1()
         {
-            InitializeComponent();
-          
+            InitializeComponent();          
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             RegistrarCliente oRC = new RegistrarCliente();
             oRC.Show();
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             Generar_Comprobante oGC = new Generar_Comprobante();

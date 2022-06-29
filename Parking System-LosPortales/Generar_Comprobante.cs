@@ -47,8 +47,7 @@ namespace Sistema_Parqueo
         public Comprobante getObjetoComprobante()
         {
             Comprobante oComprobante = new Comprobante();
-
-            
+  
             oComprobante.codi_clie = txtDniClie.Text;
             oComprobante.nomb_clie = txtNombClie.Text;
             oComprobante.hora_ingreso = txtHoraIngreso.Text;
@@ -58,8 +57,6 @@ namespace Sistema_Parqueo
             oComprobante.mont_comp = double.Parse(txtMonto.Text);
             return oComprobante;
         }
-
-     
 
         private void habilitarBotones(Boolean cBuscar, Boolean cCancelar, Boolean cGenerar,Boolean cAnterior )
         {
@@ -90,18 +87,13 @@ namespace Sistema_Parqueo
             txtMonto.Text = "";
         }
 
-        
-
-
         private void btnBusCliComp_Click(object sender, EventArgs e)
         {
             mostrarDatos();
-
-            
+    
         }
         private void insertarAlBD()
         {
-            
             
                 if (MessageBox.Show("¿Desea guardarlo?", "Confirme el guardado", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
