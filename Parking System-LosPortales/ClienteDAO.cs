@@ -90,19 +90,18 @@ namespace Sistema_Parqueo
                   SqlConnection ObjSqlConnection = AdministradorDeConexion.getConexion();
                   ObjSqlConnection.Open();
                   string sentencia = "UPDATE Cliente SET nombClie ='" + ObjCliente.nombClie + "'," +
-                                                          "dniClie ='" + ObjCliente.dniClie + "'," +
-                                                          "telfClie ='" + ObjCliente.telfClie + "'," +
-                                                          "placClie ='" + ObjCliente.placClie + "'," +
-                                                          "modeClie ='" + ObjCliente.modeClie + "'," +
-                                                          "coloClie = '" + ObjCliente.coloClie  +"'"+
-                                                           //"fechClie = " + ObjCliente.fechClie+
-                                                          //"horaClie = "+ObjCliente.horaClie+
-                                                          " WHERE dniClie =" + busqueda;
+                                                         "dniClie ='" + ObjCliente.dniClie + "'," +
+                                                         "telfClie ='" + ObjCliente.telfClie + "'," +
+                                                         "placClie ='" + ObjCliente.placClie + "'," +
+                                                         "modeClie ='" + ObjCliente.modeClie + "'," +
+                                                         "coloClie = '" + ObjCliente.coloClie  +"'"+
+                                                          //"fechClie = " + ObjCliente.fechClie+
+                                                         //"horaClie = "+ObjCliente.horaClie+
+                                                         " WHERE dniClie =" + busqueda;
                   SqlCommand ObjSqlCommand = new SqlCommand(sentencia, ObjSqlConnection);
                   ObjSqlCommand.ExecuteNonQuery();
                   ObjSqlConnection.Close();
                   return true;
-
               }
               catch (System.Exception e)
               {

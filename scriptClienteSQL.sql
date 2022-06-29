@@ -8,7 +8,8 @@ USE ParkingSystem
 GO
 
 CREATE TABLE Cliente
-  (	   codiClie         int IDENTITY (1,1),
+  (	 
+       codiClie         int IDENTITY (1,1),
 	   nombClie	   		char(31),
 	   dniClie			int PRIMARY KEY  not null,
   	   telfClie			varchar(10),
