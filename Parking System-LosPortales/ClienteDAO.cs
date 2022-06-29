@@ -196,9 +196,6 @@ namespace Sistema_Parqueo
                 return false;
             }
         }
-
-
-
         public List<Cliente> obtenerDatosEnList()
         {
             List<Cliente> ObjListCliente = new List<Cliente>();
