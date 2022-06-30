@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Parking System-LosPortales",
+    "\\SRest"
   ],
-  "SelectedNode": "\\C:\\Users\\snarvasta\\Documents\\Docs Sergio\\PROYECTOS\\ParkingSystem",
+  "SelectedNode": "\\SRest\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
