@@ -18,6 +18,7 @@ namespace Sistema_Parqueo
                 String fechasalida = DateTime.Now.ToString("dd/MM/yyyy");
                 oSqlConnection = AdministradorDeConexion.getConexion();
                 oSqlConnection.Open();
+
                 String sentencia = "INSERT INTO Comprobante(  fech_comp , codi_clie , nomb_clie ,hora_ingreso,hora_salida,tiempo_uso,descuento, mont_comp) values('" +
                                     //objComprobante.id_comp + "','" +
                                     fechasalida + "','" +
