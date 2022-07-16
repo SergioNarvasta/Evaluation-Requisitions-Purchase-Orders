@@ -54,7 +54,6 @@ namespace Sistema_Parqueo
                 }
             }
         }
-
         private void habilitarBotones(Boolean cBuscar, Boolean cNuevo, Boolean cRegistrar, Boolean cActualizar, Boolean cEliminar, Boolean cSalir)
         {
             btnBusCliReg.Enabled = cBuscar;
@@ -85,10 +84,6 @@ namespace Sistema_Parqueo
             txtModAutcli.Text = "";
             txtColAutcli.Text = "";
         }
-
-
-
-
         private void btnBusCliReg_Click(object sender, EventArgs e)
         {
             if ((txtDniCli.Text.Length) > 0)
