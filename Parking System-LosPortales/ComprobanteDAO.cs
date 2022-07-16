@@ -112,7 +112,6 @@ namespace Sistema_Parqueo
                 return false;
             }
         }
-
         public Boolean eliminarRegistro(int busqueda)
         {
             try
