@@ -3,9 +3,6 @@ namespace SistemaRest.Capa_Presentacion
 {
     partial class Producto
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
