@@ -8,7 +8,7 @@ namespace Sistema_Parqueo
 {
     public class Comprobante
     {
-        public int id_comp { get; set; }
+        public int id_comp      { get; set; }
         public string fech_comp { get; set; }
         public string codi_clie { get; set; }
         public string nomb_clie { get; set; }
