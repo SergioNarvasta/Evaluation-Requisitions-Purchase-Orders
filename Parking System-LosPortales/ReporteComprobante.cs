@@ -15,6 +15,7 @@ namespace Sistema_Parqueo
         public ReporteComprobante()
         {
             InitializeComponent();
+
         }
         private void ReporteComprobante_Load(object sender, EventArgs e)
         {
@@ -23,7 +24,6 @@ namespace Sistema_Parqueo
 
             this.reportViewer1.RefreshReport();
         }
-
         private void ReporteComprobante_FormClosed(object sender, FormClosedEventArgs e)
         {
             ComprobanteDAO objComp = new ComprobanteDAO();
