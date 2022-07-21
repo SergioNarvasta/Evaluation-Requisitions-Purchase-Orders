@@ -12,7 +12,6 @@ namespace Sistema_Parqueo
     public class ClienteDAO
     {
         SqlConnection ObjSqlConnection;
-       // SqlConnection oSqlConnection;
 
         public Boolean insertarRegistro(Cliente ObjCliente)
         {
@@ -34,6 +33,7 @@ namespace Sistema_Parqueo
                                 ObjCliente.coloClie + "','" +
                                  fechaingreso + "','" +
                                  HoraIngreso + "') ";
+
                 SqlCommand ObjSqlComand = new SqlCommand(sentencia, ObjSqlConnection);
                 ObjSqlComand.ExecuteNonQuery();
                 ObjSqlConnection.Close();
@@ -82,7 +82,7 @@ namespace Sistema_Parqueo
             }
             return null;
         }
-        //////////////////////////////////////////////////////////////
+        /////////////////////////////////////
           public Boolean modificarRegistro(int busqueda, Cliente ObjCliente)
           {
               try
@@ -140,7 +140,7 @@ namespace Sistema_Parqueo
                 return false;
             }
         }*/
-        /////////////////////////////////////////////////
+        ////////////////////////////
 
         public int buscarRegistro(int busqueda)
         {
