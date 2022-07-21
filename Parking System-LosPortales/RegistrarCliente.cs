@@ -77,8 +77,7 @@ namespace Sistema_Parqueo
         }
         private void habilitarCajasDeTexto(Boolean editable)
         {
-            
-            
+           
             txtNombClie.Enabled = editable;
             txtTeleClie.Enabled = editable;
             txtPlacaClie.Enabled = editable;
