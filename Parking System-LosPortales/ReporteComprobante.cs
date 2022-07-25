@@ -13,7 +13,9 @@ namespace Sistema_Parqueo
     public partial class ReporteComprobante : Form
     {
         public ReporteComprobante()
+
         {
+
             InitializeComponent();
 
         }
