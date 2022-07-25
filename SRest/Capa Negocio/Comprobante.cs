@@ -6,5 +6,6 @@ namespace SistemaRest.Capa_Negocio
 {
     class Comprobante
     {
+
     }
 }

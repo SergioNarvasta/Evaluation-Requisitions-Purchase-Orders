@@ -18,6 +18,7 @@ namespace SistemaRest.Capa_Presentacion
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
