@@ -23,6 +23,7 @@ namespace Sistema_Parqueo
             this.ImpresionTempTableAdapter.Fill(this.DataSetImpresionTemp.ImpresionTemp);
 
             this.reportViewer1.RefreshReport();
+
         }
         private void ReporteComprobante_FormClosed(object sender, FormClosedEventArgs e)
         {

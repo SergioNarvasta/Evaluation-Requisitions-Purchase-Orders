@@ -2,12 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\Parking System-LosPortales",
-    "\\SRest",
     "\\SRest\\Capa Presentacion",
     "\\SRest\\obj",
     "\\SRest\\obj\\Debug",
     "\\SRest\\obj\\Debug\\netcoreapp3.1"
   ],
-  "SelectedNode": "\\Parking System-LosPortales\\RegistrarCliente.Designer.cs",
+  "SelectedNode": "\\Parking System-LosPortales\\ReporteComprobante.cs",
   "PreviewInSolutionExplorer": false
 }
