@@ -84,7 +84,6 @@ namespace Sistema_Parqueo
             txtModeClie.Enabled = editable;
             txtColoClie.Enabled = editable;
         }
-
         private void limpiarCajasDeTexto()
         {
             

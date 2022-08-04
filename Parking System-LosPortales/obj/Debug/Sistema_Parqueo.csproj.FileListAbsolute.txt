@@ -139,3 +139,5 @@ F:\3. PROYECTOS\Parking System\Parking System-LosPortales\obj\Debug\Sistema_Parq
 F:\3. PROYECTOS\Parking System\Parking System-LosPortales\obj\Debug\Sistema_Parqueo.csproj.CopyComplete
 F:\3. PROYECTOS\Parking System\Parking System-LosPortales\obj\Debug\Sistema Parqueo.exe
 F:\3. PROYECTOS\Parking System\Parking System-LosPortales\obj\Debug\Sistema Parqueo.pdb
+F:\3. PROYECTOS\ParkingSystem\Parking System-LosPortales\obj\Debug\Sistema Parqueo.exe
+F:\3. PROYECTOS\ParkingSystem\Parking System-LosPortales\obj\Debug\Sistema Parqueo.pdb
