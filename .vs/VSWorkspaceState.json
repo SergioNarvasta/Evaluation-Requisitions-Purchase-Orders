@@ -2,11 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\Parking System-LosPortales",
+    "\\SRest",
+    "\\SRest\\Capa Negocio",
     "\\SRest\\Capa Presentacion",
     "\\SRest\\obj",
     "\\SRest\\obj\\Debug",
     "\\SRest\\obj\\Debug\\netcoreapp3.1"
   ],
-  "SelectedNode": "\\Parking System-LosPortales\\ReporteComprobante.cs",
+  "SelectedNode": "\\SRest\\Capa Presentacion\\PrincipalMozo.Designer.cs",
   "PreviewInSolutionExplorer": false
 }
