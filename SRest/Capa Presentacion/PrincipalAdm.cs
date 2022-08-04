@@ -12,6 +12,7 @@ namespace SistemaRest.Capa_Presentacion
     {
         public PrincipalAdm()
         {
+
             InitializeComponent();
         }
     }
