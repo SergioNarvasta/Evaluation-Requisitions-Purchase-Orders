@@ -15,5 +15,6 @@ namespace Sistema_Parqueo
              conexion = new SqlConnection("Data Source=(local);Initial Catalog=dbparqueo;Integrated Security=True");
             return conexion;
         }
+        //Config Connection
     }
 }
