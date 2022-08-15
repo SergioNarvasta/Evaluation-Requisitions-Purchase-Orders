@@ -140,7 +140,6 @@ namespace Sistema_Parqueo
 
             SqlDataReader leer = comando.ExecuteReader();
             conex.Close();
-         
 
         }
 
