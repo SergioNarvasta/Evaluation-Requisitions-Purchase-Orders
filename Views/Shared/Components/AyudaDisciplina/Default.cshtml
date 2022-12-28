@@ -1,0 +1,10 @@
+﻿@using HDProjectWeb.Models.Helps;
+@model IEnumerable<Disciplina>
+
+@foreach (var item in Model)
+{
+    <tr id="tr_dis">
+        <td>@item.Dis_coddis</td>
+        <td>@item.Dis_deslar</td>
+    </tr>
+}

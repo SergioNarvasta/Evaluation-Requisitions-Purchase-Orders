@@ -1,1 +1,0 @@
-D:\UNJFSC\Ing de Requerimientos\SistemaRest\obj\Debug\netcoreapp3.1\SistemaRest.csprojAssemblyReference.cache

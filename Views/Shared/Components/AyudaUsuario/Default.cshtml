@@ -1,0 +1,10 @@
+﻿@using HDProjectWeb.Models.Helps;
+@model IEnumerable<Usuario>
+
+@foreach (var item in Model)
+{
+    <tr id="tr_usu">
+        <td>@item.Codigo</td>
+        <td>@item.Descri</td>
+    </tr>
+}

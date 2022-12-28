@@ -1,0 +1,128 @@
+﻿@model HDProjectWeb.Models.RQCompraCab
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<h3>Are you sure you want to delete this?</h3>
+
+<div>
+    <h4>RQCompraCab</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rco_fec_registro)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rco_fec_registro)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Usuario_origen)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Usuario_origen)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User_solicita)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User_solicita)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rco_motivo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rco_motivo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.U_negocio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.U_negocio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Centro_costo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Centro_costo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Disciplina)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Disciplina)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rco_situacion_aprobado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rco_situacion_aprobado)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rco_prioridad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rco_prioridad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rco_justificacion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rco_justificacion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rco_reembolso)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rco_reembolso)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rco_presupuesto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rco_presupuesto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rco_categorizado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rco_categorizado)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ccc_numeroccc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ccc_numeroccc)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Scc_cotizacion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Scc_cotizacion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Occ_numeroocc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Occ_numeroocc)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Occ_dessituacionocc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Occ_dessituacionocc)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OCC_ProveedorOCC)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OCC_ProveedorOCC)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Rco_numero" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

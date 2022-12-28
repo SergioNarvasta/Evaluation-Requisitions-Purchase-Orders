@@ -1,0 +1,235 @@
+﻿@model PaginacionRespuesta<RQCompraCab>
+
+@{
+    ViewData["Title"] = "Requerimiento de Compra";
+}
+<div class="d-flex flex-row align-items-center justify-content-center">
+    <h2 class="">Requerimiento de Compra</h2> 
+    <label id="label_periodo" class="ms-4" style="color:blue;display:''">@ViewBag.periodo</label><br />
+    <input id="input_periodo" type="text" class="ms-4" style="width:72px;color:blue;display:none;border: 1px solid white"/>
+    <form asp-action="Index" method="post">
+        <input id="form_periodo" class="ms-4" style="width:60px;display:none" name="periodo" type="text" />
+        <button id="btn_actualiza" type="submit" class="btn btn-outline-success" style="display:none">ActualizaPeriodo</button>
+    </form>
+</div>  
+<div class="d-flex flex-row ms-5">
+    <form asp-controller="RQCompra" asp-action="Index" method="post">
+        <div class="d-flex flex-row">
+            <span>Busqueda : </span>
+            <input id="filtro_busqueda" type="text" name="busqueda" placeholder="Filtrar ..." class="ms-2"/>
+            <input id="filtro_periodo"  type="text" name="periodo" style="width:60px;display:none" class="ms-4"/>
+            <input id="filtro_estado"   type="text" name="estado"  value="2" style="width:30px;display:none" class="ms-4"/>
+            <input id="filtro_orden"    type="text" name="orden" style="width:100px;display:none" class="ms-4" />
+            <button id="btn_filtrar" type="submit" class="btn btn-primary ms-5"><img class="me-1" src="/img/buscar.png"/>Filtrar</button>
+        </div>        
+    </form>   
+    <a class="btn btn-primary ms-5" asp-action="Crear"><img src="/img/agregar.png"/> Nuevo</a>
+    <a class="btn btn-danger ms-5" asp-controller="Home" asp-action="Index"><img class="me-1" src="/img/salir.png"/>Salir</a>
+</div>
+<br />
+<div class="d-flex flex-row ms-5">
+    <div style="width:10%">
+      <span>Estado :</span>
+      <select id="cbo_cambiaEst" onclick="cambiaEstado()">
+         <option value="2">Todos</option>
+         <option value="1">Vigentes</option>
+         <option value="0">Anulados</option>
+      </select>
+    </div>
+    <!-- Button Modal -->
+    <button id="btn_modal" type="button" style="height:30px" class="btn btn-primary ms-4 me-4 btn-sm" data-bs-toggle="modal" data-bs-target="#myModal">
+        <img class="me-1" src="/img/cambiar1.png"/>Cambiar Periodo
+    </button>   
+    <!--  Modal -->
+    <div class="modal" id="myModal" >
+        <div class="modal-dialog">
+            <div class="modal-content">            
+                    <div class="modal-header">
+                        <h4 class="modal-title">Seleccione Periodo</h4>                       
+                        <div  id="muestra_ano" name="ano" class="ms-1 text-black " ></div>                       
+                        <div  id="muestra_mes" name="mes" class="ms-1 text-black " ></div>                       
+                    </div>
+                    <div class="modal-body d-flex flex-row justify-content-md-center">
+                        <!-- Insercion de JQuery  -->
+                        <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+                        <div style="cursor:pointer">
+                            <ul class="selec_ano list-group list-unstyled">
+                                <li id="2021" class="list-group-item-action">2021</li>
+                                <li id="2022" class="list-group-item-action">2022</li>
+                            </ul>
+                        </div>
+                        <div class="ms-5" style="cursor:pointer">
+                            <ul class="selec_mes list-group list-unstyled">
+                                <li id="09" class="list-group-item-action">SETIEMBRE</li>
+                                <li id="10" class="list-group-item-action">OCTUBRE</li>
+                                <li id="11" class="list-group-item-action">NOVIEMBRE</li>
+                                <li id="12" class="list-group-item-action">DICIEMBRE</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button onclick="colocaPeriodo()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    </div>                      
+            </div>
+        </div>
+    </div>
+    <div class="position-relative" style="width:70%">
+        <span class="ms-xl-5 position-absolute end-0">Cantidad de Registros @Model.CantidadRegistros</span>
+    </div> 
+</div>
+<br/>
+<!-- Table -->
+<div class="table-responsive" style="width:100%" >
+<table class="table table-bordered table-hover" >
+        <thead id="Thead" style="background-color:#87CEFA">
+        <tr>
+            <th>   </th>
+            <th onclick="ordenRco_numrco()" id="th_Rco_numrco" style="cursor:pointer">
+                Nº Req
+            </th>
+            <th onclick="ordenRco_fec_registro()" id="th_Rco_fec_registro" style="cursor:pointer">
+              Fecha Registro
+            </th>         
+            <th>
+               Originador
+            </th>
+            <th onclick="ordenAux_nomaux()" id="th_Aux_nomaux" style="cursor:pointer">
+               Solicitante
+            </th>
+            <th>
+                Motivo
+            </th>
+            <th onclick="ordenUng_deslar()" id="th_Ung_deslar" style="cursor:pointer">
+                Unidad Negocio
+            </th>
+                <th onclick="ordenCco_codcco()" id="th_Cco_codcco" style="cursor:pointer">
+               Centro Costo
+            </th>
+            <th>
+                Disciplina
+            </th>
+            <th onclick="ordenRco_sitrco()" id="th_Rco_sitrco" style="cursor:pointer">
+               Situacion Req
+            </th>
+                <th onclick="ordenRco_priori()" id="th_Rco_priori" style="cursor:pointer">
+               Prioridad Req
+            </th>
+            <th>
+                Justificacion
+            </th>           
+            <th>
+                Reem.
+            </th>          
+            <th>
+                Pr.
+            </th>
+            <th>
+               Cat.
+            </th>
+            <th>
+               CCtrl.
+            </th>
+            <th>
+               Cotizacion
+            </th>
+             <th>
+               Orden Compra
+             </th>
+             <th>
+                Situacion 
+             </th>
+             <th>
+                Proveedor
+             </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Elementos) {
+        <tr>
+            <td>
+                 @Html.ActionLink("Editar","Editar","RQCompra",new{ item.Rco_numero})
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rco_numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rco_fec_registro)
+            </td>     
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario_origen)
+            </td>           
+            <td>
+                @Html.DisplayFor(modelItem => item.User_solicita)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rco_motivo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.U_negocio)
+            </td>      
+            <td>
+                @Html.DisplayFor(modelItem => item.Centro_costo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disciplina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rco_situacion_aprobado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rco_prioridad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rco_justificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rco_reembolso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rco_presupuesto)
+            </td>  
+            <td>
+                @Html.DisplayFor(modelItem => item.Rco_categorizado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ccc_numeroccc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Scc_cotizacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Occ_numeroocc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Occ_dessituacionocc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OCC_ProveedorOCC)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+<partial name="_paginacion" />
+<!-- Button Modal -->
+<button type="button" class="btn btn-success ms-4 me-4" data-bs-toggle="modal" data-bs-target="#ModalConfig">
+    Configuracion
+</button>
+<div class="modal" id="ModalConfig">
+    <div class="modal-dialog">
+        <div class="modal-content">            
+                <div class="modal-header">
+                    <h4 class="modal-title">Especificaciones de producto</h4>                                   
+                </div>
+                <div class="modal-body d-flex flex-column justify-content-center">
+                  <label>label</label>                 
+                  <textarea class="col-5 mt-2" style="width:350px;height:200px"> </textarea>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="" type="button" class="btn btn-danger" data-bs-dismiss="modal">Retornar</button>
+                </div>
+        </div>
+    </div>
+</div>
+

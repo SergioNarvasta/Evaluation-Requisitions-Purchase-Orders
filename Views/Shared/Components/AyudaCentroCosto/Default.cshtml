@@ -1,0 +1,10 @@
+﻿@using HDProjectWeb.Models.Helps;
+@model IEnumerable<CentroCosto>
+
+@foreach (var item in Model)
+{
+    <tr id="tr_cco">
+        <td>@item.Cco_codcco</td>
+        <td>@item.Cco_deslar</td>
+    </tr>
+}
