@@ -9,18 +9,18 @@ namespace HDProjectWeb.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IServicioPeriodo servicioPeriodo;
+        private readonly IServicioEstandar servicioEstandar;
 
-        public HomeController(ILogger<HomeController> logger, IServicioPeriodo servicioPeriodo)
+        public HomeController(ILogger<HomeController> logger, IServicioEstandar servicioEstandar)
         {
             _logger = logger;
-            this.servicioPeriodo = servicioPeriodo;
+            this.servicioEstandar = servicioEstandar;
         }
         public IActionResult Index()
         {
-            ViewBag.periodo = servicioPeriodo.ObtenerPeriodo();
-            string cia = servicioPeriodo.Compañia();
-            string nomcia = servicioPeriodo.ObtenerCompañia(cia);
+            ViewBag.periodo = servicioEstandar.ObtenerPeriodo();
+            string cia = servicioEstandar.Compañia();
+            string nomcia = servicioEstandar.ObtenerCompañia(cia);
             ViewBag.nomcia = nomcia;
                 
             return View();

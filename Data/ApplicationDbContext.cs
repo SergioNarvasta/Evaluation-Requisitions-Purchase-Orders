@@ -1,15 +1,13 @@
-﻿using HDProjectWeb.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace HDProjectWeb.Data
+namespace ProjectWeb_DRA.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
         private readonly string connectionString;
-
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,IConfiguration configuration)
-            : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration)
+           : base(options)
         {
             connectionString = configuration.GetConnectionString("DefaultConnection");
         }
@@ -17,6 +15,5 @@ namespace HDProjectWeb.Data
         {
             optionsBuilder.UseSqlServer(connectionString);
         }
-
     }
 }
