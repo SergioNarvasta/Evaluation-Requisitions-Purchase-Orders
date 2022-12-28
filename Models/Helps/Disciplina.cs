@@ -25,7 +25,7 @@ namespace HDProjectWeb.Models.Helps
         public async Task<IEnumerable<Disciplina>> ListaAyudaDisciplina()
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.QueryAsync<Disciplina>(@"SELECT cia_codcia,dis_codepk,dis_deslar FROM DISCIPLINAS_DIS 
+            return await connection.QueryAsync<Disciplina>(@"SELECT cia_codcia,dis_codepk as dis_coddis,dis_deslar FROM DISCIPLINAS_DIS 
                                                              WHERE cia_codcia =1 AND dis_estado =1");
         }
     }

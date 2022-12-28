@@ -289,8 +289,8 @@ function abrir_modal_disci() {
 $(document).ready(function () {
     $('tr#tr_cco').click(function (e) {
         var tr_data = $(this).text().trim();
-        var cod = tr_data.substring(0,5);
-        var des = tr_data.substring(5, tr_data.length).trim();
+        var cod = tr_data.substring(0,6);
+        var des = tr_data.substring(6, tr_data.length).trim();
         console.log("-Codigo:" + cod + "-Desc:" + des+"Leng"+tr_data.length);
         $("#input_cod_cco").val(cod);
         $("#input_des_cco").val(des);
