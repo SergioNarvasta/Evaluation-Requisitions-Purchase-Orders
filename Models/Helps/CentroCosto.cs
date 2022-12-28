@@ -26,8 +26,8 @@ namespace HDProjectWeb.Models.Helps
         public async Task<IEnumerable<CentroCosto>> ListaAyudaCentroCosto()
         {          
             using var connection = new SqlConnection(connectionString);
-            return await connection.QueryAsync<CentroCosto>(@"SELECT CIA_CODCIA,CCO_CODCCO,CCO_DESLAR FROM CENTRO_COSTO_CCO 
-                                                             WHERE CIA_CODCIA =1 AND CCO_INDEST=1 AND CCO_INDCOS=0");
+            return await connection.QueryAsync<CentroCosto>(@"SELECT CIA_CODCIA,CCO_CODCCO,cco_descco FROM CENT_COST_CCO 
+                                                             WHERE CIA_CODCIA =1 AND cco_estado=1");
         }
     }
 }

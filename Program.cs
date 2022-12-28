@@ -27,7 +27,7 @@ builder.Services.AddTransient<IDetalleReqService, DetalleReqService>();
 //Servicios para mostrar Ayudas
 builder.Services.AddTransient<ICentroCostoService, CentroCostoService>();
 builder.Services.AddTransient<IDisciplinaService, DisciplinaService>();
-
+builder.Services.AddTransient<IUsuarioService, UsuarioService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
