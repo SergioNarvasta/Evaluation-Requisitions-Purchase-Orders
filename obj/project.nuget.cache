@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lFFJxEYcwjcHIL8zkLxvMMuagOesWDtObYo+EzLB/UsdYokCJ83mdthwPFt6XFzv0EXscgGgi9k1OvZI7pywNw==",
+  "dgSpecHash": "+ENENWVRw9/3SmzJsNfxk5QlxiDhHC0TdjfKTbsg8Lb6ij0kiNnNWOUrKJ2b3UYUG/ZK9JyFKbi2i6XhJEJvBg==",
   "success": true,
   "projectFilePath": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\ProjectWeb_DRA.csproj",
   "expectedPackageFiles": [
@@ -57,7 +57,7 @@
     "C:\\Users\\snarvasta\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.12\\microsoft.entityframeworkcore.analyzers.6.0.12.nupkg.sha512",
     "C:\\Users\\snarvasta\\.nuget\\packages\\microsoft.entityframeworkcore.design\\6.0.12\\microsoft.entityframeworkcore.design.6.0.12.nupkg.sha512",
     "C:\\Users\\snarvasta\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.12\\microsoft.entityframeworkcore.relational.6.0.12.nupkg.sha512",
-    "C:\\Users\\snarvasta\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\6.0.10\\microsoft.entityframeworkcore.sqlserver.6.0.10.nupkg.sha512",
+    "C:\\Users\\snarvasta\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\6.0.12\\microsoft.entityframeworkcore.sqlserver.6.0.12.nupkg.sha512",
     "C:\\Users\\snarvasta\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\6.0.12\\microsoft.entityframeworkcore.tools.6.0.12.nupkg.sha512",
     "C:\\Users\\snarvasta\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\snarvasta\\.nuget\\packages\\microsoft.extensions.caching.memory\\6.0.1\\microsoft.extensions.caching.memory.6.0.1.nupkg.sha512",

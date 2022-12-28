@@ -37,7 +37,7 @@ namespace HDProjectWeb.Controllers
             crear.S10_usuario = codaux;
             crear.S10_nomusu = servicioUsuario.ObtenerNombreUsuario(codaux);
             ViewBag.estado = "1";
-            //Enviar la clase con sus atributos
+           
             return View(crear);
         }
 
@@ -136,6 +136,10 @@ namespace HDProjectWeb.Controllers
             ViewBag.periodo =  periodo.Remove(4,2)+"-"+periodo.Remove(0,4);         
             var rQCompra   = await repositorioRQCompra.Obtener(periodo,paginacionViewModel,CodUser, orden,  estado1, estado2);
             var totalRegistros = await repositorioRQCompra.ContarRegistros(periodo, CodUser, estado1, estado2);
+            if (totalRegistros==0)
+            {
+                ViewBag.registros = "0";
+            }
             var respuesta = new PaginacionRespuesta<RQCompraCab>
             {
                 Elementos = rQCompra,

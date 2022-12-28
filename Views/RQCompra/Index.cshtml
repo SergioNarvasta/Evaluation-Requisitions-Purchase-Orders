@@ -206,7 +206,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.OCC_ProveedorOCC)
             </td>
-        </tr>
+        </tr>    
+                @if (ViewBag.registros == "0")
+            {
+                <tr>
+                    <td colspan="18" class="text-center"> No hay registros en el periodo para mostrar !!</td>
+                </tr>
+            } 
 }
     </tbody>
 </table>
