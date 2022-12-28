@@ -12,7 +12,7 @@ namespace HDProjectWeb.Services
         string Compañia();
         string Mes();
         string NroReq();
-        Task<string> ObtenerCompañia(string codcia);
+        string ObtenerCompañia(string codcia);
         Task<string> ObtenerOrden();
         Task<string> ObtenerPeriodo();
         Task SetOrden();
@@ -94,10 +94,10 @@ namespace HDProjectWeb.Services
             string cia = "01";
             return cia; 
         }
-        public async Task<string> ObtenerCompañia(string codcia)
+        public string ObtenerCompañia(string codcia)
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.QuerySingleAsync<string>(@"SELECT CIA_NOMCIA 
+            return  connection.QuerySingle<string>(@"SELECT CIA_NOMCIA 
                    FROM COMPANIA_CIA WHERE CIA_CODCIA = @codcia",new {codcia});
         }
         public string Sucursal()

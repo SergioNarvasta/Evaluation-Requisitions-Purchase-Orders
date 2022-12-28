@@ -9,17 +9,17 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace HDProjectWeb.Data.Migrations
+namespace HDProjectWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221213150435_UserSystem20221213")]
-    partial class UserSystem20221213
+    [Migration("20221228155938_[UserSystem28122022_SNarvasta]")]
+    partial class UserSystem28122022_SNarvasta
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.10")
+                .HasAnnotation("ProductVersion", "6.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);

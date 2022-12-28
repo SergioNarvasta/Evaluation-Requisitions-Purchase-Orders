@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace HDProjectWeb.Data.Migrations
+namespace HDProjectWeb.Migrations
 {
-    public partial class UserSystem20221213 : Migration
+    public partial class UserSystem28122022_SNarvasta : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

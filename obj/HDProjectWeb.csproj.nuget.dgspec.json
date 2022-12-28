@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Docs_Sergio\\DRA\\ProjectWeb\\HDProjectWeb.csproj": {}
+    "D:\\Docs_Sergio\\DRA\\ProjectWeb_20221228\\HDProjectWeb.csproj": {}
   },
   "projects": {
-    "D:\\Docs_Sergio\\DRA\\ProjectWeb\\HDProjectWeb.csproj": {
+    "D:\\Docs_Sergio\\DRA\\ProjectWeb_20221228\\HDProjectWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Docs_Sergio\\DRA\\ProjectWeb\\HDProjectWeb.csproj",
+        "projectUniqueName": "D:\\Docs_Sergio\\DRA\\ProjectWeb_20221228\\HDProjectWeb.csproj",
         "projectName": "HDProjectWeb",
-        "projectPath": "D:\\Docs_Sergio\\DRA\\ProjectWeb\\HDProjectWeb.csproj",
+        "projectPath": "D:\\Docs_Sergio\\DRA\\ProjectWeb_20221228\\HDProjectWeb.csproj",
         "packagesPath": "C:\\Users\\snarvasta\\.nuget\\packages\\",
-        "outputPath": "D:\\Docs_Sergio\\DRA\\ProjectWeb\\obj\\",
+        "outputPath": "D:\\Docs_Sergio\\DRA\\ProjectWeb_20221228\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
