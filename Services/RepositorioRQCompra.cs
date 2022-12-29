@@ -31,16 +31,14 @@ namespace HDProjectWeb.Services
         public async Task Crear(RQCompra rQCompra)
         {
             using var connection = new SqlConnection(connectionString);
-            await connection.ExecuteAsync (@" PA_HD_WEB_RQ_Registra_Cabecera @cia_codcia = @cia_codcia, @suc_codsuc = @suc_codsuc, @rco_numrco = @rco_numrco, @tin_codtin = @tin_codtin
-                                        ,@s10_usuario = @s10_usuario, @rco_motivo = @rco_motivo, @cco_codcco = @cco_codcco,@rco_sitrco = @rco_sitrco, @rco_sitlog = @rco_sitlog
-                                        ,@ano_codano = @ano_codano, @mes_codmes = @mes_codmes, @rco_indest = @rco_indest, @rco_usucre = @rco_usucre , @rco_tiprco = @rco_tiprco
-                                        ,@rco_codusu = @rco_codusu, @ung_codung = @ung_codung, @rco_indcie = @rco_indcie, @rco_indval = @rco_indval , @rco_priori = @rco_priori
-                                        ,@rco_rembls = @rco_rembls, @rco_presup = @rco_presup, @adi_codadi = @adi_codadi",rQCompra);
+            await connection.ExecuteAsync (@" PA_WEB_ReqCompra_Inserta @cia_codcia = @cia_codcia ,@suc_codsuc = @suc_codsuc,@rco_codepk = @rco_codepk,@rco_numrco = @rco_numrco ,@tin_codtin = @tin_codtin,@rco_motivo = @rco_motivo,@rco_glorco = @rco_glorco,
+                 @cco_codepk = @cco_codepk, @rco_sitrco = @rco_sitrco, @rco_codusu = @rco_codusu,@ung_codepk = @ung_codepk, @rco_indval = @rco_indval, @rco_indest =  @rco_indest, @rco_rembls = @rco_rembls, @rco_presup = @rco_presup,
+                 @rco_priori = @rco_priori, @tre_codepk = @tre_codepk, @rco_estado = @rco_estado, @dis_codepk = @dis_codepk,@s10_codepk = @s10_codepk, @occ_codepk = @occ_codepk ", rQCompra);
         }
         public async Task RegistraDetalle(DetalleReq detalleReq)
         {
             using var connection = new SqlConnection(connectionString);
-            await connection.ExecuteAsync(@" ", detalleReq);
+            await connection.ExecuteAsync(@"", detalleReq);
         }
         public async Task<IEnumerable<RQCompraCab>> Obtener(string periodo,PaginacionViewModel paginacion,string CodUser,string orden,string estado1,string estado2) 
         {
@@ -75,7 +73,7 @@ namespace HDProjectWeb.Services
         public async Task<int> ContarRegistros(string periodo,string CodUser, string estado1, string estado2)
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.ExecuteScalarAsync<int>(@"SELECT COUNT(*)FROM V_WEB_REQCOMPRAS_Index
+            return await connection.ExecuteScalarAsync<int>(@"SELECT COUNT(*) FROM V_WEB_REQCOMPRAS_Index
                 Where cia=1 AND suc=1 AND periodo =@periodo AND User_Solicita = @CodUser  AND estado in(@estado1,@estado2)", 
                 new { periodo,CodUser, estado1, estado2 });
         }
@@ -95,6 +93,7 @@ namespace HDProjectWeb.Services
                             @Rco_Prioridad =@Rco_prioridad,  @Rco_Justificacion=Rco_justificacion , @Rco_Reembolso =@Rco_reembolso,
                             @Rco_Presupuesto =@Rco_presupuesto,@Rco_Categorizado = @Rco_categorizado,  @Rco_Disciplina = @Rco_disciplina", rQCompraEd);
         }
+        //Falta Editar
         public async Task<RQCompra> ObtenerporCodigo(string Rco_numero) 
         {
             using var connection = new SqlConnection(connectionString);

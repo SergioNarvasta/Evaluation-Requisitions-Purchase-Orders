@@ -64,7 +64,7 @@
                         <th>
                             <div class="d-flex flex-row ms-xl-5">
                                 <label>Tipo_Req </label>
-                                <select asp-for="Rco_tiprco" id="cbo_tipo" class="ms-2" onclick="colocaTipo()">
+                                <select asp-for="Tre_codepk" id="cbo_tipo" class="ms-2" onclick="colocaTipo()">
                                     <option value="1">COMPRA REGULAR</option>
                                     <option value="2">CERTIF. CONFORMIDAD</option>
                                     <option value="3">ADENDA CONTRATO</option>
@@ -85,7 +85,7 @@
                         <th>
                              <div class="form-group d-flex flex-row ">
                                <label >U.Negocio</label>
-                                <select asp-for="Ung_codung" id="cbo_unegocio" class="ms-4" onclick="colocaUnegocio()" style="width:325px">
+                                <select asp-for="Ung_codepk" id="cbo_unegocio" class="ms-4" onclick="colocaUnegocio()" style="width:325px">
                                    <option value="01">MINING & METALURGY    </option>
                                    <option value="02">INFRAESTRUCTURE E&W   </option>
                                    <option value="03">O&G-FEED & ENGINEERING</option>
@@ -99,10 +99,10 @@
                         <th>
                             <div class="form-group d-flex flex-row ms-5 me-5">
                                 <label class="control-label">C.Costo</label>
-                                <input id="input_cod_cco" onclick="abrir_modal_cco()" asp-for="Cco_codcco" class="form-control form-control-sm col-sm-4 ms-4" style="width:60px" />
-                                <span asp-validation-for="Cco_codcco" class="text-danger"></span>
-                                <input id="input_des_cco" type="text" asp-for="Cco_deslar" style="width:270px" class="form-control ms-1"/>
-                                <span asp-validation-for="Cco_deslar" class="text-danger"></span>   
+                                <input id="input_cod_cco" onclick="abrir_modal_cco()" asp-for="Cco_codepk" class="form-control form-control-sm col-sm-4 ms-4" style="width:60px" />
+                                <span asp-validation-for="Cco_codepk" class="text-danger"></span>
+                                <input id="input_des_cco" type="text" asp-for="Cco_descco" style="width:270px" class="form-control ms-1"/>
+                                <span asp-validation-for="Cco_descco" class="text-danger"></span>   
                                 <!-- Modal con Ayuda -->
                                 <button id="btn_abrir_modal_cco" class="btn btn-outline-success" style="display:none" data-bs-toggle="modal" data-bs-target="#Modal_Cco">+ </button>
                                 <a asp-action="AyudaCentroCosto" class="btn btn-outline-primary" style="display:none"> Cco</a>
@@ -154,11 +154,11 @@
                     <tr class="mb-lg-5">
                         <th>
                             <div class="form-group d-flex flex-row me-5">
-                                <label asp-for="S10_usuario" class="control-label me-3"></label>
-                                <input asp-for="S10_usuario" id="input_cod_usu" class="form-control form-control-sm ms-2" style="width:90px" onclick="abrir_modal_usu()" />
-                                <span asp-validation-for="S10_usuario" class="text-danger"></span>
-                                <input asp-for="S10_nomusu" id="input_des_usu" class="form-control form-control-sm ms-1" style="width:230px" />
-                                <span asp-validation-for="S10_nomusu" class="text-danger"></span>
+                                <label asp-for="Ccr_codepk" class="control-label me-3"></label>
+                                <input asp-for="Cco_codepk" id="input_cod_usu" class="form-control form-control-sm ms-2" style="width:90px" onclick="abrir_modal_usu()" />
+                                <span asp-validation-for="Ccr_codepk" class="text-danger"></span>
+                                <input asp-for="Ccr_nomaux" id="input_des_usu" class="form-control form-control-sm ms-1" style="width:230px" />
+                                <span asp-validation-for="Ccr_nomaux" class="text-danger"></span>
 
                                 <!-- Modal con Ayuda -->
                                 <button id="btn_abrir_modal_usu" class="btn btn-outline-success" style="display:none" data-bs-toggle="modal" data-bs-target="#Modal_Usu">+ </button>
@@ -225,10 +225,10 @@
                         <th >
                             <div class="form-group d-flex flex-row ms-xl-5" style="margin-bottom:10px">
                                 <label class="control-label">Disciplina</label>
-                                <input id="input_cod_disci" onclick="abrir_modal_disci()" asp-for="Dis_coddis" class="form-control ms-2" style="width:50px" />
-                                <span asp-validation-for="Dis_coddis" class="text-danger"></span>
-                                <input id="input_des_disci" asp-for="Dis_deslar" class="form-contro ms-1" style="width:280px" />
-                                <span asp-validation-for="Dis_deslar" class="text-danger"></span>                               
+                                <input id="input_cod_disci" onclick="abrir_modal_disci()" asp-for="Dis_codepk" class="form-control ms-2" style="width:50px" />
+                                <span asp-validation-for="Dis_codepk" class="text-danger"></span>
+                                <input id="input_des_disci" asp-for="Dis_nomlar" class="form-contro ms-1" style="width:280px" />
+                                <span asp-validation-for="Dis_nomlar" class="text-danger"></span>                               
                                 <!-- Modal con Ayuda -->
                                 <button id="btn_abrir_modal_disci" class="btn btn-outline-success" style="display:none" data-bs-toggle="modal" data-bs-target="#Modal_Dis">+ </button>
                                 <a   asp-action="AyudaDisciplina" class="btn btn-outline-primary" style="display:none" > Dis</a>
@@ -271,15 +271,15 @@
                             </div>
                             <div class="form-group d-flex flex-row ms-xl-5">
                                 <label class="control-label">OCompra</label>
-                                <input asp-for="Occ_numero" class="form-control form-control-sm ms-2" style="width:120px" />
-                                <span asp-validation-for="Occ_numero" class="text-danger"></span>
+                                <input asp-for="Occ_codepk" class="form-control form-control-sm ms-2" style="width:120px" />
+                                <span asp-validation-for="Occ_codepk" class="text-danger"></span>
                             </div>
                         </th>
                         <th>
                             <div class="d-flex flex-row ms-xl-5" style="margin-bottom:10px">
-                                <input asp-for="Ccc_numero" class="form-check-input ms-5" type="checkbox" id="chkCuadroComp" />
+                                <input class="form-check-input ms-5" type="checkbox" id="chkCuadroComp" />
                                 <label class="form-check-label ms-2">Cuadro Comparativo</label>
-                                <span asp-validation-for="Ccc_numero"></span>
+                                
                             </div>
                             <div class="d-flex flex-row ms-xl-5">
                                 <label>Prioridad </label>
@@ -313,16 +313,16 @@
                             <span asp-validation-for="Rco_indest" class="text-danger"></span>
                         
                             <label>Tipo</label>
-                            <input id="input_tipo" asp-for="Rco_tiprco" type="text" style="width:20px" />
-                            <span asp-validation-for="Rco_tiprco" class="text-danger"></span>
+                            <input id="input_tipo" asp-for="Tre_codepk" type="text" style="width:20px" />
+                            <span asp-validation-for="Tre_codepk" class="text-danger"></span>
                       
                             <label>Prioridad</label>
                             <input id="input_prioridad" asp-for="Rco_priori" type="text" style="width:20px" />
                             <span asp-validation-for="Rco_priori" class="text-danger"></span>
                         
                             <label>UNG</label>
-                            <input id="input_unegocio" asp-for="Ung_codung" type="text"  style="width:30px" />
-                            <span asp-validation-for="Ung_codung" class="text-danger"></span>
+                            <input id="input_unegocio" asp-for="Ung_codepk" type="text"  style="width:30px" />
+                            <span asp-validation-for="Ung_codepk" class="text-danger"></span>
                         </th>
                         <th>
                             <label>Situacion</label>

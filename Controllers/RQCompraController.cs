@@ -34,8 +34,8 @@ namespace HDProjectWeb.Controllers
             string coduser = servicioUsuario.ObtenerCodUsuario();
             string codaux = servicioUsuario.ObtenerCodAuxUsuario(coduser);
             crear.Rco_fec_registro = date;
-            crear.S10_usuario = codaux;
-            crear.S10_nomusu = servicioUsuario.ObtenerNombreUsuario(codaux);
+            //crear.S10_usuario = codaux;
+            //crear.S10_nomusu = servicioUsuario.ObtenerNombreUsuario(codaux);
             ViewBag.estado = "1";
            
             return View(crear);
@@ -50,9 +50,6 @@ namespace HDProjectWeb.Controllers
             }  */    
             rQCompra.Cia_codcia = servicioEstandar.Compañia();
             rQCompra.Suc_codsuc = servicioEstandar.Sucursal();
-            rQCompra.Ano_codano = servicioEstandar.Ano();
-            rQCompra.Mes_codmes = servicioEstandar.Mes();
-            rQCompra.Rco_usucre = servicioUsuario.ObtenerCodUsuario();
             rQCompra.Rco_codusu = servicioUsuario.ObtenerCodUsuario();
             await repositorioRQCompra.Crear(rQCompra);
 
