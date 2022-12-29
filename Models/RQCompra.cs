@@ -22,9 +22,9 @@ namespace HDProjectWeb.Models
 
         //public DateTime Rco_fec_registro { get; set; }  /***View****/
 
-        [Required(ErrorMessage = "Campo obligatorio")]// Requerido
+        //[Required(ErrorMessage = "Campo obligatorio")]// Requerido
         [MaxLength(2, ErrorMessage = "El campo no debe de tener mas de 2 caracteres")]
-        public string Tin_codtin { get; set; }       /***Vacio****/
+        public int Tin_codtin { get; set; }       /***Vacio****/
 
         [Required(ErrorMessage = "Campo obligatorio")]// Requerido
         [MaxLength(200, ErrorMessage = "El campo no debe de tener mas de 200 caracteres")]
@@ -36,7 +36,7 @@ namespace HDProjectWeb.Models
 
         //[Required(ErrorMessage = "Campo obligatorio")]// Requerido
         [MaxLength(6, ErrorMessage = "El campo no debe de tener mas de 6 caracteres")]
-        public Int16 Cco_codepk { get; set; }    /***View****/
+        public int Cco_codepk { get; set; }    /***View****/
 
         [Required(ErrorMessage = "Campo obligatorio")] // Requerido
         [MaxLength(1, ErrorMessage = "El campo no debe de tener mas de 1 caracter")]
@@ -48,14 +48,14 @@ namespace HDProjectWeb.Models
 
         [Required(ErrorMessage = "Campo obligatorio")] // Requerido
         [MaxLength(2, ErrorMessage = "El campo no debe de tener mas de 2 caracteres")]
-        public Int16 Ung_codepk { get; set; }      /***View****/
+        public int Ung_codepk { get; set; }      /***View****/
 
         [Required(ErrorMessage = "Campo obligatorio")] // Requerido (Categorizado) **********Revisar 
         public Boolean Rco_indval { get; set; }        /***Boolean para CheckBox****/
 
         [Required(ErrorMessage = "Campo obligatorio")] // Requerido
         [MaxLength(1, ErrorMessage = "El campo no debe de tener mas de 1 caracter")]
-        public Int16 Rco_indest { get; set; }      /***View****/
+        public int Rco_indest { get; set; }      /***View****/
 
         [Required(ErrorMessage = "Campo obligatorio")] // Requerido
         [MaxLength(1, ErrorMessage = "El campo no debe de tener mas de 1 caracteres")]
@@ -71,20 +71,23 @@ namespace HDProjectWeb.Models
 
         [Required(ErrorMessage = "Campo obligatorio")] // Requerido
         [MaxLength(1, ErrorMessage = "El campo no debe de tener mas de 1 caracteres")]
-        public Int16 Tre_codepk { get; set; }        /***View****/
+        public int Tre_codepk { get; set; }        /***View****/
 
         [Required(ErrorMessage = "Campo obligatorio")] // Requerido
         [MaxLength(1, ErrorMessage = "El campo no debe de tener mas de 1 caracteres")]
         public string Rco_estado { get; set; }
 
-        public Int16 Dis_codepk { get; set; } //Disciplina
+        public int Dis_codepk { get; set; } //Disciplina
 
-        public Int16 Ccr_codepk { get; set; } //User solicita
+        public int S10_codepk { get; set; } //User solicita
 
         public int Occ_codepk { get; set; }
         public string Dis_nomlar { get; set; }
+
+        public string Cco_codcco { get; set; }
         public string Cco_descco { get; set; }
-        public string Ccr_nomaux { get; set; }
+        public string S10_nomusu { get; set; }
+        public string S10_codusu { get; set; }
 
         //Atributos para Req Compra Detalle (RCD)
         public List<DetalleReq> ListaDetalles { get; set; }

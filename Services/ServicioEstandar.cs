@@ -18,6 +18,7 @@ namespace HDProjectWeb.Services
         Task SetOrden();
         Task SetPeriodo();
         string Sucursal();
+        short TipoInventario();
     }  
     public class ServicioEstandar : IServicioEstandar
     {
@@ -93,6 +94,11 @@ namespace HDProjectWeb.Services
         {
             string cia = "01";
             return cia; 
+        }
+        public Int16 TipoInventario()
+        {
+            Int16 Tin = 2;
+            return Tin;
         }
         public string ObtenerCompañia(string codcia)
         {

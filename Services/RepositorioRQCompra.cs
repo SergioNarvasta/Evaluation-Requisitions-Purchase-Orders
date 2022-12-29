@@ -12,10 +12,10 @@ namespace HDProjectWeb.Services
         Task<RQCompra> ObtenerporCodigo(string Rco_numero);
         Task Actualizar(RQCompra rQCompraEd);
         Task Crear(RQCompra rQCompra);
-        Task<IEnumerable<RQCompraCab>> Obtener(string periodo, PaginacionViewModel paginacion, string CodAuxUser,string orden, string estado1, string estado2);
-        Task<int> ContarRegistros(string periodo, string CodUser, string estado1, string estado2);  
-        Task<int> ContarRegistrosBusqueda(string periodo, string CodUser, string busqueda, string estado1, string estado2);
-        Task<IEnumerable<RQCompraCab>> BusquedaMultiple(string periodo, PaginacionViewModel paginacion, string CodUser, string busqueda, string estado1, string estado2);
+        Task<IEnumerable<RQCompraCab>> Obtener(string periodo, PaginacionViewModel paginacion, int EpkUser, string orden, string estado1, string estado2);
+        Task<int> ContarRegistros(string periodo, int EpkUser, string estado1, string estado2);  
+        Task<int> ContarRegistrosBusqueda(string periodo, int EpkUser, string busqueda, string estado1, string estado2);
+        Task<IEnumerable<RQCompraCab>> BusquedaMultiple(string periodo, PaginacionViewModel paginacion, int EpkUser, string busqueda, string estado1, string estado2);
  
     }
     public class RepositorioRQCompra:IRepositorioRQCompra
@@ -40,50 +40,50 @@ namespace HDProjectWeb.Services
             using var connection = new SqlConnection(connectionString);
             await connection.ExecuteAsync(@"", detalleReq);
         }
-        public async Task<IEnumerable<RQCompraCab>> Obtener(string periodo,PaginacionViewModel paginacion,string CodUser,string orden,string estado1,string estado2) 
+        public async Task<IEnumerable<RQCompraCab>> Obtener(string periodo,PaginacionViewModel paginacion,int EpkUser,string orden,string estado1,string estado2) 
         {
             using var connection = new SqlConnection(connectionString);
             return orden switch
             {
                 "1" => await connection.QueryAsync<RQCompraCab>(@$" SELECT*FROM V_WEB_REQCOMPRAS_Index
-                Where cia=1 AND suc=1 AND periodo =@periodo AND User_Solicita = @CodUser  AND estado in(@estado1,@estado2)
+                Where cia=1 AND suc=1 AND periodo =@periodo AND  s10_codepk = @EpkUser  AND estado in(@estado1,@estado2)
                 ORDER BY Rco_Numero DESC 
                 OFFSET {paginacion.RecordsASaltar}
                 ROWS FETCH NEXT {paginacion.RecordsPorPagina} 
-                ROWS ONLY", new { periodo, CodUser ,estado1, estado2 }),
+                ROWS ONLY", new { periodo, EpkUser ,estado1, estado2 }),
                 
                 _   => await connection.QueryAsync<RQCompraCab>(@$"SELECT*FROM V_WEB_REQCOMPRAS_Index
-                Where cia=1 AND suc=1 AND periodo =@periodo AND User_Solicita = @CodUser  AND estado in(@estado1,@estado2)
+                Where cia=1 AND suc=1 AND periodo =@periodo AND s10_codepk = @EpkUser  AND estado in(@estado1,@estado2)
                 ORDER BY Rco_Numero DESC 
                 OFFSET {paginacion.RecordsASaltar}
                 ROWS FETCH NEXT {paginacion.RecordsPorPagina} 
-                ROWS ONLY", new { periodo, CodUser ,estado1, estado2 }),
+                ROWS ONLY", new { periodo, EpkUser ,estado1, estado2 }),
             };
         }
-        public async Task<IEnumerable<RQCompraCab>> BusquedaMultiple(string periodo, PaginacionViewModel paginacion, string CodUser,string busqueda,string estado1,string estado2)
+        public async Task<IEnumerable<RQCompraCab>> BusquedaMultiple(string periodo, PaginacionViewModel paginacion, int EpkUser, string busqueda,string estado1,string estado2)
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QueryAsync<RQCompraCab>(@$"SELECT * FROM V_WEB_REQCOMPRAS_Index
-             Where cia=1 AND suc=1 AND periodo =@periodo AND User_Solicita = @CodUser  AND estado in(@estado1,@estado2)
+             Where cia=1 AND suc=1 AND periodo =@periodo AND s10_codepk = @EpkUser  AND estado in(@estado1,@estado2)
              AND Rco_Numero LIKE '%'+@busqueda+'%' OR User_Solicita LIKE '%'+@busqueda+'%' OR U_Negocio LIKE '%'+@busqueda+'%' OR Centro_Costo LIKE '%'+@busqueda+'%' 
                 OFFSET {paginacion.RecordsASaltar}
                 ROWS FETCH NEXT {paginacion.RecordsPorPagina} 
-                ROWS ONLY", new { periodo, CodUser, busqueda, estado1, estado2 });         
+                ROWS ONLY", new { periodo, EpkUser, busqueda, estado1, estado2 });         
         }  
-        public async Task<int> ContarRegistros(string periodo,string CodUser, string estado1, string estado2)
+        public async Task<int> ContarRegistros(string periodo, int EpkUser, string estado1, string estado2)
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.ExecuteScalarAsync<int>(@"SELECT COUNT(*) FROM V_WEB_REQCOMPRAS_Index
-                Where cia=1 AND suc=1 AND periodo =@periodo AND User_Solicita = @CodUser  AND estado in(@estado1,@estado2)", 
-                new { periodo,CodUser, estado1, estado2 });
+                Where cia=1 AND suc=1 AND periodo =@periodo AND s10_codepk = @EpkUser   AND estado in(@estado1,@estado2)", 
+                new { periodo,EpkUser, estado1, estado2 });
         }
-        public async Task<int> ContarRegistrosBusqueda(string periodo, string CodUser, string busqueda, string estado1,string estado2)
+        public async Task<int> ContarRegistrosBusqueda(string periodo, int EpkUser, string busqueda, string estado1,string estado2)
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.ExecuteScalarAsync<int>(@"SELECT COUNT(*) FROM V_WEB_REQCOMPRAS_Index
-             Where cia=1 AND suc=1 AND periodo =@periodo AND User_Solicita = @CodUser  AND estado in(@estado1,@estado2)
+             Where cia=1 AND suc=1 AND periodo =@periodo AND s10_codepk = @EpkUser  AND estado in(@estado1,@estado2)
              AND Rco_Numero LIKE '%'+@busqueda+'%' OR User_Solicita LIKE '%'+@busqueda+'%' OR U_Negocio LIKE '%'+@busqueda+'%' OR Centro_Costo LIKE '%'+@busqueda+'%'",
-                new { periodo, CodUser, busqueda, estado1,estado2 });
+                new { periodo, EpkUser, busqueda, estado1,estado2 });
         }
         public async Task Actualizar(RQCompra rQCompraEd)            
         {

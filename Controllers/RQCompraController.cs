@@ -32,7 +32,8 @@ namespace HDProjectWeb.Controllers
             var date = DateTime.Now;
             ViewBag.periodo = periodo;
             string coduser = servicioUsuario.ObtenerCodUsuario();
-            string codaux = servicioUsuario.ObtenerCodAuxUsuario(coduser);
+            crear.S10_codepk = servicioUsuario.ObtenerEpkUsuario(coduser);
+            crear.S10_nomusu = servicioUsuario.ObtenerNombreUsuario(coduser);
             crear.Rco_fec_registro = date;
             //crear.S10_usuario = codaux;
             //crear.S10_nomusu = servicioUsuario.ObtenerNombreUsuario(codaux);
@@ -50,6 +51,7 @@ namespace HDProjectWeb.Controllers
             }  */    
             rQCompra.Cia_codcia = servicioEstandar.Compañia();
             rQCompra.Suc_codsuc = servicioEstandar.Sucursal();
+            rQCompra.Tin_codtin = servicioEstandar.TipoInventario();
             rQCompra.Rco_codusu = servicioUsuario.ObtenerCodUsuario();
             await repositorioRQCompra.Crear(rQCompra);
 
@@ -75,7 +77,8 @@ namespace HDProjectWeb.Controllers
             periodo = await servicioEstandar.ObtenerPeriodo();
             ViewBag.periodo = periodo.Remove(4, 2) + "-" + periodo.Remove(0, 4);
             PaginacionViewModel paginacionViewModel = new();
-            string CodUser = servicioUsuario.ObtenerCodUsuario();        
+            string codUser = servicioUsuario.ObtenerCodUsuario();
+            int epkUser = servicioUsuario.ObtenerEpkUsuario(codUser);
             string estado1, estado2;
             if (estado == "2")
             {
@@ -87,8 +90,8 @@ namespace HDProjectWeb.Controllers
             }
             if (busqueda is not null)
             {               
-                var bus_rQCompra = await repositorioRQCompra.BusquedaMultiple(periodo, paginacionViewModel, CodUser, busqueda, estado1,estado2);
-                var bus_totalRegistros = await repositorioRQCompra.ContarRegistrosBusqueda(periodo, CodUser, busqueda, estado1, estado2);
+                var bus_rQCompra = await repositorioRQCompra.BusquedaMultiple(periodo, paginacionViewModel, epkUser, busqueda, estado1,estado2);
+                var bus_totalRegistros = await repositorioRQCompra.ContarRegistrosBusqueda(periodo, epkUser, busqueda, estado1, estado2);
                 var respuesta = new PaginacionRespuesta<RQCompraCab>
                 {
                     Elementos = bus_rQCompra,
@@ -101,8 +104,8 @@ namespace HDProjectWeb.Controllers
             }
             else
             {
-                var rQCompra = await repositorioRQCompra.Obtener(periodo, paginacionViewModel, CodUser, orden, estado1, estado2);
-                var totalRegistros = await repositorioRQCompra.ContarRegistros(periodo, CodUser, estado1, estado2);
+                var rQCompra = await repositorioRQCompra.Obtener(periodo, paginacionViewModel, epkUser, orden, estado1, estado2);
+                var totalRegistros = await repositorioRQCompra.ContarRegistros(periodo, epkUser, estado1, estado2);
                 var respuesta = new PaginacionRespuesta<RQCompraCab>
                 {
                     Elementos = rQCompra,
@@ -127,12 +130,13 @@ namespace HDProjectWeb.Controllers
             {
                 estado1 = estado; estado2 = estado;
             }
+            string coduser = servicioUsuario.ObtenerCodUsuario();
             string orden = await servicioEstandar.ObtenerOrden();
-            string CodUser = servicioUsuario.ObtenerCodUsuario();
+            int epkUser = servicioUsuario.ObtenerEpkUsuario(coduser);
             string periodo = await servicioEstandar.ObtenerPeriodo();
             ViewBag.periodo =  periodo.Remove(4,2)+"-"+periodo.Remove(0,4);         
-            var rQCompra   = await repositorioRQCompra.Obtener(periodo,paginacionViewModel,CodUser, orden,  estado1, estado2);
-            var totalRegistros = await repositorioRQCompra.ContarRegistros(periodo, CodUser, estado1, estado2);
+            var rQCompra   = await repositorioRQCompra.Obtener(periodo,paginacionViewModel,epkUser, orden,  estado1, estado2);
+            var totalRegistros = await repositorioRQCompra.ContarRegistros(periodo, epkUser, estado1, estado2);
             if (totalRegistros==0)
             {
                 ViewBag.registros = "0";

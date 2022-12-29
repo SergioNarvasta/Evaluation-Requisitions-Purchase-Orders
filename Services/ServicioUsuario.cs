@@ -6,8 +6,8 @@ namespace HDProjectWeb.Services
 {
     public interface IServicioUsuario
     {
-        string ObtenerCodAuxUsuario(string CodUser);
         string ObtenerCodUsuario();
+        int ObtenerEpkUsuario(string CodUser);
         string ObtenerNombreUsuario(string Codaux);
     }
     public class ServicioUsuario : IServicioUsuario
@@ -34,17 +34,18 @@ namespace HDProjectWeb.Services
                 throw new ApplicationException("El usuario no esta autenticado");
             }
         }
-        public string ObtenerCodAuxUsuario( string CodUser)
+        public int ObtenerEpkUsuario(string CodUser)
         {
             using var connection = new SqlConnection(connectionString);
-            return connection.QuerySingle<string>(@"SELECT AUX_CODAUX FROM SYS_TABLA_USUARIOS_S10 
-                          WHERE S10_USUARIO = @CodUser", new { CodUser });
+            return connection.QuerySingle<int>(@"SELECT S10_CODEPK FROM SYS_TABLA_USUARIOS_S10 A 
+                                     LEFT JOIN AspNetUsers B ON A.S10_USUARIO = B.UserName 
+                                     WHERE B.UserName = @CodUser " ,new { CodUser });
         }
-        public string ObtenerNombreUsuario(string Codaux)
+        public string ObtenerNombreUsuario(string CodUser)
         {
             using var connection = new SqlConnection(connectionString);
             return connection.QuerySingle<string>(@"SELECT TOP 1 S10_NOMUSU FROM SYS_TABLA_USUARIOS_S10 
-            WHERE AUX_CODAUX=@codaux", new { Codaux });
+            WHERE S10_USUARIO = @coduser", new { CodUser });
         }
     }
 }
