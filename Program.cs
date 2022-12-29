@@ -28,6 +28,8 @@ builder.Services.AddTransient<IDetalleReqService, DetalleReqService>();
 builder.Services.AddTransient<ICentroCostoService, CentroCostoService>();
 builder.Services.AddTransient<IDisciplinaService, DisciplinaService>();
 builder.Services.AddTransient<IUsuarioService, UsuarioService>();
+builder.Services.AddTransient<IAdjuntosService, AdjuntosService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

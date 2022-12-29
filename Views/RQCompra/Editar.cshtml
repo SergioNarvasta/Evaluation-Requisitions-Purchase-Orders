@@ -1,15 +1,426 @@
-﻿@model RQCompra
+﻿@model HDProjectWeb.Models.RQCompra
 
 @{
-    ViewData["Title"] = "Editar Requerimiento de Compra";
+    ViewData["Title"] = " Editar ";
 }
+<head>
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<h2 class="text-center">TITULO PRINCIPAL </h2> <br />
+<div id="Box-Main">
+    <div class="col-md-4">
+        <form asp-action="Editar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <table id="Table-Main"> 
+                <tbody class="m-2">
+                    <tr>
+                        <th></th><th></th><th></th>
+                        <th>
+                            <div class="form-group d-flex flex-row">
+                                <button id="btn_registrar" type="submit" style="width:120px;height:40px" class="btn btn-primary"><img src="/img/agregar24.png" class="me-1"/>Registrar</button>
+                                <a class="btn btn-primary ms-3" asp-action="Crear" style="width:100px;height:40px"><img src="/img/agregar.png" /> Nuevo</a>
+                                <a asp-action="Index" style="width:100px;height:40px" class="btn btn-danger ms-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                                        <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z" />
+                                    </svg>
+                                    Volver
+                                </a>
+                            </div>
+                        </th>
+                    </tr>
+                    <!-- 1RA FILA HORIZONTAL-->
+                    <tr class="mb-5">
+                        <th class="col-sm-4">
+                            <div class="form-group d-flex flex-row me-2">
+                                <label class="me-2">Requerimien </label>
+                                <input asp-for="Rco_numrco" class="form-control form-control-sm col-sm-4" style="width:325px" type="text" />
+                                <span asp-validation-for="Rco_numrco" class="text-danger"></span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="form-group d-flex flex-row ms-xl-5">
+                                <label class="ms-0">Fecha_Reg</label>
+                                <input asp-for="Rco_fec_registro" class="form-control form-control-sm ms-2" style="width:330px" />
+                                <span asp-validation-for="Rco_fec_registro" class="text-danger"></span>
+                            </div>
+                        </th>
+                        <!--<th>
+                            <div class="form-group d-flex flex-row ms-5">
+                                <label class="ms-5">Fecha_Sug</label>
+                                <input asp-for="Rco_fec_registro" class="form-control form-control-sm ms-2" />
+                                <span asp-validation-for="Rco_fec_registro" class="text-danger"></span>
+                            </div>
+                        </th>-->
+                        <th>
+                            <div class="d-flex flex-row ms-xl-5">
+                                <label>Estado </label>
+                                <select asp-for="Rco_estado" id="cbo_estado" class="ms-4" onclick="colocaEstado()" disabled>
+                                    <option value="1">VIGENTE</option>
+                                    <option value="0">ANULADO</option>
+                                </select>                  
+                            </div>
+                        </th>
+                        <th>
+                            <div class="d-flex flex-row ms-xl-5">
+                                <label>Tipo_Req </label>
+                                <select asp-for="Tre_codepk" id="cbo_tipo" class="ms-2" onclick="colocaTipo()">
+                                    <option value="1">COMPRA REGULAR</option>
+                                    
+                                </select>
+                            </div>
+                        </th>
+                        <th>
+                            
+                        </th>
+                    </tr>
+                    <!-- 2DA FILA HORIZONTAL-->
+                    <tr >
+                        <th>
+                             <div class="form-group d-flex flex-row ">
+                               <label >U.Negocio</label>
+                                <select asp-for="Ung_codepk" id="cbo_unegocio" class="ms-4" onclick="colocaUnegocio()" style="width:325px">
+                                    <option value="1">Administration   </option>
+                                    <option value="2">Business Development    </option>
+                                    <option value="3">Engineering  </option>
+                                    <option value="4">Finance  </option>
+                                </select>
+                             </div>
+                        </th>
+                        <th>
+                            <div class="form-group d-flex flex-row ms-5 me-5">
+                                <label class="control-label">C.Costo</label>
+                                <input id="input_epk_cco" asp-for="Cco_codepk" class="form-control form-control-sm col-sm-4 ms-4" style="width:60px;display:none" />
+                                <span asp-validation-for="Cco_codepk" class="text-danger"></span>
 
-<h4> TITULO PRINCIPAL</h4>
-<hr />
+                                <input id="input_cod_cco" onclick="abrir_modal_cco()" asp-for="Cco_codcco" class="form-control form-control-sm col-sm-4 ms-4" style="width:75px" />
+                                <span asp-validation-for="Cco_codcco" class="text-danger"></span>
+                                <input id="input_des_cco" type="text" asp-for="Cco_descco" style="width:255px" class="form-control ms-1"/>
+                                <span asp-validation-for="Cco_descco" class="text-danger"></span>   
+                                <!-- Modal con Ayuda -->
+                                <button id="btn_abrir_modal_cco" class="btn btn-outline-success" style="display:none" data-bs-toggle="modal" data-bs-target="#Modal_Cco">+ </button>
+                                <a asp-action="AyudaCentroCosto" class="btn btn-outline-primary" style="display:none"> Cco</a>
+                                <div class="modal" id="Modal_Cco">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title ms-5">Centro de costo</h4>
+                                                <input class="form-control light-table-filter" data-table="order-table" type="text" placeholder="Filtrar.." style="width:380px;" />
+                                            </div>
+                                            <div class="modal-body" style="cursor:pointer">
+                                                <table class="table table-bordered ms-4 table-hover order-table">
+                                                    <tr class="table-primary">
+                                                        <th>Codigo</th>
+                                                        <th>Descripcion</th>
+                                                    </tr>
+                                                    @await Component.InvokeAsync("AyudaCentroCosto")
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button id="btn_cerrar_modal_cco" type="button" class="btn btn-danger" data-bs-dismiss="modal">Retornar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="form-group d-flex flex-row ms-xl-5">
+                                <label class="">Situacion</label>
+                                <select asp-for="Rco_sitrco" id="cbo_situacion" class="ms-2" onclick="colocaSituacion()" disabled>
+                                    <option value="1">PENDIENTE</option>
+                                    <option value="2">APROBADO </option>
+                                    <option value="3">RECHAZADO</option>
+                                </select>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="d-flex flex-row ms-xl-5">
+                                <input class="form-check-input ms-5" type="checkbox" id="chkOCAprobado" value="1"/>
+                                <label class="form-check-label ms-2">OC Aprobado</label>
+                            </div>
+                        </th>
+                        <th>
+                            
+                        </th>
+                    </tr>
+                    <!-- 3RA FILA HORIZONTAL-->
+                    <tr class="mb-lg-5">
+                        <th>
+                            <div class="form-group d-flex flex-row me-5">
+                                <label asp-for="S10_codepk" class="control-label me-3"></label>
+                                <input asp-for="S10_codepk" id="input_epk_usu" class="form-control form-control-sm ms-2" style="width:50px" />
+                                <span asp-validation-for="S10_codepk" class="text-danger"></span>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+                                <input asp-for="S10_codusu" id="input_cod_usu" class="form-control form-control-sm ms-1" style="width:90px" onclick="abrir_modal_usu()" />
+                                <span asp-validation-for="S10_codusu" class="text-danger"></span>
+
+                                <input asp-for="S10_nomusu" id="input_des_usu" class="form-control form-control-sm ms-1" style="width:230px" />
+                                <span asp-validation-for="S10_nomusu" class="text-danger"></span>
+
+                                <!-- Modal con Ayuda -->
+                                <button id="btn_abrir_modal_usu" class="btn btn-outline-success" style="display:none" data-bs-toggle="modal" data-bs-target="#Modal_Usu">+ </button>
+                                <a asp-action="AyudaUsuario" class="btn btn-outline-primary" style="display:none">Usu</a>
+                                <div class="modal" id="Modal_Usu">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title ms-5">Usuarios</h4>
+                                                <input class="form-control light-table-filter" data-table="order-table" type="text" placeholder="Filtrar.." style="width:380px;" />
+                                            </div>
+                                            <div class="modal-body" style="cursor:pointer">
+                                                <table class="table table-bordered ms-4 table-hover order-table">
+                                                    <tr class="table-primary">
+                                                        <th>Codigo</th>
+                                                        <th>Descripcion</th>
+                                                    </tr>
+                                                    @await Component.InvokeAsync("AyudaUsuario")
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button id="btn_cerrar_modal_usu" type="button" class="btn btn-danger" data-bs-dismiss="modal">Retornar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="form-group d-flex flex-row ms-5 me-5">
+                                <label  class="control-label ms-2 me-2">Resumen</label>
+                                <input asp-for="Rco_glorco" class="form-control form-control-sm col-sm-4" style="width:330px" />
+                                <span   class="text-danger"></span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="form-group d-flex flex-row ms-xl-5">
+                                <label >Presupuesto</label>
+                                <select asp-for="Rco_presup" id="cbo_presup" class="ms-2" onclick="colocaPresup()">
+                                    <option value="1"> SI </option>
+                                    <option value="0"> NO </option>
+                                </select>
+                             
+                            </div>
+                        </th>
+                        <th>
+                            <div class="d-flex flex-row ms-xl-5">
+                                <input asp-for="Rco_indval" class="form-check-input ms-5" type="checkbox" id="chkCategorizado" />
+                                <label class="form-check-label ms-2">Categorizado</label>
+                                <span asp-validation-for="Rco_indval" class="text-danger"></span>
+                            </div>
+                        </th>
+                     
+                    </tr>
+                     <!-- 4TA FILA HORIZONTAL-->
+                    <tr style="height:80px">
+                        <th>
+                            <div class="form-group d-flex flex-row">
+                                <label asp-for="Rco_motivo" class="control-label"></label>
+                                <textarea asp-for="Rco_motivo" class="form-control ms-xl-5" type="text" style="height:80px;width:325px" ></textarea>
+                                <span asp-validation-for="Rco_motivo" class="text-white"></span>
+                            </div>
+                         </th>
+                        <th >
+                            <div class="form-group d-flex flex-row ms-xl-5" style="margin-bottom:10px">
+                                <label class="control-label">Disciplina</label>
+                                <input id="input_cod_disci" onclick="abrir_modal_disci()" asp-for="Dis_codepk" class="form-control ms-2" style="width:50px" />
+                                <span asp-validation-for="Dis_codepk" class="text-danger"></span>
+                                <input id="input_des_disci" asp-for="Dis_nomlar" class="form-control ms-1" style="width:280px" />
+                                <span asp-validation-for="Dis_nomlar" class="text-danger"></span>                               
+                                <!-- Modal con Ayuda -->
+                                <button id="btn_abrir_modal_disci" class="btn btn-outline-success" style="display:none" data-bs-toggle="modal" data-bs-target="#Modal_Dis">+ </button>
+                                <a   asp-action="AyudaDisciplina" class="btn btn-outline-primary" style="display:none" > Dis</a>
+                                <div class="modal" id="Modal_Dis">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title ms-5">Disciplina</h4>
+                                                <input class="form-control light-table-filter" data-table="order-table" type="text" placeholder="Filtrar.." style="width:380px;" />
+                                            </div>
+                                            <div class="modal-body" style="cursor:pointer">
+                                                <table class="table table-bordered ms-4 table-hover order-table">
+                                                    <tr class="table-primary">                                                     
+                                                      <th>Codigo</th>
+                                                      <th>Descripcion</th>
+                                                    </tr>                                                  
+                                                     @await Component.InvokeAsync("AyudaDisciplina");                                               
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button id="btn_cerrar_modal_disci" type="button" class="btn btn-danger" data-bs-dismiss="modal">Retornar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group d-flex flex-row ms-xl-5">
+                                <label class="control-label me-3">Solicitud</label>
+                                <input class="form-control form-control-sm" style="width:329px"/>
+                                <span class="text-danger"></span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="form-group d-flex flex-row ms-xl-5" style="margin-bottom:10px">
+                                <label>Reembolso</label>
+                                <select asp-for="Rco_rembls" id="cbo_reembls" class="ms-3" onclick="colocaReembls()">
+                                    <option value="1"> SI </option>
+                                    <option value="0"> NO </option>
+                                </select>                               
+                            </div>
+                            <div class="form-group d-flex flex-row ms-xl-5">
+                                <label class="control-label">OCompra</label>
+                                <input asp-for="Occ_codepk" class="form-control form-control-sm ms-2" style="width:120px" />
+                                <span asp-validation-for="Occ_codepk" class="text-danger"></span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="d-flex flex-row ms-xl-5" style="margin-bottom:10px">
+                                <input class="form-check-input ms-5" type="checkbox" id="chkCuadroComp" />
+                                <label class="form-check-label ms-2">Cuadro Comparativo</label>
+                                
+                            </div>
+                            <div class="d-flex flex-row ms-xl-5">
+                                <label>Prioridad </label>
+                                <select asp-for="Rco_priori" id="cbo_prioridad" class="ms-2" onclick="colocaPrioridad()">
+                                    <option value="1">MUY ALTA</option>
+                                    <option value="2">ALTA</option>
+                                    <option value="3">MEDIA</option>
+                                    <option value="4">BAJA</option>
+                                </select>
+                            </div>
+                        </th>
+                     </tr>
+                     <tr>
+                         <th></th><th></th><th></th>
+                         <th>
+                            <a class="btn btn-primary">TDR</a>
+                            <a class="btn btn-primary ms-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at-fill me-1" viewBox="0 0 16 16">
+                                    <path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2H2Zm-2 9.8V4.698l5.803 3.546L0 11.801Zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 9.671V4.697l-5.803 3.546.338.208A4.482 4.482 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671Z" />
+                                    <path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034v.21Zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791Z" />
+                                </svg>
+                                Enviar Mail
+                            </a>
+                         </th>
+                     </tr>
+                    <!-- 5TA FILA CAMPOS A ENVIAR-->
+                    <tr style="display:none">
+                        <th> 
+                            <label>Estado</label>
+                            <input id="input_estado" asp-for="Rco_estado" type="text" style="width:20px" />
+                            <span asp-validation-for="Rco_estado" class="text-danger"></span>
+                        
+                            <label>Tipo</label>
+                            <input id="input_tipo" asp-for="Tre_codepk" type="text" style="width:20px" />
+                            <span asp-validation-for="Tre_codepk" class="text-danger"></span>
+                      
+                            <label>Prioridad</label>
+                            <input id="input_prioridad" asp-for="Rco_priori" type="text" style="width:20px" />
+                            <span asp-validation-for="Rco_priori" class="text-danger"></span>
+                        
+                            <label>UNG</label>
+                            <input id="input_unegocio" asp-for="Ung_codepk" type="text"  style="width:30px" />
+                            <span asp-validation-for="Ung_codepk" class="text-danger"></span>
+                        </th>
+                        <th>
+                            <label>Situacion</label>
+                            <input id="input_situacion" asp-for="Rco_sitrco" type="text" style="width:20px" />
+                            <span asp-validation-for="Rco_sitrco" class="text-danger"></span>
+
+                            <label>Presup</label>
+                            <input id="input_presup" asp-for="Rco_presup" type="text" style="width:20px" />
+                            <span asp-validation-for="Rco_presup" class="text-danger"></span>
+
+                            <label>Reembls</label>
+                            <input id="input_reembls" asp-for="Rco_rembls" type="text" style="width:20px" />
+                            <span asp-validation-for="Rco_rembls" class="text-danger"></span>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <!--<label class="me-1">Cantidad Items : </label><input id="nitems_prd" type="text" style="width:50px" />-->
+            <!-- TABLA PRODUCTOS -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <div class="table">
+                <table id="tblProductos" class="table table-bordered table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th>
+                            <button onclick="agregarFila()" id="btn_adicionar" type="button" class="btn btn-outline-primary" style="border:0px">
+                                <img src="/img/mas.png"/>
+                            </button>
+                        </th>
+                        <th>Item</th>
+                        <th>Codigo</th>
+                        <th>Descripcion</th>
+                        <th>Detalle</th>
+                        <th>Unidad</th>
+                        <th>Cantidad</th>
+                        <th>Codigo Proveedor</th>
+                        <th>Proveedor</th>
+                        <th>Sustento</th>
+                    </tr>
+                </thead> 
+                <tbody id="tbody_prd" class="table table-bordered">
+                        @if (ViewBag.estado != "1")
+                        {
+                            @await Component.InvokeAsync("DetalleReq",ViewBag.Rco_numero);
+                        }
+                </tbody>                  
+                </table>
+            </div>
+           
+            <!-- TABLA ADJUNTOS-->
+            <br />
+            <p class="justify-content-center text-"><strong>ADJUNTOS</strong></p>
+            <!--<label class="me-1">Cantidad Items : </label><input id="nitems_adj" type="text" style="width:50px" />-->
+            <div class="">
+                <table id="tblAdjuntos" class="table table-bordered table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th>
+                            <button onclick="agregarFilaAdj()" id="btn_adicionar_adj" type="button" class="btn btn-outline-primary" style="border:0px"><img src="/img/mas.png"/></button>
+                        </th>
+                        <th>Item</th>
+                        <th>Nombre Archivo</th>
+                        <th>Archivo</th>
+                        <th>Codigo Archivo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @if (ViewBag.estado != "1")
+                        {
+                            @await Component.InvokeAsync("DetalleAdjuntos",ViewBag.Rco_numero)
+                            ;
+                        }
+                </tbody>
+            </table>
+                <br /><br />
+            </div>
+            <div class="form-group" style="width:300px">
+                <div class="input-group d-flex flex-row">
+                    <label class="input-group-btn">
+                        <span class="btn btn-file">
+                            <input accept=".docx,.doc,.pdf" class="hidden" name="banner" type="file" id="banner" style="width:90px">
+                        </span>
+                    </label>
+                    <input class="form-control" id="banner_captura" readonly="readonly" name="banner_captura" type="text" value="" style="width:100px">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <a class="btn btn-danger"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill me-1" viewBox="0 0 16 16">
+  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+</svg>
+Eliminar</a>
+                </div>              
+            </div> <br />
+            <p style="color:red">View_RQCompra/Crear </p>
+        </form>
+    </div>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

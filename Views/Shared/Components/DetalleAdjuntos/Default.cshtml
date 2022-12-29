@@ -1,1 +1,12 @@
-﻿
+﻿@using HDProjectWeb.Models.Detalles;
+@model IEnumerable<Adjuntos>
+
+@foreach (var item in Model)
+{
+    <tr id="tr_adj">
+        <td>@item.Item</td>
+        <td>@item.Nombre </td>
+        <td>@item.Archivo </td>
+        <td>@item.CodArchivo </td>
+    </tr>
+}

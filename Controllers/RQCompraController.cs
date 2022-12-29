@@ -45,20 +45,21 @@ namespace HDProjectWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Crear(RQCompra rQCompra)
         {
-            /*if(!ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
                 return View(rQCompra); 
-            }  */    
+            }     
             rQCompra.Cia_codcia = servicioEstandar.Compañia();
             rQCompra.Suc_codsuc = servicioEstandar.Sucursal();
             rQCompra.Tin_codtin = servicioEstandar.TipoInventario();
             rQCompra.Rco_codusu = servicioUsuario.ObtenerCodUsuario();
+            rQCompra.Rco_codepk = 20221201;
             await repositorioRQCompra.Crear(rQCompra);
 
-            foreach(DetalleReq detalleReq in rQCompra.ListaDetalles )
+           /*oreach(DetalleReq detalleReq in rQCompra.ListaDetalles )
             {
                //await servicioDetalle.Crear(DetalleReq);
-            }
+            }*/
             return View();
         }
 
@@ -163,7 +164,7 @@ namespace HDProjectWeb.Controllers
             var periodo = servicioEstandar.ObtenerPeriodo();
             ViewBag.periodo = periodo;
             ViewBag.Rco_numero = Rco_Numero;
-            return View("Crear",rQCompra);
+            return View(rQCompra);
         }
 
         [HttpPost]

@@ -194,7 +194,7 @@ function agregarFilaAdj() {
 function colocaEstado() {
     var combo = document.getElementById("cbo_estado");
     var selected = combo.options[combo.selectedIndex].value;
-    $("#input_estado").val(selected);
+    $("#input_estado").val(parseInt(selected));
 }
 function colocaTipo() {
     var combo = document.getElementById("cbo_tipo");

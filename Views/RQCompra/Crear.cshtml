@@ -34,7 +34,7 @@
                         <th class="col-sm-4">
                             <div class="form-group d-flex flex-row me-2">
                                 <label class="me-2">Requerimien </label>
-                                <input asp-for="Rco_numrco" class="form-control form-control-sm col-sm-4" style="width:325px"/>
+                                <input asp-for="Rco_numrco" class="form-control form-control-sm col-sm-4" style="width:325px" type="text" />
                                 <span asp-validation-for="Rco_numrco" class="text-danger"></span>
                             </div>
                         </th>
@@ -55,7 +55,7 @@
                         <th>
                             <div class="d-flex flex-row ms-xl-5">
                                 <label>Estado </label>
-                                <select asp-for="Rco_indest" id="cbo_estado" class="ms-4" onclick="colocaEstado()" >
+                                <select asp-for="Rco_estado" id="cbo_estado" class="ms-4" onclick="colocaEstado()">
                                     <option value="1">VIGENTE</option>
                                     <option value="0">ANULADO</option>
                                 </select>                  
@@ -66,13 +66,7 @@
                                 <label>Tipo_Req </label>
                                 <select asp-for="Tre_codepk" id="cbo_tipo" class="ms-2" onclick="colocaTipo()">
                                     <option value="1">COMPRA REGULAR</option>
-                                    <option value="2">CERTIF. CONFORMIDAD</option>
-                                    <option value="3">ADENDA CONTRATO</option>
-                                    <option value="4">CLS CONSULTOR</option>
-                                    <option value="5">CLS EMPRESA</option>
-                                    <option value="6">AM CONSULTOR</option>
-                                    <option value="7">AM EMPRESA</option>
-                                    <option value="8">SOLICITUD SERVICIO AC/AD</option>
+                                    
                                 </select>
                             </div>
                         </th>
@@ -86,14 +80,11 @@
                              <div class="form-group d-flex flex-row ">
                                <label >U.Negocio</label>
                                 <select asp-for="Ung_codepk" id="cbo_unegocio" class="ms-4" onclick="colocaUnegocio()" style="width:325px">
-                                   <option value="01">MINING & METALURGY    </option>
-                                   <option value="02">INFRAESTRUCTURE E&W   </option>
-                                   <option value="03">O&G-FEED & ENGINEERING</option>
-                                   <option value="04">SHARED SERVICES</option>    
-                                   <option value="05">O&G - PROJECTS </option>
-                                   <option value="06">M&M - E&G      </option>
-                                   <option value="07">ANTAMINA FASE VII</option>
-                                 </select>
+                                    <option value="1">Administration   </option>
+                                    <option value="2">Business Development    </option>
+                                    <option value="3">Engineering  </option>
+                                    <option value="4">Finance  </option>
+                                </select>
                              </div>
                         </th>
                         <th>
@@ -313,14 +304,14 @@
                          </th>
                      </tr>
                     <!-- 5TA FILA CAMPOS A ENVIAR-->
-                    <tr style="display:''">
+                    <tr style="display:none">
                         <th> 
                             <label>Estado</label>
-                            <input id="input_estado" asp-for="Rco_indest" type="number" style="width:20px" />
-                            <span asp-validation-for="Rco_indest" class="text-danger"></span>
+                            <input id="input_estado" asp-for="Rco_estado" type="text" style="width:20px" />
+                            <span asp-validation-for="Rco_estado" class="text-danger"></span>
                         
                             <label>Tipo</label>
-                            <input id="input_tipo" asp-for="Tre_codepk" type="number" style="width:20px" />
+                            <input id="input_tipo" asp-for="Tre_codepk" type="text" style="width:20px" />
                             <span asp-validation-for="Tre_codepk" class="text-danger"></span>
                       
                             <label>Prioridad</label>
