@@ -339,7 +339,7 @@
                 </tbody>
             </table>
             <br />
-            <!--<label class="me-1">Cantidad Items : </label><input id="nitems_prd" type="text" style="width:50px" />-->
+            
             <!-- TABLA PRODUCTOS -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
             <div class="table">
@@ -362,11 +362,7 @@
                         <th>Sustento</th>
                     </tr>
                 </thead> 
-                <tbody id="tbody_prd" class="table table-bordered">
-                        @if (ViewBag.estado != "1")
-                        {
-                            @await Component.InvokeAsync("DetalleReq",ViewBag.Rco_numero);
-                        }
+                <tbody id="tbody_prd" class="table table-bordered">     
                 </tbody>                  
                 </table>
             </div>
@@ -388,12 +384,7 @@
                         <th>Codigo Archivo</th>
                     </tr>
                 </thead>
-                <tbody>
-                        @if (ViewBag.estado != "1")
-                        {
-                            @await Component.InvokeAsync("DetalleAdjuntos",ViewBag.Rco_numero);
-                        }
-                </tbody>
+                <tbody>            </tbody>
             </table>
                 <br /><br />
             </div>
@@ -419,7 +410,6 @@ Eliminar</a>
         </form>
     </div>
 </div>
-
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
