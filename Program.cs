@@ -5,6 +5,7 @@ using HDProjectWeb.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProjectWeb_DRA.Data;
+using ProjectWeb_DRA.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddControllersWithViews();
 
 //  Agregamos los servicios creados
 builder.Services.AddTransient<IRepositorioRQCompra, RepositorioRQCompra>();
+builder.Services.AddTransient<IRepositorioOrdenCompra,RepositorioOrdenCompra>();
 builder.Services.AddTransient<IServicioEstandar, ServicioEstandar>(); 
 builder.Services.AddTransient<IRepositorioUsuario, RepositorioUsuario>();
 builder.Services.AddTransient<IServicioUsuario, ServicioUsuario>();

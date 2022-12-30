@@ -136,6 +136,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Docs_Sergio/DRA/ProjectWeb_DRA/Views/OrdenCompra/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5Db21wcmFcRWRpdGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Docs_Sergio/DRA/ProjectWeb_DRA/Views/OrdenCompra/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5Db21wcmFcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Docs_Sergio/DRA/ProjectWeb_DRA/Views/RQCompra/Crear.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUlFDb21wcmFcQ3JlYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,16 +1,16 @@
-﻿@model HDProjectWeb.Models.RQCompra
+﻿@model ProjectWeb_DRA.Models.OrdenCompra
 
 @{
-    ViewData["Title"] = "Nuevo";
+    ViewData["Title"] = " Editar ";
 }
 <head>
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
-<h2 class="text-center">TITULO PRINCIPAL </h2> <br />
+<h2 class="text-center">APROBACION DE ORDEN DE COMPRA</h2> <br />
 <div id="Box-Main">
     <div class="col-md-4">
-        <form asp-action="Crear">
+        <form asp-action="Editar">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <table id="Table-Main"> 
                 <tbody class="m-2">
@@ -44,18 +44,11 @@
                                 <input asp-for="Rco_fec_registro" class="form-control form-control-sm ms-2" style="width:330px" />
                                 <span asp-validation-for="Rco_fec_registro" class="text-danger"></span>
                             </div>
-                        </th>
-                        <!--<th>
-                            <div class="form-group d-flex flex-row ms-5">
-                                <label class="ms-5">Fecha_Sug</label>
-                                <input asp-for="Rco_fec_registro" class="form-control form-control-sm ms-2" />
-                                <span asp-validation-for="Rco_fec_registro" class="text-danger"></span>
-                            </div>
-                        </th>-->
+                        </th>                        
                         <th>
                             <div class="d-flex flex-row ms-xl-5">
                                 <label>Estado </label>
-                                <select asp-for="Rco_estado" id="cbo_estado" class="ms-4" onclick="colocaEstado()">
+                                <select asp-for="Rco_estado" id="cbo_estado" class="ms-4" onclick="colocaEstado()" disabled>
                                     <option value="1">VIGENTE</option>
                                     <option value="0">ANULADO</option>
                                 </select>                  
@@ -127,7 +120,7 @@
                         <th>
                             <div class="form-group d-flex flex-row ms-xl-5">
                                 <label class="">Situacion</label>
-                                <select asp-for="Rco_sitrco" id="cbo_situacion" class="ms-2" onclick="colocaSituacion()" >
+                                <select asp-for="Rco_sitrco" id="cbo_situacion" class="ms-2" onclick="colocaSituacion()" disabled>
                                     <option value="1">PENDIENTE</option>
                                     <option value="2">APROBADO </option>
                                     <option value="3">RECHAZADO</option>
@@ -338,7 +331,7 @@
                     </tr>
                 </tbody>
             </table>
-            <br />         
+            <br />          
             <!-- TABLA PRODUCTOS -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
             <div class="table">
@@ -361,7 +354,11 @@
                         <th>Sustento</th>
                     </tr>
                 </thead> 
-                <tbody id="tbody_prd" class="table table-bordered">     
+                <tbody id="tbody_prd" class="table table-bordered">
+                        @if (ViewBag.estado != "1")
+                        {
+                            @await Component.InvokeAsync("DetalleReq",ViewBag.Rco_numero);
+                        }
                 </tbody>                  
                 </table>
             </div>
@@ -383,7 +380,13 @@
                         <th>Codigo Archivo</th>
                     </tr>
                 </thead>
-                <tbody>  </tbody>
+                <tbody>
+                        @if (ViewBag.estado != "1")
+                        {
+                            @await Component.InvokeAsync("DetalleAdjuntos",ViewBag.Rco_numero)
+                            ;
+                        }
+                </tbody>
             </table>
                 <br /><br />
             </div>
@@ -409,6 +412,7 @@ Eliminar</a>
         </form>
     </div>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
