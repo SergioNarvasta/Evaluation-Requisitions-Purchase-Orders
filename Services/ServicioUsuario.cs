@@ -7,8 +7,9 @@ namespace HDProjectWeb.Services
     public interface IServicioUsuario
     {
         string ObtenerCodUsuario();
-        int ObtenerEpkUsuario(string CodUser);
-        string ObtenerNombreUsuario(string Codaux);
+        Task<int> ObtenerEpkUsuario(string CodUser);
+        Task<string> ObtenerNombreUsuario(string CodUser);
+        Task<int> RegistraUsuario_S10();
     }
     public class ServicioUsuario : IServicioUsuario
     {
@@ -34,17 +35,32 @@ namespace HDProjectWeb.Services
                 throw new ApplicationException("El usuario no esta autenticado");
             }
         }
-        public int ObtenerEpkUsuario(string CodUser)
+        public  async Task<int> ObtenerEpkUsuario(string CodUser)
         {
             using var connection = new SqlConnection(connectionString);
-            return connection.QuerySingle<int>(@"SELECT S10_CODEPK FROM SYS_TABLA_USUARIOS_S10 A 
+            int cant = await connection.QuerySingleAsync<int>(@"SELECT COUNT(*) FROM SYS_TABLA_USUARIOS_S10 A 
                                      LEFT JOIN AspNetUsers B ON A.S10_USUARIO = B.UserName 
-                                     WHERE B.UserName = @CodUser " ,new { CodUser });
+                                     WHERE B.UserName = @CodUser ", new { CodUser });
+            if(cant == 0)
+            {
+                return await RegistraUsuario_S10();
+            }else
+                return await connection.QuerySingleAsync<int>(@"SELECT S10_CODEPK  FROM SYS_TABLA_USUARIOS_S10 A 
+                                     LEFT JOIN AspNetUsers B ON A.S10_USUARIO = B.UserName 
+                                     WHERE B.UserName = @CodUser ", new { CodUser });
         }
-        public string ObtenerNombreUsuario(string CodUser)
+        public async Task<int> RegistraUsuario_S10()
+        {
+            string usu, nom, nomcor, psd; int nivusu = 1;
+            usu = ObtenerCodUsuario(); nom = ObtenerCodUsuario(); nomcor= ObtenerCodUsuario(); psd = "asd123";
+            using var connection = new SqlConnection(connectionString);
+            return await connection.QuerySingleAsync<int>(@"INSERT INTO SYS_TABLA_USUARIOS_S10(S10_USUARIO,S10_NOMUSU,S10_NOMCOR,S10_NIVUSU,S10_PASSWO) VALUES(@usu,@nom,@nomcor,@nivusu,@psd);
+                          SELECT SCOPE_IDENTITY()" ,new { usu,nom,nomcor, psd,nivusu });
+        }
+        public async Task<string> ObtenerNombreUsuario(string CodUser)
         {
             using var connection = new SqlConnection(connectionString);
-            return connection.QuerySingle<string>(@"SELECT TOP 1 S10_NOMUSU FROM SYS_TABLA_USUARIOS_S10 
+            return await connection.QuerySingleAsync<string>(@"SELECT TOP 1 S10_NOMUSU FROM SYS_TABLA_USUARIOS_S10 
             WHERE S10_USUARIO = @coduser", new { CodUser });
         }
     }

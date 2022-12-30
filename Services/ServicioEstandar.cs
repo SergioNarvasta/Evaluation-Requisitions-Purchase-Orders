@@ -10,15 +10,15 @@ namespace HDProjectWeb.Services
         Task ActualizaPeriodo(string periodo);
         string Ano();
         string Compañia();
+        Task<int> GeneraRco_Codepk();
         string Mes();
-        string NroReq();
         string ObtenerCompañia(string codcia);
         Task<string> ObtenerOrden();
         Task<string> ObtenerPeriodo();
         Task SetOrden();
         Task SetPeriodo();
         string Sucursal();
-        short TipoInventario();
+        int TipoInventario();
     }  
     public class ServicioEstandar : IServicioEstandar
     {
@@ -95,9 +95,9 @@ namespace HDProjectWeb.Services
             string cia = "01";
             return cia; 
         }
-        public Int16 TipoInventario()
+        public int TipoInventario()
         {
-            Int16 Tin = 2;
+            int Tin = 2;
             return Tin;
         }
         public string ObtenerCompañia(string codcia)
@@ -121,13 +121,12 @@ namespace HDProjectWeb.Services
             string ano = DateTime.Now.Year.ToString();
             return ano;
         }
-        public string NroReq()
+        public async Task<int> GeneraRco_Codepk()
         {
-            Random rnd = new Random();
-            string _base = "RQ";
-            string Random = rnd.Next().ToString();
-            string NroReq = (_base+ Random).Remove(10,(_base + Random).Length-10);
-            return NroReq;
+            using var connection = new SqlConnection(connectionString);
+            int Rco = await connection.QuerySingleAsync<int>(@"SELECT MAX(rco_codepk) 
+                           FROM REQ_REQUI_COMPRA_RCO");
+            return Rco + 1;
         }
     }
 }

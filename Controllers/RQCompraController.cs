@@ -25,15 +25,15 @@ namespace HDProjectWeb.Controllers
         }
 
         [HttpGet]
-        public IActionResult Crear()
+        public async Task<IActionResult> Crear()
         {
             RQCompra crear = new();
             var periodo = servicioEstandar.ObtenerPeriodo();
             var date = DateTime.Now;
             ViewBag.periodo = periodo;
             string coduser = servicioUsuario.ObtenerCodUsuario();
-            crear.S10_codepk = servicioUsuario.ObtenerEpkUsuario(coduser);
-            crear.S10_nomusu = servicioUsuario.ObtenerNombreUsuario(coduser);
+            crear.S10_codepk = await servicioUsuario.ObtenerEpkUsuario(coduser);
+            crear.S10_nomusu = await servicioUsuario.ObtenerNombreUsuario(coduser);
             crear.Rco_fec_registro = date;
             //crear.S10_usuario = codaux;
             //crear.S10_nomusu = servicioUsuario.ObtenerNombreUsuario(codaux);
@@ -45,15 +45,15 @@ namespace HDProjectWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Crear(RQCompra rQCompra)
         {
-            if(!ModelState.IsValid)
+            /*if(!ModelState.IsValid)
             {
                 return View(rQCompra); 
-            }     
+            }     */
             rQCompra.Cia_codcia = servicioEstandar.Compañia();
             rQCompra.Suc_codsuc = servicioEstandar.Sucursal();
             rQCompra.Tin_codtin = servicioEstandar.TipoInventario();
             rQCompra.Rco_codusu = servicioUsuario.ObtenerCodUsuario();
-            rQCompra.Rco_codepk = 20221201;
+            rQCompra.Rco_codepk = await servicioEstandar.GeneraRco_Codepk();
             await repositorioRQCompra.Crear(rQCompra);
 
            /*oreach(DetalleReq detalleReq in rQCompra.ListaDetalles )
@@ -79,7 +79,7 @@ namespace HDProjectWeb.Controllers
             ViewBag.periodo = periodo.Remove(4, 2) + "-" + periodo.Remove(0, 4);
             PaginacionViewModel paginacionViewModel = new();
             string codUser = servicioUsuario.ObtenerCodUsuario();
-            int epkUser = servicioUsuario.ObtenerEpkUsuario(codUser);
+            int epkUser = await servicioUsuario.ObtenerEpkUsuario(codUser);
             string estado1, estado2;
             if (estado == "2")
             {
@@ -133,7 +133,7 @@ namespace HDProjectWeb.Controllers
             }
             string coduser = servicioUsuario.ObtenerCodUsuario();
             string orden = await servicioEstandar.ObtenerOrden();
-            int epkUser = servicioUsuario.ObtenerEpkUsuario(coduser);
+            int epkUser = await servicioUsuario.ObtenerEpkUsuario(coduser);
             string periodo = await servicioEstandar.ObtenerPeriodo();
             ViewBag.periodo =  periodo.Remove(4,2)+"-"+periodo.Remove(0,4);         
             var rQCompra   = await repositorioRQCompra.Obtener(periodo,paginacionViewModel,epkUser, orden,  estado1, estado2);

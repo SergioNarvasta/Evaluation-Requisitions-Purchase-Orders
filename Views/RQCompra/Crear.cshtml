@@ -391,8 +391,7 @@
                 <tbody>
                         @if (ViewBag.estado != "1")
                         {
-                            @await Component.InvokeAsync("DetalleAdjuntos",ViewBag.Rco_numero)
-                            ;
+                            @await Component.InvokeAsync("DetalleAdjuntos",ViewBag.Rco_numero);
                         }
                 </tbody>
             </table>
