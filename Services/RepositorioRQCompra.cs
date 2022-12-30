@@ -93,7 +93,6 @@ namespace HDProjectWeb.Services
                             @Rco_Prioridad =@Rco_prioridad,  @Rco_Justificacion=Rco_justificacion , @Rco_Reembolso =@Rco_reembolso,
                             @Rco_Presupuesto =@Rco_presupuesto,@Rco_Categorizado = @Rco_categorizado,  @Rco_Disciplina = @Rco_disciplina", rQCompraEd);
         }
-        //Falta Editar
         public async Task<RQCompra> ObtenerporCodigo(string Rco_numero) 
         {
             using var connection = new SqlConnection(connectionString);
