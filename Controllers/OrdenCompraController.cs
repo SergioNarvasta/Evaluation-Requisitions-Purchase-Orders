@@ -1,6 +1,7 @@
 ﻿using HDProjectWeb.Models;
 using HDProjectWeb.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using ProjectWeb_DRA.Models;
 using ProjectWeb_DRA.Services;
@@ -19,8 +20,10 @@ namespace ProjectWeb_DRA.Controllers
         {
             this.servicioEstandar       = servicioEstandar;
             this.repositorioOrdenCompra = repositorioOrdenCompra;
-            this.servicioUsuario        = servicioUsuario;
+            this.servicioUsuario        = servicioUsuario;   
         }
+        
+
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> Index(PaginacionViewModel paginacionViewModel)
@@ -41,8 +44,9 @@ namespace ProjectWeb_DRA.Controllers
                 Pagina = paginacionViewModel.Pagina,
                 RecordsporPagina = paginacionViewModel.RecordsPorPagina,
                 CantidadRegistros = totalRegistros,
-                BaseURL = Url.Action(),      
+                BaseURL = Url.Action(),              
             };
+            
             return View(respuesta);
         }
         [HttpPost]
@@ -71,14 +75,12 @@ namespace ProjectWeb_DRA.Controllers
                 BaseURL = Url.Action()
             };
             return View(respuesta);
-
-
         }
         [HttpGet]
-        public async Task<IActionResult> AprobacionOC(string Occ_numero)
+        public async Task<IActionResult> AprobacionOC(byte[] encrypt)
         {
-
-            var OCompra = await repositorioOrdenCompra.ObtenerporCodigoOCC(Occ_numero);
+                 
+            var OCompra = await repositorioOrdenCompra.ObtenerporCodigoOCC(encrypt);
             string cia, suc;
             cia = servicioEstandar.Compañia();
             suc = servicioEstandar.Sucursal();

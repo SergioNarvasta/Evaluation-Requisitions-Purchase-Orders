@@ -33,6 +33,8 @@ builder.Services.AddTransient<IDisciplinaService, DisciplinaService>();
 builder.Services.AddTransient<IUsuarioService, UsuarioService>();
 builder.Services.AddTransient<IAdjuntosService, AdjuntosService>();
 
+//Data Protection
+
 //Servicios de OCC 
 builder.Services.AddTransient<IDetallePrdService,DetallePrdService>();
 

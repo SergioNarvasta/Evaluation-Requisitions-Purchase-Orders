@@ -4,6 +4,7 @@
     {
         public int Occ_codepk { get; set; }
         public string Occ_numero { get; set; }
+
         public DateTime Occ_feccre { get; set; }
         public double Occ_tcaocc { get; set; }
         public string Ccr_codccr { get; set; }
@@ -23,7 +24,18 @@
         public double Occ_impdet   { get; set; }
         public int  Imp_codepk   { get; set; }
         public string  Imp_desimp   { get; set; }
-        public byte[] encryp { get; set; }
+        public byte[] Occ_encryp { get; set; }
+       // public string encryp_tostring { get; set; } = Occ_encryp.toString();
+
+
+        public string Encriptar(string _cadenaAencriptar)
+        {
+            string result;
+            byte[] encryted = System.Text.Encoding.Unicode.GetBytes(_cadenaAencriptar);
+            result = Convert.ToBase64String(encryted);
+            return result;
+        }
+        
 
     }
 }

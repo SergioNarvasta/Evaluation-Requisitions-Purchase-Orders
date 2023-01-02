@@ -148,8 +148,9 @@
     <tbody>
 @foreach (var item in Model.Elementos) {
         <tr>
-            <td>
-                 @Html.ActionLink("Detalles","AprobacionOC","OrdenCompra",new{ item.Occ_numero})
+             <td>          
+               @Html.ActionLink("Detalles", "AprobacionOC", "OrdenCompra", new{item.Occ_encryp})    
+               <a class="btn btn-outline-success" asp-action="AprobacionOC" asp-controller="OrdenCompra" asp-route-id="@item.Occ_encryp">Editar</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Occ_numero)
