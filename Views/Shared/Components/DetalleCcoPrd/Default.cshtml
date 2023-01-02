@@ -1,0 +1,26 @@
+﻿@using ProjectWeb_DRA.Models.DetallesOCompra;
+
+@model IEnumerable<DetallePrd>
+
+@foreach (var product in Model)
+{
+        <tr>
+            <td></td>
+            <td>@product.Ocd_corite</td>
+            <td>@product.Prd_desprd</td>
+            <td>@product.Tin_codtin</td>      
+            <td>@product.Ocd_especi</td>
+            <td>@product.Ocd_cansol</td>
+            <td>@product.Ocd_canaju</td>
+            <td>@product.Ocd_poraju</td>
+            <td>@product.Ocd_preuni</td>
+            <td>@product.Ocd_impbru</td>
+            <td>@product.Ocd_impdes</td>
+            <td>@product.Ocd_impigv</td>
+            <td>@product.Ocd_imptot</td>
+            <td>@product.OCD_Cantidad_Real</td>
+            <td>@product.OCD_Cantidad_Atendida</td>
+            <td>@product.OCD_Cantidad_Saldo</td>
+            <td>@product.OCD_Valor_Venta</td>
+        </tr>    
+}

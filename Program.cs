@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProjectWeb_DRA.Data;
 using ProjectWeb_DRA.Services;
+using ProjectWeb_DRA.Models.DetallesOCompra;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +32,9 @@ builder.Services.AddTransient<ICentroCostoService, CentroCostoService>();
 builder.Services.AddTransient<IDisciplinaService, DisciplinaService>();
 builder.Services.AddTransient<IUsuarioService, UsuarioService>();
 builder.Services.AddTransient<IAdjuntosService, AdjuntosService>();
+
+//Servicios de OCC 
+builder.Services.AddTransient<IDetallePrdService,DetallePrdService>();
 
 var app = builder.Build();
 

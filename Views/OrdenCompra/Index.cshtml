@@ -149,7 +149,7 @@
 @foreach (var item in Model.Elementos) {
         <tr>
             <td>
-                 @Html.ActionLink("Detalles","Aprobacion","OrdenCompra",new{ item.Occ_numero})
+                 @Html.ActionLink("Detalles","AprobacionOC","OrdenCompra",new{ item.Occ_numero})
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Occ_numero)

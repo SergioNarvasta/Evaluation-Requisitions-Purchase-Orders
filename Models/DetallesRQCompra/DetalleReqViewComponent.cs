@@ -3,10 +3,10 @@
 namespace HDProjectWeb.Models.Detalles
 {
     [ViewComponent(Name = "DetalleReq")]
-    public class DetalleReqViewComponent : ViewComponent
+    public class DetallePrdViewComponent : ViewComponent
     {
         private readonly IDetalleReqService _detalleReqService;
-        public DetalleReqViewComponent(IDetalleReqService detalleReqService)
+        public DetallePrdViewComponent(IDetalleReqService detalleReqService)
         {
             _detalleReqService = detalleReqService;
         }

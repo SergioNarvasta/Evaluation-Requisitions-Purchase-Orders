@@ -8,8 +8,18 @@
 </head>
 <h2 class="text-center">APROBACION DE ORDEN DE COMPRA</h2> <br />
 <div class="form-group d-flex flex-row">
-    <button id="btn_registrar" type="submit" style="width:120px;height:40px" class="btn btn-primary ms-3 me-3">Aprobar</button>
-    <a class="btn btn-primary ms-3 me-3" asp-action="Crear" style="width:100px;height:40px"> Rechazar</a>
+    <form asp-controller="OrdenCompra" asp-action="Aprobar" method="post">
+        <input type="text" name="cia" class="ms-2" value="@ViewBag.cia" style="width:30px;display:none" />
+        <input type="text" name="suc" class="ms-2" value="@ViewBag.suc" style="width:30px;display:none"/>
+        <input type="text" name="usu" class="ms-2" value="@ViewBag.usu" style="width:60px;display:none"/>
+        <button type="submit" style="width:120px;height:40px" class="btn btn-primary ms-3 me-3">Aprobar</button>
+    </form>
+    <form asp-controller="OrdenCompra" asp-action="Rechazar" method="post">
+        <input type="text" name="cia" class="ms-2" value="@ViewBag.cia" style="width:30px;display:none" />
+        <input type="text" name="suc" class="ms-2" value="@ViewBag.suc" style="width:30px;display:none" />
+        <input type="text" name="usu" class="ms-2" value="@ViewBag.usu" style="width:60px;display:none"/>
+        <button type="submit" style="width:120px;height:40px" class="btn btn-primary ms-3 me-3">Rechazar</button>
+    </form>
     <a asp-action="Index" style="width:100px;height:40px" class="btn btn-danger ms-3">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
             <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z" />
@@ -142,7 +152,7 @@
                 </tbody>
             </table>
             <br />          
-            <!-- TABLA PRODUCTOS -->
+            <!-- DETALLES -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
             <div class="table">
                 <table id="tblProductos" class="table table-bordered table-hover">
@@ -163,10 +173,11 @@
                         <th>Proveedor</th>
                         <th>Sustento</th>
                     </tr>
+                        
                 </thead> 
                 <tbody id="tbody_prd" class="table table-bordered">
-                        
-                </tbody>                  
+                        @await Component.InvokeAsync("DetalleCcoPrd",ViewBag.epk)
+                    </tbody>                  
                 </table>
             </div>
             <!-- TABLA ADJUNTOS-->
