@@ -7,9 +7,12 @@ namespace ProjectWeb_DRA.Services
 {
     public interface IRepositorioOrdenCompra
     {
+        Task<int> AprobarOC(string cia, string suc, string occ, string usu);
         Task<int> ContarRegistrosOCC(string periodo);
+        Task<int> DevuelveOC(string cia, string suc, string occ, string usu);
         Task<IEnumerable<OrdenCompra>> Obtener(string periodo, PaginacionViewModel paginacion);
         Task<OrdenCompra> ObtenerporCodigoOCC(string Occ_numero);
+        Task<int> RechazaOC(string cia, string suc, string occ, string usu);
     }
     public class RepositorioOrdenCompra :IRepositorioOrdenCompra
     {
@@ -57,5 +60,25 @@ namespace ProjectWeb_DRA.Services
                LEFT JOIN IMPUESTOS_IMP   F ON A.imp_codepk=F.imp_codepk
                WHERE A.occ_numero = @Occ_numero ", new { Occ_numero});
         }
+
+        public async Task<int> AprobarOC(string cia, string suc, string occ, string usu)
+        {
+            using var connection = new SqlConnection(connectionString);
+            return await connection.QuerySingleAsync<int>(@" PA_HD_WEB_OC_Aprueba
+                 @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumOC =@occ, @p_CodUsr=@usu ", new { cia, suc, occ, usu });
+        }
+        public async Task<int> RechazaOC(string cia, string suc, string occ, string usu)
+        {
+            using var connection = new SqlConnection(connectionString);
+            return await connection.QuerySingleAsync<int>(@" PA_HD_WEB_OC_Rechaza
+                 @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumOC =@occ, @p_CodUsr=@usu ", new { cia, suc, occ, usu });
+        }
+        public async Task<int> DevuelveOC(string cia, string suc, string occ, string usu)
+        {
+            using var connection = new SqlConnection(connectionString);
+            return await connection.QuerySingleAsync<int>(@" PA_HD_WEB_OC_Devuelve
+                 @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumOC =@occ, @p_CodUsr=@usu ", new { cia, suc, occ, usu });
+        }
+
     }
 }

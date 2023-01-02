@@ -77,16 +77,16 @@ namespace ProjectWeb_DRA.Controllers
         }
         [HttpGet]
         public async Task<IActionResult> AprobacionOC(string Occ_numero)
-        {
-                 
+        {      
             var OCompra = await repositorioOrdenCompra.ObtenerporCodigoOCC(Occ_numero);
             string cia, suc;
             cia = servicioEstandar.Compañia();
             suc = servicioEstandar.Sucursal();
-            ViewBag.cia= cia;
-            ViewBag.suc= suc;
+            ViewBag.cia = cia;
+            ViewBag.suc = suc;
             ViewBag.usu = servicioUsuario.ObtenerCodUsuario();
             ViewBag.epk = OCompra.Occ_codepk;
+            ViewBag.occ = OCompra.Occ_numero;
             if (OCompra is null)
             {
                 return RedirectToAction("NoEncontrado", "Home");
@@ -96,38 +96,41 @@ namespace ProjectWeb_DRA.Controllers
         [HttpPost]
         public async Task<IActionResult> AprobarOC(string cia,string suc,string occ,string usu)
         {
-
-            var OCompra = await repositorioOrdenCompra.ObtenerporCodigoOCC(Occ_numero);
-            
-            if (OCompra is null)
+            var result = await repositorioOrdenCompra.AprobarOC(cia, suc, occ, usu);
+            string message = "Se aprobo con exito";
+            if (result == 0)
             {
                 return RedirectToAction("NoEncontrado", "Home");
             }
-            return View(OCompra);
+            else
+                ViewBag.message = message;
+            return View();
         }
         [HttpPost]
         public async Task<IActionResult> RechazarOC(string cia, string suc, string occ, string usu)
         {
-
-            var OCompra = await repositorioOrdenCompra.ObtenerporCodigoOCC(Occ_numero);
-            
-            if (OCompra is null)
+            var result = await repositorioOrdenCompra.RechazaOC(cia, suc, occ, usu);
+            string message = "Se rechazo con exito";
+            if (result == 0)
             {
                 return RedirectToAction("NoEncontrado", "Home");
             }
-            return View(OCompra);
+            else
+                ViewBag.message = message;
+            return View();
         }
         [HttpPost]
         public async Task<IActionResult> Devolver(string cia, string suc, string occ, string usu)
         {
-
-            var OCompra = await repositorioOrdenCompra.ObtenerporCodigoOCC(Occ_numero);
-            
-            if (OCompra is null)
+            var result = await repositorioOrdenCompra.DevuelveOC(cia, suc, occ, usu);
+            string message = "Se devolvio con exito";
+            if (result == 0)
             {
                 return RedirectToAction("NoEncontrado", "Home");
             }
-            return View(OCompra);
+            else
+              ViewBag.message = message;
+            return View();
         }
 
 
