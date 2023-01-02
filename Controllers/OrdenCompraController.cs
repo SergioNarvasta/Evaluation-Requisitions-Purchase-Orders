@@ -1,12 +1,10 @@
-﻿using HDProjectWeb.Models;
+﻿
+using HDProjectWeb.Models;
 using HDProjectWeb.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using ProjectWeb_DRA.Models;
 using ProjectWeb_DRA.Services;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace ProjectWeb_DRA.Controllers
 {
@@ -97,14 +95,16 @@ namespace ProjectWeb_DRA.Controllers
         public async Task<IActionResult> AprobarOC(string cia,string suc,string occ,string usu)
         {
             var result = await repositorioOrdenCompra.AprobarOC(cia, suc, occ, usu);
-            string message = "Se aprobo con exito";
+            string message = "se aprobo con exito la Orden de Compra";
             if (result == 0)
             {
-                return RedirectToAction("NoEncontrado", "Home");
+                message = "no se aprobo la Orden de Compra";
             }
-            else
-                ViewBag.message = message;
-            return View();
+            ViewBag.result = result;
+            ViewBag.message = message;
+            ViewBag.occ = occ;
+            ViewBag.usu = usu;
+            return View("ResultAprob");
         }
         [HttpPost]
         public async Task<IActionResult> RechazarOC(string cia, string suc, string occ, string usu)
