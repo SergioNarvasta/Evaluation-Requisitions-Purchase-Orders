@@ -21,8 +21,7 @@ namespace ProjectWeb_DRA.Controllers
             this.servicioEstandar       = servicioEstandar;
             this.repositorioOrdenCompra = repositorioOrdenCompra;
             this.servicioUsuario        = servicioUsuario;   
-        }
-        
+        }       
 
         [Authorize]
         [HttpGet]
@@ -77,10 +76,10 @@ namespace ProjectWeb_DRA.Controllers
             return View(respuesta);
         }
         [HttpGet]
-        public async Task<IActionResult> AprobacionOC(byte[] encrypt)
+        public async Task<IActionResult> AprobacionOC(string Occ_numero)
         {
                  
-            var OCompra = await repositorioOrdenCompra.ObtenerporCodigoOCC(encrypt);
+            var OCompra = await repositorioOrdenCompra.ObtenerporCodigoOCC(Occ_numero);
             string cia, suc;
             cia = servicioEstandar.Compañia();
             suc = servicioEstandar.Sucursal();
@@ -94,6 +93,60 @@ namespace ProjectWeb_DRA.Controllers
             }
             return View(OCompra);
         }
+        [HttpPost]
+        public async Task<IActionResult> AprobarOC(string cia,string suc,string occ,string usu)
+        {
+
+            var OCompra = await repositorioOrdenCompra.ObtenerporCodigoOCC(Occ_numero);
+            
+            if (OCompra is null)
+            {
+                return RedirectToAction("NoEncontrado", "Home");
+            }
+            return View(OCompra);
+        }
+        [HttpPost]
+        public async Task<IActionResult> RechazarOC(string cia, string suc, string occ, string usu)
+        {
+
+            var OCompra = await repositorioOrdenCompra.ObtenerporCodigoOCC(Occ_numero);
+            
+            if (OCompra is null)
+            {
+                return RedirectToAction("NoEncontrado", "Home");
+            }
+            return View(OCompra);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Devolver(string cia, string suc, string occ, string usu)
+        {
+
+            var OCompra = await repositorioOrdenCompra.ObtenerporCodigoOCC(Occ_numero);
+            
+            if (OCompra is null)
+            {
+                return RedirectToAction("NoEncontrado", "Home");
+            }
+            return View(OCompra);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public static string Encriptar(string _cadenaAencriptar)
         {
             string result;

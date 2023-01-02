@@ -9,7 +9,7 @@ namespace ProjectWeb_DRA.Services
     {
         Task<int> ContarRegistrosOCC(string periodo);
         Task<IEnumerable<OrdenCompra>> Obtener(string periodo, PaginacionViewModel paginacion);
-        Task<OrdenCompra> ObtenerporCodigoOCC(byte[] Occ_numero);
+        Task<OrdenCompra> ObtenerporCodigoOCC(string Occ_numero);
     }
     public class RepositorioOrdenCompra :IRepositorioOrdenCompra
     {
@@ -43,7 +43,7 @@ namespace ProjectWeb_DRA.Services
                 AND A.cia_codcia = 1 AND A.suc_codsuc = 1 ",
                 new { periodo });
         }
-        public async Task<OrdenCompra> ObtenerporCodigoOCC(byte[] Occ_numero)
+        public async Task<OrdenCompra> ObtenerporCodigoOCC(string Occ_numero)
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QueryFirstOrDefaultAsync<OrdenCompra>(@" SELECT A.occ_codepk, A.occ_numero,A.occ_feccre,A.occ_tcaocc,B.ccr_codccr,B.ccr_nomaux,A.occ_observ,A.occ_impigv,A.tco_codtco,C.tco_nombre,
@@ -55,7 +55,7 @@ namespace ProjectWeb_DRA.Services
                LEFT JOIN MONEDA_MON      D ON A.mon_codepk=D.mon_codepk
                LEFT JOIN COND_PAGO_CPG   E ON A.cia_codcia=E.cia_codcia AND A.cpg_codepk=E.cpg_codepk
                LEFT JOIN IMPUESTOS_IMP   F ON A.imp_codepk=F.imp_codepk
-               WHERE Convert(varchar,A.occ_numero) = Convert(varchar,@Occ_numero) ", new { Occ_numero });
+               WHERE A.occ_numero = @Occ_numero ", new { Occ_numero});
         }
     }
 }

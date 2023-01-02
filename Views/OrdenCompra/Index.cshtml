@@ -102,14 +102,12 @@
             </th>
             <th  id="th_Ung_deslar" style="cursor:pointer">
                 Glosa
-            </th>
-            <!--</th>
-                <th onclick="ordenCco_codcco()" id="th_Cco_codcco" style="cursor:pointer">
-               Centro Costo
-            </th>
+            </th>            
+                
             <th>
                 Disciplina
             </th>
+                <!--
             <th onclick="ordenRco_sitrco()" id="th_Rco_sitrco" style="cursor:pointer">
                Situacion Req
             </th>
@@ -149,8 +147,7 @@
 @foreach (var item in Model.Elementos) {
         <tr>
              <td>          
-               @Html.ActionLink("Detalles", "AprobacionOC", "OrdenCompra", new{item.Occ_encryp})    
-               <a class="btn btn-outline-success" asp-action="AprobacionOC" asp-controller="OrdenCompra" asp-route-id="@item.Occ_encryp">Editar</a>
+               @Html.ActionLink("Detalles", "AprobacionOC", "OrdenCompra", new{ item.Occ_numero })      
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Occ_numero)
@@ -169,9 +166,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Occ_observ)
-            </td>      
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Occ_codepk)
+            </td>
 
-        </tr>    
+                </tr>    
                 @if (ViewBag.registros == "0")
             {
                 <tr>

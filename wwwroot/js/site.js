@@ -388,6 +388,18 @@ function coloca_nomb() {
 //https://www.tutofox.com/javascript/buscador-datos-en-la-tabla-con-javascript/#:~:text=El%20buscador%20esta%20hecho%20en,que%20desea%20buscar%20el%20registro.&text=El%20campo%20de%20buscador%20debes,en%20el%20input%20de%20buscador.
 
 
+//Aprobacion OC
+
+$(document).ready(function () {
+    $('#tblDetalleCco_Prd"').DataTable({
+        "scrollY": "20vh",
+        "scrollCollapse": true,
+    });
+    $('.dataTables_length').addClass('bs-select');
+});
+
+
+
 
 
 

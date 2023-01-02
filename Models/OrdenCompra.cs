@@ -1,10 +1,12 @@
-﻿namespace ProjectWeb_DRA.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ProjectWeb_DRA.Models
 {
     public class OrdenCompra
     {
+        [Display(Name ="Epk")]
         public int Occ_codepk { get; set; }
         public string Occ_numero { get; set; }
-
         public DateTime Occ_feccre { get; set; }
         public double Occ_tcaocc { get; set; }
         public string Ccr_codccr { get; set; }
