@@ -174,5 +174,11 @@ namespace HDProjectWeb.Controllers
            await repositorioRQCompra.Actualizar(rQCompraEd);
            return RedirectToAction("Index");
         }
+        [HttpGet]
+        public IActionResult Evaluacion()
+        {
+            ViewBag.url = Url.Action();
+            return View();
+        }
     }
 }

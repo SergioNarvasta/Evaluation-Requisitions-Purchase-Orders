@@ -107,31 +107,37 @@ SELECT  * FROM REQ_EMPLEADOS_ERQ
 --nueva en dra se llamara REQ_APROB_ORDCOM_AOC -- TABLA DE RUTA/NIVELES DE APROBACIONES DE LAS O/C's
 
 CREATE TABLE [dbo].[REQ_APROB_ORDCOM_AOC] (
-    AOC_CODEPK    INT       PRIMARY KEY IDENTITY(1,1) NOT NULL,
-    [CIA_CODCIA]  CHAR (2)        NOT NULL,
-    [SUC_CODSUC]  CHAR (2)        NOT NULL,
-    [OCC_NUMERO]  CHAR (10)       NOT NULL,
-    [AOA_CORAOA]  CHAR (1)        NOT NULL,
-    [U01_USUARIO] CHAR (20)       NOT NULL,
-    [ANM_CODANM]  SMALLINT        NOT NULL,
-    [AOA_INDAPR]  SMALLINT        NOT NULL,
-    [AOA_PORAPR]  SMALLINT        NOT NULL,
-    [AOA_FECACT]  DATETIME        NOT NULL,
-    [AOA_CODUSU]  VARCHAR(30)     NOT NULL,
-    [tac_codtac]  CHAR (1)        NOT NULL,
-    [AOA_INDENV]  TINYINT         CONSTRAINT [DF_APROBAC_ORDCOM_APROBACIONES_AOA_AOA_INDENV] DEFAULT ((0)) NULL,
-    [AOA_FECENV]  DATETIME        NULL,
-    [mao_codeve]  CHAR (4)        NULL, 
-	CONSTRAINT U01_USUARIO FOREIGN KEY (U01_USUARIO) REFERENCES SYS_USUARIO_U01(u01_codigo)
+    [aoc_codepk]  INT         PRIMARY KEY IDENTITY (1, 1) NOT NULL,
+    [cia_codcia]  SMALLINT     NOT NULL,
+    [suc_codsuc]  SMALLINT     NOT NULL,
+    [occ_codepk]  INT          NOT NULL,
+    [aoa_coraoa]  SMALLINT     NOT NULL,
+    [uap_codepk]  INT          NOT NULL,
+    [anmcodanm]   SMALLINT     NOT NULL,
+    [aoa_indapr]  SMALLINT     NOT NULL,
+    [aoa_porapr]  SMALLINT     NOT NULL,
+    [aoa_fecact]  DATETIME     NOT NULL,
+    [aoa_codusu]  VARCHAR (30) NOT NULL,
+    [tac_codtac]  CHAR (1)     NOT NULL,
+    [aoa_indenv]  TINYINT      CONSTRAINT [DF_APROBAC_ORDCOM_APROBACIONES_AOA_AOA_INDENV] DEFAULT ((0)) NULL,
+    [aoa_fecenv]  DATETIME     NULL,
+    [mao_codeve]  CHAR (4)     NULL,
+	CONSTRAINT [FK_AOC_SUCURSAL_CIA] FOREIGN KEY ([cia_codcia], [suc_codsuc]) REFERENCES [dbo].[SUCURSAL_SUC] ([cia_codcia], [suc_codsuc]), 
+
 );
 
 --EJECUTA APROBACION
 EXEC PA_WEB_OC_Aprueba @p_CodCia='01' , @p_CodSuc ='01' , @p_NumOC='I000000058' , @p_CodUsr='Sistemas'
 
 --CONSULTAR ESTADO
-Select occ_estado,* from OCOMPRA_OCC where occ_numero = 'I000000058'
-SELECT AOA_INDAPR,*FROM REQ_APROB_ORDCOM_AOC where occ_numero = 'I000000058'
+Select occ_estado,occ_sitapr,* from OCOMPRA_OCC where occ_codepk=273
+SELECT aoc_indapr,*FROM REQ_APROB_ORDCOM_AOC where occ_codepk = 273
 
 --DESACTIVAR APROBACION
-UPDATE REQ_APROB_ORDCOM_AOC SET AOA_INDAPR= 0 where occ_numero = 'I000000058'
-UPDATE OCOMPRA_OCC SET occ_estado =0 where occ_numero = 'I000000058'
+UPDATE REQ_APROB_ORDCOM_AOC SET aoc_indapr = 0 where occ_codepk=273
+UPDATE OCOMPRA_OCC SET occ_estado =0, occ_sitapr=0 where occ_codepk=273
+
+--DELETE FROM REQ_APROB_ORDCOM_AOC
+SELECT uap_codepk,*FROM REQ_USERS_APROBADORES_UAP
+
+--CORREGIR STORE
