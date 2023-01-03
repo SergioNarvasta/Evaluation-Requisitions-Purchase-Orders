@@ -36,6 +36,15 @@ builder.Services.AddTransient<IAdjuntosService, AdjuntosService>();
 //Servicios de OCC 
 builder.Services.AddTransient<IDetallePrdService,DetallePrdService>();
 
+//Configuracion de Servicios para leer Cookies
+/*
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = IdentityConstants.ApplicationScheme;
+    options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
+    options.DefaultSignOutScheme = IdentityConstants.ApplicationScheme;
+}).AddCookie(IdentityConstants.ApplicationScheme);*/
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

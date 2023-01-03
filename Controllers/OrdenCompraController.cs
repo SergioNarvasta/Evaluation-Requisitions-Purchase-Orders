@@ -73,10 +73,16 @@ namespace ProjectWeb_DRA.Controllers
             };
             return View(respuesta);
         }
+        [Authorize]
         [HttpGet]
-        public async Task<IActionResult> AprobacionOC(string Occ_numero)
-        {      
-            var OCompra = await repositorioOrdenCompra.ObtenerporCodigoOCC(Occ_numero);
+        public async Task<IActionResult> Evaluacion(int epk)
+        {
+            var OCompra = await repositorioOrdenCompra.ObtenerporEpk(epk);
+            if (OCompra is null)
+            {
+                return RedirectToAction("NoEncontrado", "Home");
+            }
+            //var OCompra = await repositorioOrdenCompra.ObtenerporCodigoOCC(Occ_numero);
             string cia, suc;
             cia = servicioEstandar.Compañia();
             suc = servicioEstandar.Sucursal();
@@ -84,53 +90,68 @@ namespace ProjectWeb_DRA.Controllers
             ViewBag.suc = suc;
             ViewBag.usu = servicioUsuario.ObtenerCodUsuario();
             ViewBag.epk = OCompra.Occ_codepk;
-            ViewBag.occ = OCompra.Occ_numero;
-            if (OCompra is null)
-            {
-                return RedirectToAction("NoEncontrado", "Home");
-            }
+            ViewBag.num = OCompra.Occ_numero;
+            ViewBag.url = Url.Action();
+            //ViewBag.sit = OCompra.
             return View(OCompra);
         }
         [HttpPost]
-        public async Task<IActionResult> AprobarOC(string cia,string suc,string occ,string usu)
+        public async Task<IActionResult> Aprobar(string cia,string suc,string epk,string usu,string num)
         {
-            var result = await repositorioOrdenCompra.AprobarOC(cia, suc, occ, usu);
+            int cia_codcia, suc_codsuc, occ_codepk, uap_codepk;
+            cia_codcia = int.Parse(cia);
+            suc_codsuc = int.Parse(suc);
+            occ_codepk = int.Parse(epk);
+            uap_codepk = await servicioUsuario.ObtenerEpkUsuario(usu);
+            var result = await repositorioOrdenCompra.Aprobar(cia_codcia, suc_codsuc, occ_codepk, uap_codepk);
             string message = "se aprobo con exito la Orden de Compra";
             if (result == 0)
             {
-                message = "no se aprobo la Orden de Compra";
-            }
-            ViewBag.result = result;
+                message = "ocurrio un error al intentar aprobar la Orden de Compra";
+            } 
             ViewBag.message = message;
-            ViewBag.occ = occ;
             ViewBag.usu = usu;
+            ViewBag.num = num;
+            ViewBag.result = result;
             return View("ResultAprob");
         }
         [HttpPost]
-        public async Task<IActionResult> RechazarOC(string cia, string suc, string occ, string usu)
+        public async Task<IActionResult> Rechazar(string cia, string suc, string epk, string usu, string num)
         {
-            var result = await repositorioOrdenCompra.RechazaOC(cia, suc, occ, usu);
-            string message = "Se rechazo con exito";
+            int cia_codcia, suc_codsuc, occ_codepk, uap_codepk;
+            cia_codcia = int.Parse(cia);
+            suc_codsuc = int.Parse(suc);
+            occ_codepk = int.Parse(epk);
+            uap_codepk = await servicioUsuario.ObtenerEpkUsuario(usu);
+            var result = await repositorioOrdenCompra.Rechaza(cia_codcia, suc_codsuc, occ_codepk, uap_codepk);
+            string message = "Se rechazo con exito la Orden de Compra";
             if (result == 0)
             {
-                return RedirectToAction("NoEncontrado", "Home");
+                message = "ocurrio un error al intentar rechazar la Orden de Compra";
             }
-            else
-                ViewBag.message = message;
-            return View();
+            ViewBag.message = message;
+            ViewBag.usu = usu;
+            ViewBag.num = num;
+            return View("ResultAprob");
         }
         [HttpPost]
-        public async Task<IActionResult> Devolver(string cia, string suc, string occ, string usu)
+        public async Task<IActionResult> Devolver(string cia, string suc, string epk, string usu, string num)
         {
-            var result = await repositorioOrdenCompra.DevuelveOC(cia, suc, occ, usu);
-            string message = "Se devolvio con exito";
+            int cia_codcia, suc_codsuc, occ_codepk, uap_codepk;
+            cia_codcia = int.Parse(cia);
+            suc_codsuc = int.Parse(suc);
+            occ_codepk = int.Parse(epk);
+            uap_codepk = await servicioUsuario.ObtenerEpkUsuario(usu);
+            var result = await repositorioOrdenCompra.Devuelve(cia_codcia, suc_codsuc, occ_codepk, uap_codepk);
+            string message = "Se devolvio con exito la Orden de Compra";
             if (result == 0)
             {
-                return RedirectToAction("NoEncontrado", "Home");
+                message = "ocurrio un error al intentar devolver la Orden de Compra";
             }
-            else
-              ViewBag.message = message;
-            return View();
+            ViewBag.message = message;
+            ViewBag.usu = usu;
+            ViewBag.num = num;
+            return View("ResultAprob");
         }
 
 

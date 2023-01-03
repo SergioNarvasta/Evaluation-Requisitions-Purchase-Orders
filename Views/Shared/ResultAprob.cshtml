@@ -2,6 +2,32 @@
 
 <br />
 <br />
+@{
+    if (@ViewBag.result == 0)
+    {
+      <div class="alert alert-danger" role="alert">
+         Error: verifique credenciales!
+      </div>
+    }
+    else
+    {
+       <div class="alert alert-success" role="alert">
+           Procesado con exito !
+       </div> 
+    }
+}
+<br />
+<br />
 <h2 class="text-center">
-    @ViewBag.usu @ViewBag.message @ViewBag.occ @ViewBag.epk
+    @ViewBag.usu @ViewBag.message @ViewBag.num
 </h2>
+<br />
+<br />
+<br />
+<br /><br />
+<br />
+<br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br />

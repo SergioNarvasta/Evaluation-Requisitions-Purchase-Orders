@@ -141,3 +141,8 @@ UPDATE OCOMPRA_OCC SET occ_estado =0, occ_sitapr=0 where occ_codepk=273
 SELECT uap_codepk,*FROM REQ_USERS_APROBADORES_UAP
 
 --CORREGIR STORE
+
+
+SELECT*FROM V_WEB_REQCOMPRAS_Index
+                Where cia=1 AND suc=1 AND periodo =@periodo AND  s10_codepk = @EpkUser  AND estado in(@estado1,@estado2)
+                ORDER BY Rco_Numero DESC 

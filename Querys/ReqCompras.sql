@@ -36,7 +36,7 @@ Select          A.rco_codepk ,a.rco_numrco,
 				 ' 'as OCC_ProveedorOCC,
 				 Cast(YEAR(A.rco_fecreg) as char(4))+ Substring('0'+ltrim(Cast(MONTH(A.rco_fecreg)as char(2))),len(ltrim(Cast(MONTH(A.rco_fecreg)as char(2)))),2)as periodo,
 				 A.rco_estado as estado,rco_estado,
-				 A.cia_codcia as cia,A.suc_codsuc as suc,A.s10_codepk 
+				 A.cia_codcia as cia,A.suc_codsuc as suc,A.s10_codepk ,A.rco_glorco
 				  
              From REQ_REQUI_COMPRA_RCO A
              Left Join UNID_NEGOCIO_UNG    B on A.cia_codcia = B.cia_codcia and A.ung_codepk = B.ung_codepk
@@ -47,7 +47,7 @@ Select          A.rco_codepk ,a.rco_numrco,
              Left Join REQ_TIPO_REQUISICION_TRE H On A.cia_codcia = H.cia_codcia And A.tre_codepk = H.tre_codepk
 			 LEFT JOIN OCOMPRA_OCC I ON A.cia_codcia=I.cia_codcia AND A.occ_codepk=I.occ_codepk
 GO
-			 
+SELECT *FROM V_WEB_REQCOMPRAS_Index			 
 SELECT *FROM REQ_REQUI_COMPRA_RCO --PRINCIPAL
 SELECT *FROM REQ_REQUI_COMPRA_RCD --DETALLE
 SELECT *FROM REQ_REQUI_FILES_RCF  --ADJUNTOS
@@ -149,3 +149,14 @@ UPDATE REQ_APROB_REQCOM_ARC SET arc_indapr = 0 where rco_codepk=20221201
 
 SELECT uap_codepk,*FROM REQ_USERS_APROBADORES_UAP
 SELECT*FROM OCOMPRA_OCC
+
+SELECT A.occ_codepk, A.occ_numero,A.occ_feccre,A.occ_tcaocc,B.ccr_codccr,B.ccr_nomaux,A.occ_observ,A.occ_impigv,A.tco_codtco,C.tco_nombre,
+                    A.occ_estado,iif(A.occ_estado=1,'APROBADO','PENDIENTE')as occ_destado,A.mon_codepk,D.mon_desmon,A.cpg_codepk,E.cpg_deslar,
+	                A.occ_fecemi,A.occ_pordet,A.occ_impdet,A.imp_codepk,F.imp_desimp
+               FROM OCOMPRA_OCC A
+               LEFT JOIN CUEN_CORR_CCR   B ON A.cia_codcia=B.cia_codcia AND A.ccr_codepk=B.ccr_codepk
+               LEFT JOIN TIPO_COMPRA_TCO C ON A.cia_codcia=C.cia_codcia AND A.tco_codtco=C.tco_codtco
+               LEFT JOIN MONEDA_MON      D ON A.mon_codepk=D.mon_codepk
+               LEFT JOIN COND_PAGO_CPG   E ON A.cia_codcia=E.cia_codcia AND A.cpg_codepk=E.cpg_codepk
+               LEFT JOIN IMPUESTOS_IMP   F ON A.imp_codepk=F.imp_codepk
+               WHERE A.occ_numero = @Occ_numero 

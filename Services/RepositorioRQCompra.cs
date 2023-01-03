@@ -49,14 +49,14 @@ namespace HDProjectWeb.Services
             return orden switch
             {
                 "1" => await connection.QueryAsync<RQCompraCab>(@$" SELECT*FROM V_WEB_REQCOMPRAS_Index
-                Where cia=1 AND suc=1 AND periodo =@periodo AND  s10_codepk = @EpkUser  AND estado in(@estado1,@estado2)
+                Where cia=1 AND suc=1 AND periodo =@periodo AND  uap_codepk = @EpkUser  AND estado in(@estado1,@estado2)
                 ORDER BY Rco_Numero DESC 
                 OFFSET {paginacion.RecordsASaltar}
                 ROWS FETCH NEXT {paginacion.RecordsPorPagina} 
                 ROWS ONLY", new { periodo, EpkUser ,estado1, estado2 }),
                 
                 _   => await connection.QueryAsync<RQCompraCab>(@$"SELECT*FROM V_WEB_REQCOMPRAS_Index
-                Where cia=1 AND suc=1 AND periodo =@periodo AND s10_codepk = @EpkUser  AND estado in(@estado1,@estado2)
+                Where cia=1 AND suc=1 AND periodo =@periodo AND uap_codepk = @EpkUser  AND estado in(@estado1,@estado2)
                 ORDER BY Rco_Numero DESC 
                 OFFSET {paginacion.RecordsASaltar}
                 ROWS FETCH NEXT {paginacion.RecordsPorPagina} 
@@ -67,7 +67,7 @@ namespace HDProjectWeb.Services
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QueryAsync<RQCompraCab>(@$"SELECT * FROM V_WEB_REQCOMPRAS_Index
-             Where cia=1 AND suc=1 AND periodo =@periodo AND s10_codepk = @EpkUser  AND estado in(@estado1,@estado2)
+             Where cia=1 AND suc=1 AND periodo =@periodo AND uap_codepk = @EpkUser  AND estado in(@estado1,@estado2)
              AND Rco_Numero LIKE '%'+@busqueda+'%' OR User_Solicita LIKE '%'+@busqueda+'%' OR U_Negocio LIKE '%'+@busqueda+'%' OR Centro_Costo LIKE '%'+@busqueda+'%' 
                 OFFSET {paginacion.RecordsASaltar}
                 ROWS FETCH NEXT {paginacion.RecordsPorPagina} 
@@ -77,14 +77,14 @@ namespace HDProjectWeb.Services
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.ExecuteScalarAsync<int>(@"SELECT COUNT(*) FROM V_WEB_REQCOMPRAS_Index
-                Where cia=1 AND suc=1 AND periodo =@periodo AND s10_codepk = @EpkUser   AND estado in(@estado1,@estado2)", 
+                Where cia=1 AND suc=1 AND periodo =@periodo AND uap_codepk = @EpkUser   AND estado in(@estado1,@estado2)", 
                 new { periodo,EpkUser, estado1, estado2 });
         }
         public async Task<int> ContarRegistrosBusqueda(string periodo, int EpkUser, string busqueda, string estado1,string estado2)
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.ExecuteScalarAsync<int>(@"SELECT COUNT(*) FROM V_WEB_REQCOMPRAS_Index
-             Where cia=1 AND suc=1 AND periodo =@periodo AND s10_codepk = @EpkUser  AND estado in(@estado1,@estado2)
+             Where cia=1 AND suc=1 AND periodo =@periodo AND uap_codepk = @EpkUser  AND estado in(@estado1,@estado2)
              AND Rco_Numero LIKE '%'+@busqueda+'%' OR User_Solicita LIKE '%'+@busqueda+'%' OR U_Negocio LIKE '%'+@busqueda+'%' OR Centro_Costo LIKE '%'+@busqueda+'%'",
                 new { periodo, EpkUser, busqueda, estado1,estado2 });
         }

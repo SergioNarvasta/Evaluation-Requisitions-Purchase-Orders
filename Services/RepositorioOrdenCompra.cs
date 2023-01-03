@@ -7,12 +7,13 @@ namespace ProjectWeb_DRA.Services
 {
     public interface IRepositorioOrdenCompra
     {
-        Task<int> AprobarOC(string cia, string suc, string occ, string usu);
+        Task<int> Aprobar(int cia, int suc, int epk, int uap);
         Task<int> ContarRegistrosOCC(string periodo);
-        Task<int> DevuelveOC(string cia, string suc, string occ, string usu);
+        Task<int> Devuelve(int cia, int suc, int epk, int uap);
         Task<IEnumerable<OrdenCompra>> Obtener(string periodo, PaginacionViewModel paginacion);
         Task<OrdenCompra> ObtenerporCodigoOCC(string Occ_numero);
-        Task<int> RechazaOC(string cia, string suc, string occ, string usu);
+        Task<OrdenCompra> ObtenerporEpk(int occ_codepk);
+        Task<int> Rechaza(int cia, int suc, int epk, int uap);
     }
     public class RepositorioOrdenCompra :IRepositorioOrdenCompra
     {
@@ -60,24 +61,38 @@ namespace ProjectWeb_DRA.Services
                LEFT JOIN IMPUESTOS_IMP   F ON A.imp_codepk=F.imp_codepk
                WHERE A.occ_numero = @Occ_numero ", new { Occ_numero});
         }
+        public async Task<OrdenCompra> ObtenerporEpk(int occ_codepk)
+        {
+            using var connection = new SqlConnection(connectionString);
+            return await connection.QueryFirstOrDefaultAsync<OrdenCompra>(@" SELECT A.occ_codepk, A.occ_numero,A.occ_feccre,A.occ_tcaocc,B.ccr_codccr,B.ccr_nomaux,A.occ_observ,A.occ_impigv,A.tco_codtco,C.tco_nombre,
+                    A.occ_estado,iif(A.occ_estado=1,'APROBADO','PENDIENTE')as occ_destado,A.mon_codepk,D.mon_desmon,A.cpg_codepk,E.cpg_deslar,
+	                A.occ_fecemi,A.occ_pordet,A.occ_impdet,A.imp_codepk,F.imp_desimp
+               FROM OCOMPRA_OCC A
+               LEFT JOIN CUEN_CORR_CCR   B ON A.cia_codcia=B.cia_codcia AND A.ccr_codepk=B.ccr_codepk
+               LEFT JOIN TIPO_COMPRA_TCO C ON A.cia_codcia=C.cia_codcia AND A.tco_codtco=C.tco_codtco
+               LEFT JOIN MONEDA_MON      D ON A.mon_codepk=D.mon_codepk
+               LEFT JOIN COND_PAGO_CPG   E ON A.cia_codcia=E.cia_codcia AND A.cpg_codepk=E.cpg_codepk
+               LEFT JOIN IMPUESTOS_IMP   F ON A.imp_codepk=F.imp_codepk
+               WHERE A.occ_codepk = @occ_codepk ", new { occ_codepk });
+        }
 
-        public async Task<int> AprobarOC(string cia, string suc, string occ, string usu)
+        public async Task<int> Aprobar(int cia, int suc, int epk, int uap)
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QuerySingleAsync<int>(@" PA_WEB_OC_Aprueba
-                 @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumOC =@occ, @p_CodUsr=@usu ", new { cia, suc, occ, usu });
+                 @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumOC = @epk, @p_CodUsr = @uap ", new { cia, suc, epk, uap });
         }
-        public async Task<int> RechazaOC(string cia, string suc, string occ, string usu)
+        public async Task<int> Rechaza(int cia, int suc, int epk, int uap)
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.QuerySingleAsync<int>(@" PA_HD_WEB_OC_Rechaza
-                 @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumOC =@occ, @p_CodUsr=@usu ", new { cia, suc, occ, usu });
+            return await connection.QuerySingleAsync<int>(@" PA_WEB_OC_Rechaza
+                 @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumOC = @epk, @p_CodUsr = @uap ", new { cia, suc, epk, uap });
         }
-        public async Task<int> DevuelveOC(string cia, string suc, string occ, string usu)
+        public async Task<int> Devuelve(int cia, int suc, int epk, int uap)
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QuerySingleAsync<int>(@" PA_HD_WEB_OC_Devuelve
-                 @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumOC =@occ, @p_CodUsr=@usu ", new { cia, suc, occ, usu });
+                 @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumOC = @epk, @p_CodUsr = @uap ", new { cia, suc, epk, uap });
         }
 
     }
