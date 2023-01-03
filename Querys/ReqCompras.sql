@@ -1,49 +1,51 @@
+USE DRA_V22
 
 ALTER VIEW V_WEB_REQCOMPRAS_Index 
 AS
-Select 
+Select          A.rco_codepk ,a.rco_numrco,
                 a.rco_numrco as Rco_Numero,             
             	a.rco_fecreg as Rco_Fec_Registro, 
             	Isnull(rtrim(F.uap_deslar),'') as Usuario_Aprueba,
-            	Isnull(rtrim(G.S10_NOMUSU),'') as User_Solicita,
+            	Isnull(rtrim(G.S10_NOMUSU),'') as User_Solicita,s10_codusu ,S10_NOMUSU,
             	a.rco_motivo as Rco_Motivo,
-            	rtrim(b.ung_deslar) as U_Negocio,
-            	rtrim(C.cco_codcco) + '-' + rtrim(C.cco_descco) as Centro_Costo,
-            	e.dis_nomlar as Disciplina,
+            	rtrim(b.ung_deslar) as U_Negocio,b.ung_codepk ,
+            	rtrim(C.cco_codcco) + '-' + rtrim(C.cco_descco) as Centro_Costo, C.cco_codepk,C.cco_codcco,C.cco_descco,
+            	e.dis_nomlar as Disciplina,e.dis_codepk,e.dis_coddis ,
             	(Case a.rco_sitrco When '1' Then 'PENDIENTE'
                                When '2' Then 'APROBADO'
                                When '3' Then 'RECHAZADO'
-                               Else 'NO DEFINIDO' End) as Rco_Situacion_Aprobado,
+                               Else 'NO DEFINIDO' End) as Rco_Situacion_Aprobado,a.rco_sitrco,
                 (Case a.rco_priori When '1' Then 'MUY ALTA'
                                When '2' Then 'ALTA'
                                When '3' Then 'MEDIA'
                                When '4' Then 'BAJA'
-                               Else 'NO DEFINIDO' End) as Rco_Prioridad,
-            	Isnull(a.rco_obspri,'') as Rco_Justificacion,
+                               Else 'NO DEFINIDO' End) as Rco_Prioridad,a.rco_priori,
+            	Isnull(a.rco_obspri,'') as Rco_Justificacion,a.rco_obspri,
             	(Case a.rco_rembls When '0' Then 'NO' 
                                When '1' Then 'SI' 
-                               Else ' ' End) as Rco_Reembolso,
+                               Else ' ' End) as Rco_Reembolso,a.rco_rembls,
             	(Case a.rco_presup When '0' Then 'NO' 
                                When '1' Then 'SI' 
-                               Else ' ' End) as Rco_Presupuesto,             
+                               Else ' ' End) as Rco_Presupuesto,a.rco_presup,             
 				(Case a.rco_indval When '0' Then 'NO' 
                                When '1' Then 'SI' 
-                               Else ' ' End) as RCO_Categorizado,
+                               Else ' ' End) as RCO_Categorizado,a.rco_indval,
                  '' as SCC_Cotizacion,
-				 a.ocm_corocm as Occ_numeroocc, 
+				 a.ocm_corocm as Occ_numeroocc, A.occ_codepk,I.occ_numero,
 				 '' as Occ_dessituacionocc,
 				 ' 'as OCC_ProveedorOCC,
 				 Cast(YEAR(A.rco_fecreg) as char(4))+ Substring('0'+ltrim(Cast(MONTH(A.rco_fecreg)as char(2))),len(ltrim(Cast(MONTH(A.rco_fecreg)as char(2)))),2)as periodo,
-				 A.rco_estado as estado,
+				 A.rco_estado as estado,rco_estado,
 				 A.cia_codcia as cia,A.suc_codsuc as suc,A.s10_codepk 
 				  
              From REQ_REQUI_COMPRA_RCO A
              Left Join UNID_NEGOCIO_UNG    B on A.cia_codcia = B.cia_codcia and A.ung_codepk = B.ung_codepk
              Left Join CENT_COST_CCO       C on A.cia_codcia = C.cia_codcia and A.cco_codepk = C.cco_codepk
              Left Join DISCIPLINAS_DIS     E on A.cia_codcia = E.cia_codcia AND A.dis_codepk = E.dis_codepk
-             LEFT JOIN REQ_USUARIO_APROBADORES_UAP F ON A.cia_codcia = F.cia_codcia AND A.uap_codepk = F.uap_codepk
+             LEFT JOIN REQ_USERS_APROBADORES_UAP F ON A.cia_codcia = F.cia_codcia AND A.uap_codepk = F.uap_codepk
              LEFT JOIN  SYS_TABLA_USUARIOS_S10 G ON A.s10_codepk = G.s10_codepk
              Left Join REQ_TIPO_REQUISICION_TRE H On A.cia_codcia = H.cia_codcia And A.tre_codepk = H.tre_codepk
+			 LEFT JOIN OCOMPRA_OCC I ON A.cia_codcia=I.cia_codcia AND A.occ_codepk=I.occ_codepk
 GO
 			 
 SELECT *FROM REQ_REQUI_COMPRA_RCO --PRINCIPAL
@@ -53,47 +55,11 @@ SELECT *FROM REQ_REQUI_FILES_RCF  --ADJUNTOS
 SELECT CIA_NOMCIA FROM COMPANIA_CIA WHERE CIA_CODCIA =01
 SELECT *FROM REQ_REQUI_COMPRA_RCO a
 SELECT ccr_codepk,*FROM CUEN_CORR_CCR WHERE ccr_nomaux LIKE '%sistema%'
-SELECT occ_codepk,*FROM CUEN_CORR_CCR
+SELECT *FROM REQ_USERS_APROBADORES_UAP
 
-SELECT*FROM V_WEB_REQCOMPRAS_Index 
-WHERE Rco_Numero ='RQ20221228'
-ORDER BY Rco_Fec_Registro DESC 
-
+SELECT*FROM REQ_APROB_ORDCOM_AOC
+SELECT SYSTEM_USER; 
 GO
---CREACION DE TABLAS
-CREATE TABLE [dbo].[SYS_TABLA_IDIOMAS_S19] (
-    [S19_CODIDI] CHAR (2)        NOT NULL,
-    [S19_NOMIDI] CHAR (40)       NULL,
-    [S19_NOMCOR] CHAR (20)       NULL,
-    [S19_INDEST] CHAR(1)  NULL,
-    [S19_FECACT] DATETIME  NULL,
-    [S19_CODUSU] [dbo].[USUARIO] NULL,
-    CONSTRAINT [PK_SYS_TABLA_IDIOMAS_S19] PRIMARY KEY CLUSTERED ([S19_CODIDI] ASC)
-);
-GO
-CREATE TABLE [dbo].[SYS_TABLA_USUARIOS_S10] (
-    [S10_USUARIO] CHAR (20)     NOT NULL,
-    [S10_NOMUSU]  CHAR (40)     NOT NULL,
-    [S10_NOMCOR]  CHAR (10)     NOT NULL,
-    [S10_NIVUSU]  INT           NOT NULL,
-    [S10_TIPUSU]  CHAR (1)      NULL,
-    [S10_PASSWO]  CHAR (10)     NOT NULL,
-    [S19_CODIDI]  CHAR (2)      NULL,
-    [S10_CODDBF]  CHAR (10)     NULL,
-    [AUX_CODAUX]  CHAR (12)     NULL,
-    [S10_INDEST]  CHAR (1)      NULL,
-    [S10_FECACT]  DATETIME      NULL,
-    [S10_CODUSU]  VARCHAR (30)  NULL,
-    [S10_FIRUSU]  IMAGE         NULL,
-    [S10_FOTUSU]  IMAGE         NULL,
-    [S10_PERFIL]  CHAR (20)     NULL,
-    [ACO_CODACO]  CHAR (2)      NULL,
-    [s10_firapro] VARCHAR (100) NULL,
-    [S10_NOMFIR]  VARCHAR (30)  NULL,
-    [s10_ind_rlg] TINYINT       NULL,
-    CONSTRAINT [PK__SYS_TABLA_USUARI__4EC8A2F6] PRIMARY KEY CLUSTERED ([S10_USUARIO] ASC),
-    CONSTRAINT [FK_SYS_TABLA_USUARIOS_S10_SYS_TABLA_IDIOMAS_S19] FOREIGN KEY ([S19_CODIDI]) REFERENCES [dbo].[SYS_TABLA_IDIOMAS_S19] ([S19_CODIDI])
-);
 --DETALLE REQ
 SELECT  B.rcd_corite as item ,L.prd_codprd as codigo,B.rcd_desprd as descri,B.rcd_glorcd as glosa,K.ume_descor as unidad,
 	                                    rcd_canapr as cantidad,J.ccr_codccr as codprov, J.ccr_nomaux as nomprov
@@ -119,31 +85,6 @@ SELECT cia_codcia,dis_codepk,dis_nomlar FROM DISCIPLINAS_DIS
 SELECT DISTINCT AUX_CODAUX as Codigo,S10_NOMUSU as Descri 
                                                    FROM SYS_TABLA_USUARIOS_S10 WHERE S10_INDEST=1 ORDER BY S10_NOMUSU
 
--- REGISTRA EN RCO
-
-Select cia_codcia,
-       suc_codsuc,
-	   rco_numrco,
-	   tin_codtin,
-	   rco_sitrco,
-	   rco_sitlog,
-	   ano_codano,
-	   mes_codmes,
-	   rco_estado,
-       rco_fecreg,
-	   rco_codusu,
-	   ung_codepk,
-	   rco_indcie,
-	   rco_indval,
-	   dis_codepk,
-	   rco_rembls,
-	   rco_presup,
-	   rco_priori,
-	   rco_motivo
-from  REQ_REQUI_COMPRA_RCO
-Where cia_codcia=1 AND suc_codsuc=1 AND ano_codano=2022 AND mes_codmes=12
-SELECT *FROM REQ_REQUI_COMPRA_RCO
-GO
 ALTER PROCEDURE PA_WEB_ReqCompra_Inserta  @cia_codcia char(2),@suc_codsuc char(2),@rco_codepk int,@rco_numrco char(10),@tin_codtin smallint, @rco_motivo varchar(200),@rco_glorco varchar(200),
 @cco_codepk smallint, @rco_sitrco char(1), @rco_codusu varchar(30),@ung_codepk smallint,  @rco_indval smallint, @rco_indest smallint, @rco_rembls char(1),  @rco_presup char(1), @rco_priori char(1),
 @tre_codepk smallint ,@rco_estado varchar(1),@dis_codepk smallint,@s10_codepk int,@occ_codepk int
@@ -160,13 +101,51 @@ GO
 SELECT* FROM SYS_TABLA_USUARIOS_S10
 SELECT* FROM AspNetUsers
 SELECT * FROM REQ_REQUI_COMPRA_RCO
-SELECT*FROM REQ_TIPO_REQUISICION_TRE
 SELECT S10_CODEPK,* FROM SYS_TABLA_USUARIOS_S10 A LEFT JOIN AspNetUsers B ON A.S10_USUARIO = B.UserName @NomUser
 --INSERTA USUARIOS EN S10 
 INSERT INTO SYS_TABLA_USUARIOS_S10(S10_USUARIO,S10_NOMUSU,S10_NOMCOR,S10_NIVUSU,S10_PASSWO) VALUES(@usu,@nom,@nomcor,@nivusu,@psd);
 SELECT SCOPE_IDENTITY()
 
-SELECT COUNT(*)  FROM SYS_TABLA_USUARIOS_S10 A 
-                                     LEFT JOIN AspNetUsers B ON A.S10_USUARIO = B.UserName 
-                                     WHERE A.S10_USUARIO = 'Sistemas'
+SELECT*FROM V_WEB_REQCOMPRAS_Index
 
+--ENVIAR INT EN  [dbo].[PA_WEB_OC_Aprueba] @p_CodCia as Smallint, @p_CodSuc as Smallint, @p_NumOC as int, @p_CodUsr as int
+GO
+USE DRA_V22
+--CREAR TABLA REQ_COMP
+ALTER TABLE [dbo].[REQ_APROB_REQCOM_ARC] (
+    [arc_codepk]  INT         PRIMARY KEY IDENTITY (1, 1) NOT NULL,
+    [cia_codcia]  SMALLINT     NOT NULL,
+    [suc_codsuc]  SMALLINT     NOT NULL,
+    [rco_codepk]  INT          NOT NULL,
+    [arc_coraoa]  SMALLINT     NOT NULL,
+    [uap_codepk]  INT          NOT NULL,
+    [anm_codanm]   SMALLINT     NOT NULL,
+    [arc_indapr]  SMALLINT     NOT NULL,
+    [arc_porapr]  SMALLINT     NOT NULL,
+    [arc_fecact]  DATETIME     NOT NULL,
+    [arc_codusu]  VARCHAR (30) NOT NULL,
+    [tac_codtac]  CHAR (1)     NOT NULL,
+    [arc_indenv]  TINYINT      CONSTRAINT [DF_APROBAC_ORDCOM_APROBACIONES_ARC_INDENV] DEFAULT ((0)) NULL,
+    [arc_fecenv]  DATETIME     NULL,
+    [mao_codeve]  CHAR (4)     NULL,
+	CONSTRAINT [FK_ARC_SUCURSAL_CIA] FOREIGN KEY ([cia_codcia], [suc_codsuc]) REFERENCES [dbo].[SUCURSAL_SUC] ([cia_codcia], [suc_codsuc]), 
+);
+GO
+SELECT rco_sitrco,*FROM REQ_REQUI_COMPRA_RCO
+SELECT*FROM V_WEB_REQCOMPRAS_Index 
+SELECT*FROM REQ_APROB_REQCOM_ARC
+SELECT*FROM REQ_USERS_APROBADORES_UAP
+GO
+--EJECUTA APROBACION
+EXEC PA_WEB_RQ_Aprueba @p_CodCia = 1, @p_CodSuc =1, @p_NumRQ =20221201, @p_CodUsr =44
+
+--CONSULTAR ESTADO
+Select rco_sitrco,* from REQ_REQUI_COMPRA_RCO where rco_codepk=20221201
+SELECT arc_indapr,*FROM REQ_APROB_REQCOM_ARC where rco_codepk=20221201
+
+--DESACTIVAR APROBACION
+UPDATE REQ_REQUI_COMPRA_RCO SET rco_sitrco = 1 where rco_codepk=20221201
+UPDATE REQ_APROB_REQCOM_ARC SET arc_indapr = 0 where rco_codepk=20221201
+
+SELECT uap_codepk,*FROM REQ_USERS_APROBADORES_UAP
+SELECT*FROM OCOMPRA_OCC

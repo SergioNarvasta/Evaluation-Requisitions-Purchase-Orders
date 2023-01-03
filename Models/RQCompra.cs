@@ -79,6 +79,7 @@ namespace HDProjectWeb.Models
         public int S10_codepk { get; set; } //User solicita
 
         public int Occ_codepk { get; set; }
+        public string Occ_numero { get; set; }
         public string Dis_nomlar { get; set; }
 
         public string Cco_codcco { get; set; }

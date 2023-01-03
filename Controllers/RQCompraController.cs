@@ -8,6 +8,7 @@ using System.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using HDProjectWeb.Models.Detalles;
+using ProjectWeb_DRA.Services;
 
 namespace HDProjectWeb.Controllers
 {
@@ -175,9 +176,78 @@ namespace HDProjectWeb.Controllers
            return RedirectToAction("Index");
         }
         [HttpGet]
-        public IActionResult Evaluacion()
+        public async Task <IActionResult> Evaluacion(int epk)
         {
+            var ReqCompra = await repositorioRQCompra.ObtenerporEpk(epk);
+            string cia, suc;
+            cia = servicioEstandar.Compañia();
+            suc = servicioEstandar.Sucursal();
+            ViewBag.cia = cia;
+            ViewBag.suc = suc;
+            ViewBag.usu = servicioUsuario.ObtenerCodUsuario();
+            ViewBag.epk = ReqCompra.Rco_codepk;
+            ViewBag.num = ReqCompra.Rco_numrco;
             ViewBag.url = Url.Action();
+            if (ReqCompra is null)
+            {
+                return RedirectToAction("NoEncontrado", "Home");
+            }
+            return View(ReqCompra);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Aprobar(string cia, string suc, string epk, string usu)
+        {
+            int cia_codcia, suc_codsuc, rco_codepk, uap_codepk;
+            cia_codcia = int.Parse(cia);
+            suc_codsuc = int.Parse(suc);
+            rco_codepk = int.Parse( epk);
+            uap_codepk = await servicioUsuario.ObtenerEpkUsuario(usu);
+
+            var result = await repositorioRQCompra.AprobarReq(cia_codcia, suc_codsuc, rco_codepk, uap_codepk);
+            string message = "se aprobo con exito la Orden de Compra";
+            if (result == 0)
+            {
+                message = "no se aprobo la Requisicion de Compra";
+            }
+            ViewBag.message = message;
+            ViewBag.epk = epk;
+            ViewBag.usu = usu;
+            return View("ResultAprob");
+        }
+        [HttpPost]
+        public async Task<IActionResult> Rechazar(string cia, string suc, string occ, string usu)
+        {
+            int cia_codcia, suc_codsuc, occ_codepk, uap_codepk;
+            cia_codcia = int.Parse(cia);
+            suc_codsuc = int.Parse(suc);
+            occ_codepk = int.Parse(occ);
+            uap_codepk = await servicioUsuario.ObtenerEpkUsuario(usu);
+
+            var result = await repositorioRQCompra.RechazaReq(cia_codcia, suc_codsuc, occ_codepk, uap_codepk);
+            string message = "Se rechazo con exito";
+            if (result == 0)
+            {
+                message = "no se rechazo la Requisicion de Compra";
+            }
+               ViewBag.message = message;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Devolver(string cia, string suc, string occ, string usu)
+        {
+            int cia_codcia, suc_codsuc, occ_codepk, uap_codepk;
+            cia_codcia = int.Parse(cia);
+            suc_codsuc = int.Parse(suc);
+            occ_codepk = int.Parse(occ);
+            uap_codepk = await servicioUsuario.ObtenerEpkUsuario(usu);
+
+            var result = await repositorioRQCompra.DevuelveReq(cia_codcia, suc_codsuc, occ_codepk, uap_codepk);
+            string message = "Se devolvio con exito";
+            if (result == 0)
+            {
+                message = "no se devolvio la Requisicion de Compra";
+            }
+              ViewBag.message = message;
             return View();
         }
     }

@@ -1,7 +1,7 @@
 
 --USE DRA_V22
 ALTER PROCEDURE [dbo].[PA_WEB_OC_Aprueba]
-@p_CodCia as Char(2), @p_CodSuc as Char(2), @p_NumOC as Char(10), @p_CodUsr as varchar(30)
+@p_CodCia as Smallint, @p_CodSuc as Smallint, @p_NumOC as int, @p_CodUsr as int
 /***********************************************************************************************************
  Procedimiento	: PA_HD_WEB_OC_Aprueba
  Proposito		: Ejecuta la Aprobacion del OC en el nivel del usuario, si es el ultimo nivel se aprueba la OC
@@ -25,7 +25,7 @@ Set @n_NivUsr = 0
 
 -- Identificar el Ultimo Nivel de Aprobacion de RQ
 Select @n_NumNiv = COUNT(*) From REQ_APROB_ORDCOM_AOC
-where cia_codcia=@p_CodCia and OCC_NUMERO=@p_NumOC and aoa_indapr=0
+where cia_codcia=@p_CodCia and occ_codepk=@p_NumOC and aoc_indapr=0
 -- Si es UNO entonces es el ultimo nivel y se aprueba OC
 If @@ERROR <> 0 
 Begin
@@ -43,7 +43,7 @@ Begin
 End
 
 Select @n_NivUsr = COUNT(*) from REQ_APROB_ORDCOM_AOC
-Where cia_codcia=@p_CodCia and suc_codsuc=@p_CodSuc and OCC_NUMERO=@p_NumOC and U01_USUARIO=@p_CodUsr and aoa_indapr=0
+Where cia_codcia=@p_CodCia and suc_codsuc=@p_CodSuc and occ_codepk=@p_NumOC and uap_codepk=@p_CodUsr and aoc_indapr=0
 If Isnull(@n_NivUsr,0)<=0
 Begin
    Set @s_mensaje = 'NO hay niveles pendientes de APROBACION de OC para el USUARIO'
@@ -53,7 +53,7 @@ End
 
 -- Identificar si el aprobador es un usuario que de VISTO a las solicitudes
 Select @n_NumVis = COUNT(*) From REQ_APROB_ORDCOM_AOC
-where cia_codcia=@p_CodCia and OCC_NUMERO=@p_NumOC and tac_codtac in ('2','4')
+where cia_codcia=@p_CodCia and occ_codepk=@p_NumOC and tac_codtac in ('2','4')
 -- Si es mayor o igual UNO entonces se tiene usuario que da Visto no interesa cuantos sean
 If @@ERROR <> 0 
 Begin
@@ -78,11 +78,11 @@ Begin Transaction APRUEBA
 
 -- Aprobar en el nivel del Usuario
 -- Select * From APROBAC_ORDCOM_APROBACIONES_AOA
-Update REQ_APROB_ORDCOM_AOC Set aoa_indapr=1, aoa_fecact=getdate(), aoa_codusu=@p_CodUsr
-Where cia_codcia=@p_CodCia and suc_codsuc=@p_CodSuc and OCC_NUMERO=@p_NumOC
-and U01_USUARIO=@p_CodUsr and anm_codanm = 
+Update REQ_APROB_ORDCOM_AOC Set aoc_indapr=1, aoc_fecact=getdate(), aoc_codusu=SYSTEM_USER 
+Where cia_codcia=@p_CodCia and suc_codsuc=@p_CodSuc and occ_codepk=@p_NumOC
+and uap_codepk=@p_CodUsr and anm_codanm = 
 (Select min(anm_codanm) from REQ_APROB_ORDCOM_AOC 
- Where cia_codcia=@p_CodCia and suc_codsuc=@p_CodSuc and OCC_NUMERO=@p_NumOC and U01_USUARIO=@p_CodUsr and aoa_indapr=0)
+ Where cia_codcia=@p_CodCia and suc_codsuc=@p_CodSuc and occ_codepk=@p_NumOC and uap_codepk=@p_CodUsr and aoc_indapr=0)
  
 If @@ERROR <> 0 
 Begin
@@ -121,7 +121,7 @@ End
 If @n_NumNiv=1
 Begin
    Update OCOMPRA_OCC Set occ_sitapr='1', occ_estado = '1'
-   Where cia_codcia=@p_CodCia and suc_codsuc=@p_CodSuc and occ_numero=@p_NumOC
+   Where cia_codcia=@p_CodCia and suc_codsuc=@p_CodSuc and occ_codepk=@p_NumOC
    If @@ERROR <> 0 
    Begin
     	Set @s_mensaje = 'Error al APROBAR cabecera de Orden de Compra ORDEN_COMPRA_OCC ' 

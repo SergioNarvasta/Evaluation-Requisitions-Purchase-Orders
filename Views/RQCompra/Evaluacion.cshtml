@@ -9,25 +9,25 @@
 </head>
 <h2 class="text-center">EVALUACION DE REQUISICION </h2> <br />
 <div class="form-group d-flex flex-row mb-2 ms-4">
-    <form asp-controller="OrdenCompra" asp-action="AprobarOC" method="post">
+    <form asp-controller="RQCompra" asp-action="Aprobar" method="post">
         <input type="text" name="cia" class="ms-2" value="@ViewBag.cia" style="width:30px;display:none" />
         <input type="text" name="suc" class="ms-2" value="@ViewBag.suc" style="width:30px;display:none" />
         <input type="text" name="usu" class="ms-2" value="@ViewBag.usu" style="width:60px;display:none" />
-        <input type="text" name="occ" class="ms-2" value="@ViewBag.occ" style="width:60px;display:none" />
+        <input type="text" name="epk" class="ms-2" value="@ViewBag.epk" style="width:60px;display:''" />
         <button type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3">Aprobar</button>
     </form>
-    <form asp-controller="OrdenCompra" asp-action="RechazarOC" method="post">
+    <form asp-controller="RQCompra" asp-action="Rechazar" method="post">
         <input type="text" name="cia" class="ms-2" value="@ViewBag.cia" style="width:30px;display:none" />
         <input type="text" name="suc" class="ms-2" value="@ViewBag.suc" style="width:30px;display:none" />
         <input type="text" name="usu" class="ms-2" value="@ViewBag.usu" style="width:60px;display:none" />
-        <input type="text" name="occ" class="ms-2" value="@ViewBag.occ" style="width:60px;display:none" />
+        <input type="text" name="epk" class="ms-2" value="@ViewBag.epk" style="width:60px;display:none" />
         <button type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3">Rechazar</button>
     </form>
-    <form asp-controller="OrdenCompra" asp-action="DevolverOC" method="post">
+    <form asp-controller="RQCompra" asp-action="Devolver" method="post">
         <input type="text" name="cia" class="ms-2" value="@ViewBag.cia" style="width:30px;display:none" />
         <input type="text" name="suc" class="ms-2" value="@ViewBag.suc" style="width:30px;display:none" />
         <input type="text" name="usu" class="ms-2" value="@ViewBag.usu" style="width:60px;display:none" />
-        <input type="text" name="occ" class="ms-2" value="@ViewBag.occ" style="width:60px;display:none" />
+        <input type="text" name="epk" class="ms-2" value="@ViewBag.epk" style="width:60px;display:none" />
         <button type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3">Devolver</button>
     </form>
     <a asp-action="Index" style="width:120px;height:37px" class="btn btn-danger ms-3">
@@ -96,7 +96,7 @@
                         <th>
                             <div class="form-group d-flex flex-row ms-5 me-5">
                                 <label class="control-label">C.Costo</label>
-                                <input id="input_epk_cco" asp-for="Cco_codepk" class="form-control form-control-sm col-sm-4 ms-4" style="width:60px;display:none" />
+                                <input id="input_epk_cco" asp-for="Cco_codepk" class="form-control form-control-sm col-sm-4 ms-4" style="width:60px;cplay:none" />
                                 <span asp-validation-for="Cco_codepk" class="text-danger"></span>
 
                                 <input id="input_cod_cco" asp-for="Cco_codcco" class="form-control form-control-sm col-sm-4 ms-4" style="width:75px" />
@@ -196,8 +196,7 @@
                             </div>
                             <div class="form-group d-flex flex-row ms-xl-5">
                                 <label class="control-label">OCompra</label>
-                                <input asp-for="Occ_codepk" class="form-control form-control-sm ms-2" style="width:120px" />
-                                <span asp-validation-for="Occ_codepk" class="text-danger"></span>
+                                <input asp-for="Occ_numero" class="form-control form-control-sm ms-2" style="width:120px" />                                
                             </div>
                         </th>
                         <th>

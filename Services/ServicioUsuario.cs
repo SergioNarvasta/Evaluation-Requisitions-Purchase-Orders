@@ -38,30 +38,30 @@ namespace HDProjectWeb.Services
         public  async Task<int> ObtenerEpkUsuario(string CodUser)
         {
             using var connection = new SqlConnection(connectionString);
-            int cant = await connection.QuerySingleAsync<int>(@"SELECT COUNT(*) FROM SYS_TABLA_USUARIOS_S10 A 
-                                     LEFT JOIN AspNetUsers B ON A.S10_USUARIO = B.UserName 
-                                     WHERE B.UserName = @CodUser ", new { CodUser });
+            int cant = await connection.QuerySingleAsync<int>(@"SELECT COUNT(*) FROM REQ_USERS_APROBADORES_UAP A                                
+                                     WHERE A.uap_codemp = @CodUser OR A.uap_deslar= @CodUser OR A.uap_nombre =@CodUser ",
+                                     new { CodUser });
             if(cant == 0)
             {
                 return await RegistraUsuario_S10();
             }else
-                return await connection.QuerySingleAsync<int>(@"SELECT S10_CODEPK  FROM SYS_TABLA_USUARIOS_S10 A 
-                                     LEFT JOIN AspNetUsers B ON A.S10_USUARIO = B.UserName 
-                                     WHERE B.UserName = @CodUser ", new { CodUser });
+                return await connection.QuerySingleAsync<int>(@"SELECT A.UAP_CODEPK FROM REQ_USERS_APROBADORES_UAP A                                
+                                     WHERE A.uap_codemp = @CodUser OR A.uap_deslar= @CodUser OR A.uap_nombre =@CodUser ",
+                                     new { CodUser });
         }
         public async Task<int> RegistraUsuario_S10()
         {
-            string usu, nom, nomcor, psd; int nivusu = 1;
-            usu = ObtenerCodUsuario(); nom = ObtenerCodUsuario(); nomcor= ObtenerCodUsuario(); psd = "asd123";
+            string nom; int cia = 1; int suc=1;
+            nom = ObtenerCodUsuario(); 
             using var connection = new SqlConnection(connectionString);
-            return await connection.QuerySingleAsync<int>(@"INSERT INTO SYS_TABLA_USUARIOS_S10(S10_USUARIO,S10_NOMUSU,S10_NOMCOR,S10_NIVUSU,S10_PASSWO) VALUES(@usu,@nom,@nomcor,@nivusu,@psd);
-                          SELECT SCOPE_IDENTITY()" ,new { usu,nom,nomcor, psd,nivusu });
+            return await connection.QuerySingleAsync<int>(@"INSERT INTO REQ_USERS_APROBADORES_UAP(cia_codcia,suc_codsuc,uap_deslar,uap_nombre)VALUES(@cia,@suc,@nom,@nom);
+                          SELECT SCOPE_IDENTITY()", new { cia,suc,nom });
         }
         public async Task<string> ObtenerNombreUsuario(string CodUser)
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.QuerySingleAsync<string>(@"SELECT TOP 1 S10_NOMUSU FROM SYS_TABLA_USUARIOS_S10 
-            WHERE S10_USUARIO = @coduser", new { CodUser });
+            return await connection.QuerySingleAsync<string>(@"SELECT A.UAP_DESLAR FROM REQ_USERS_APROBADORES_UAP A                                
+                                     WHERE A.uap_codemp = @CodUser OR A.uap_deslar= @CodUser OR A.uap_nombre =@CodUser ", new { CodUser });
         }
     }
 }
