@@ -1,14 +1,8 @@
-﻿using Dapper;
+﻿
 using HDProjectWeb.Models;
 using HDProjectWeb.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using System.Configuration;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Formatters;
-using HDProjectWeb.Models.Detalles;
-using ProjectWeb_DRA.Services;
 
 namespace HDProjectWeb.Controllers
 {

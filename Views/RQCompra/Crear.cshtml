@@ -381,16 +381,22 @@
             </table>
                 <br /><br />
             </div>
-            <div class="form-group" style="width:300px">
-                <div class="input-group d-flex flex-row">
-                    <label class="input-group-btn">
-                        <span class="btn btn-file">
-                            <input accept=".docx,.doc,.pdf" class="hidden" name="banner" type="file" id="banner" style="width:90px">
-                        </span>
-                    </label>
-                    <input class="form-control" id="banner_captura" readonly="readonly" name="banner_captura" type="text" value="" style="width:100px">
+            @using (Html.BeginForm("Upload", "Files", null,
+            FormMethod.Post,true,
+            new { enctype = "multipart/form-data", method = "post" }))
+            {
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="file" name="file" />
+                    </div>
+                    <div class="col-md-6 left">
+                        <button type="submit" class="btn btn-sm btn-primary">
+                            <span class="glyphicon glyphicon-open"></span>
+                            &nbsp;Subir archivo
+                        </button>
+                    </div>
                 </div>
-            </div>
+            }
             <div>
                 <div>
                     <a class="btn btn-danger"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill me-1" viewBox="0 0 16 16">
