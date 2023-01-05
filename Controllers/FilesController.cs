@@ -10,7 +10,6 @@ namespace ProjectWeb_DRA.Controllers
         {
             _webHostEnvironment = webHostEnvironment;
         }
-
         public IActionResult Upload(IFormFile file)
         {
             try 
