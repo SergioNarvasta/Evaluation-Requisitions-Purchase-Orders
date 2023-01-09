@@ -154,23 +154,6 @@ namespace ProjectWeb_DRA.Controllers
             return View("ResultAprob");
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public static string Encriptar(string _cadenaAencriptar)
         {
             string result;
@@ -179,11 +162,11 @@ namespace ProjectWeb_DRA.Controllers
             return result;
         }
 
-        /// Esta función desencripta la cadena que le envíamos en el parámentro de entrada.
         public static string DesEncriptar(string _cadenaAdesencriptar)
         {
             string result;
             byte[] decryted = Convert.FromBase64String(_cadenaAdesencriptar);
+
             //result = System.Text.Encoding.Unicode.GetString(decryted, 0, decryted.ToArray().Length);
             result = System.Text.Encoding.Unicode.GetString(decryted);
             return result;
