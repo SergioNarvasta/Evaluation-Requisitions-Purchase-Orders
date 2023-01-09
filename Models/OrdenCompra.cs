@@ -26,7 +26,7 @@ namespace ProjectWeb_DRA.Models
         public double Occ_impdet   { get; set; }
         public int  Imp_codepk   { get; set; }
         public string  Imp_desimp   { get; set; }
-        public byte[] Occ_encryp { get; set; }
+        public string Occ_sitapr { get; set; }
        // public string encryp_tostring { get; set; } = Occ_encryp.toString();
 
 

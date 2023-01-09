@@ -8,15 +8,15 @@
 </head>
 <h2 class="text-center">EVALUACION ORDEN DE COMPRA</h2> <br />
 <div class="form-group d-flex flex-row">
-    <form asp-controller="OrdenCompra" asp-action="Aprobar" method="post">
+    <form asp-controller="OrdenCompra" asp-action="Aprobar" method="post" >
         <input type="text" name="cia" value="@ViewBag.cia" style="display:none"/>
         <input type="text" name="suc" value="@ViewBag.suc" style="display:none"/>
         <input type="text" name="usu" value="@ViewBag.usu" style="display:none"/>
         <input type="text" name="epk" value="@ViewBag.epk" style="display:none"/>
         <input type="text" name="num" value="@ViewBag.num" style="display:none"/>
-        <button type="submit" style="width:120px;height:40px" class="btn btn-primary ms-3 me-3">Aprobar</button>
+        <button type="submit" style="width:120px;height:40px" class="btn btn-primary ms-3 me-3  @( int.Parse(ViewBag.sit) >1 ? "disabled": null )">Aprobar</button>
     </form>
-    <button type="submit" style="width:120px;height:40px" class="btn btn-primary ms-3 me-3">Rechazar</button>
+    <button onclick="btn_abrir_modal_motivo()" style="width:120px;height:40px" class="btn btn-primary ms-3 me-3 @( int.Parse(ViewBag.sit) >1 ? "disabled": null )">Rechazar</button>
    
     <button id="btn_abrir_modal_motivo" class="btn btn-outline-success" style="display:none" data-bs-toggle="modal" data-bs-target="#Modal_Mot">+</button>
     <div class="modal" id="Modal_Mot">
@@ -91,8 +91,8 @@
                             <div class="d-flex flex-row ms-xl-5">
                                 <label>Estado </label>
                                 <select asp-for="Occ_estado" id="cbo_estado" class="ms-4" disabled>
-                                    <option value="1">APROBADO</option>
-                                    <option value="0">PENDIENTE</option>
+                                    <option value="1">VIGENTE</option>
+                                    <option value="0">ANULADO</option>
                                 </select>
                             </div>
                         </th>
@@ -110,10 +110,13 @@
                             </div>
                         </th>
                         <th>
-                            <div class="form-group d-flex flex-row ms-5">
-                                <label class="me-2">Moneda</label>
-                                <input asp-for="Mon_desmon" class="form-control me-2" style="width:245px;height:32px" type="text" />
-                                <span asp-validation-for="Mon_desmon" class="text-danger"></span>
+                            <div class="form-group d-flex flex-row ms-xl-5">
+                                <label class="">Situacion</label>
+                                <select asp-for="Occ_sitapr" id="cbo_situacion" class="ms-2" disabled>
+                                    <option value="1">PENDIENTE</option>
+                                    <option value="2">APROBADO </option>
+                                    <option value="3">RECHAZADO</option>
+                                </select>
                             </div>
                         </th>
                         <th>
@@ -167,7 +170,16 @@
 
                             </div>
                         </th>
-                    </tr>          
+                    </tr>   
+                    <tr>
+                        <th>
+                            <div class="form-group d-flex flex-row ms-5">
+                                <label class="me-2">Moneda</label>
+                                <input asp-for="Mon_desmon" class="form-control me-2" style="width:245px;height:32px" type="text" />
+                                <span asp-validation-for="Mon_desmon" class="text-danger"></span>
+                            </div>
+                        </th>
+                    </tr>
                 </tbody>
             </table><br />  
 

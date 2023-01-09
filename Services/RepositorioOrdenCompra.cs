@@ -65,7 +65,7 @@ namespace ProjectWeb_DRA.Services
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QueryFirstOrDefaultAsync<OrdenCompra>(@" SELECT A.occ_codepk, A.occ_numero,A.occ_feccre,A.occ_tcaocc,B.ccr_codccr,B.ccr_nomaux,A.occ_observ,A.occ_impigv,A.tco_codtco,C.tco_nombre,
-                    A.occ_estado,iif(A.occ_estado=1,'APROBADO','PENDIENTE')as occ_destado,A.mon_codepk,D.mon_desmon,A.cpg_codepk,E.cpg_deslar,
+                    A.occ_sitapr, A.occ_estado,iif(A.occ_estado=1,'APROBADO','PENDIENTE')as occ_destado,A.mon_codepk,D.mon_desmon,A.cpg_codepk,E.cpg_deslar,
 	                A.occ_fecemi,A.occ_pordet,A.occ_impdet,A.imp_codepk,F.imp_desimp
                FROM OCOMPRA_OCC A
                LEFT JOIN CUEN_CORR_CCR   B ON A.cia_codcia=B.cia_codcia AND A.ccr_codepk=B.ccr_codepk

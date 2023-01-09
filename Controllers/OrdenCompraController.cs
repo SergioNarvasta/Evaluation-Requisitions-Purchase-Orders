@@ -91,8 +91,8 @@ namespace ProjectWeb_DRA.Controllers
             ViewBag.usu = servicioUsuario.ObtenerCodUsuario();
             ViewBag.epk = OCompra.Occ_codepk;
             ViewBag.num = OCompra.Occ_numero;
+            ViewBag.sit = OCompra.Occ_sitapr;
             ViewBag.url = Url.Action();
-            //ViewBag.sit = OCompra.
             return View(OCompra);
         }
         [HttpPost]
@@ -105,7 +105,7 @@ namespace ProjectWeb_DRA.Controllers
             uap_codepk = await servicioUsuario.ObtenerEpkUsuario(usu);
             var result = await repositorioOrdenCompra.Aprobar(cia_codcia, suc_codsuc, occ_codepk, uap_codepk);
             string message = "se aprobo con exito la Orden de Compra";
-            if (result == 0)
+            if (result < 0)
             {
                 message = "ocurrio un error al intentar aprobar la Orden de Compra";
             } 
@@ -123,15 +123,16 @@ namespace ProjectWeb_DRA.Controllers
             suc_codsuc = int.Parse(suc);
             occ_codepk = int.Parse(epk);
             uap_codepk = await servicioUsuario.ObtenerEpkUsuario(usu);
-            var result = await repositorioOrdenCompra.Rechaza(cia_codcia, suc_codsuc, occ_codepk, uap_codepk);
+            var result = await repositorioOrdenCompra.Rechaza(cia_codcia, suc_codsuc, occ_codepk, uap_codepk,mot);
             string message = "Se rechazo con exito la Orden de Compra";
-            if (result == 0)
+            if (result < 0)
             {
                 message = "ocurrio un error al intentar rechazar la Orden de Compra";
             }
             ViewBag.message = message;
             ViewBag.usu = usu;
             ViewBag.num = num;
+            ViewBag.result = result;
             return View("ResultAprob");
         }
         [HttpPost]
@@ -144,7 +145,7 @@ namespace ProjectWeb_DRA.Controllers
             uap_codepk = await servicioUsuario.ObtenerEpkUsuario(usu);
             var result = await repositorioOrdenCompra.Devuelve(cia_codcia, suc_codsuc, occ_codepk, uap_codepk);
             string message = "Se devolvio con exito la Orden de Compra";
-            if (result == 0)
+            if (result < 0)
             {
                 message = "ocurrio un error al intentar devolver la Orden de Compra";
             }

@@ -186,7 +186,8 @@ namespace HDProjectWeb.Controllers
             ViewBag.suc = suc;
             ViewBag.usu = servicioUsuario.ObtenerCodUsuario();
             ViewBag.epk = ReqCompra.Rco_codepk;
-            ViewBag.num = ReqCompra.Rco_numrco;
+            ViewBag.num = ReqCompra.Rco_numrco; 
+            ViewBag.sit = ReqCompra.Rco_sitrco;
             ViewBag.url = Url.Action();
             return View(ReqCompra);
         }

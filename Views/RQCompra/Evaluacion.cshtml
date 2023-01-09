@@ -15,10 +15,10 @@
         <input type="text" name="usu" value="@ViewBag.usu" style="display:none" />
         <input type="text" name="epk" value="@ViewBag.epk" style="display:none" />
         <input type="text" name="num" value="@ViewBag.num" style="display:none" />
-        <button type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3">Aprobar</button>
+        <button type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3 @( int.Parse(ViewBag.sit) >1 ? "disabled": null )">Aprobar</button>
     </form>
 
-    <button onclick="btn_abrir_modal_motivo()" type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3">Rechazar</button>
+    <button onclick="btn_abrir_modal_motivo()" type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3 @( int.Parse(ViewBag.sit) >1 ? "disabled": null )">Rechazar</button>
    
     <form asp-controller="RQCompra" asp-action="Devolver" method="post">
         <input type="text" name="cia" value="@ViewBag.cia" style="display:none" />
@@ -28,6 +28,7 @@
         <input type="text" name="num" value="@ViewBag.num" style="display:none" />
         <button type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3">Devolver</button>
     </form>
+
     <button id="btn_abrir_modal_motivo" class="btn btn-outline-success" style="display:none" data-bs-toggle="modal" data-bs-target="#Modal_Mot">+</button>
     <div class="modal" id="Modal_Mot">
         <div class="modal-dialog modal-dialog-scrollable ">

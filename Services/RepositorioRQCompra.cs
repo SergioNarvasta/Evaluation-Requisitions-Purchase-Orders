@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using HDProjectWeb.Models;
 using HDProjectWeb.Models.Detalles;
-using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.Data.SqlClient;
 
 namespace HDProjectWeb.Services
