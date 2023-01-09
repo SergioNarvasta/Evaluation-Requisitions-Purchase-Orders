@@ -137,11 +137,12 @@ SELECT*FROM REQ_APROB_REQCOM_ARC
 SELECT*FROM REQ_USERS_APROBADORES_UAP
 GO
 --EJECUTA APROBACION
-EXEC PA_WEB_RQ_Aprueba @p_CodCia = 1, @p_CodSuc =1, @p_NumRQ =20221201, @p_CodUsr =44
+EXEC PA_WEB_RQ_Rechaza @p_CodCia = 1, @p_CodSuc =1, @p_NumRQ =20221201, @p_CodUsr =44 ,@p_Motivo='Rechazo Prueba' 
+EXEC PA_WEB_RQ_Aprueba @p_CodCia = 1, @p_CodSuc =1, @p_NumRQ =20221201, @p_CodUsr =44 
 
 --CONSULTAR ESTADO
-Select rco_sitrco,* from REQ_REQUI_COMPRA_RCO where rco_codepk=20221201
-SELECT arc_indapr,*FROM REQ_APROB_REQCOM_ARC where rco_codepk=20221201
+	Select rco_sitrco,* from REQ_REQUI_COMPRA_RCO where rco_codepk=20221201
+	SELECT arc_indapr,* FROM REQ_APROB_REQCOM_ARC where rco_codepk=20221201
 
 --DESACTIVAR APROBACION
 UPDATE REQ_REQUI_COMPRA_RCO SET rco_sitrco = 1 where rco_codepk=20221201
@@ -160,3 +161,19 @@ SELECT A.occ_codepk, A.occ_numero,A.occ_feccre,A.occ_tcaocc,B.ccr_codccr,B.ccr_n
                LEFT JOIN COND_PAGO_CPG   E ON A.cia_codcia=E.cia_codcia AND A.cpg_codepk=E.cpg_codepk
                LEFT JOIN IMPUESTOS_IMP   F ON A.imp_codepk=F.imp_codepk
                WHERE A.occ_numero = @Occ_numero 
+
+GO
+USE DRA_V22
+CREATE TABLE [REQ_MOTIVO_DEVREQ_MDR] (
+    mdr_codepk int Identity(1,1) Primary Key,
+    cia_codcia  smallint      NOT NULL,
+    suc_codsuc  smallint      NOT NULL,
+    Rco_codepk  int           NOT NULL,
+    mdr_corite  int           NOT NULL,
+    mdr_fecmdr  DATETIME      NOT NULL,
+    uap_codepk  int            NOT NULL,
+    [MDR_TIPMDR]  CHAR (1)      NOT NULL,
+    [MDR_MOTMDR]  VARCHAR (200) NOT NULL, 
+);
+GO
+SELECT SYSTEM_USER

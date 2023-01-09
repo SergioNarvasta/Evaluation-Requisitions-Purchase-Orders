@@ -17,9 +17,9 @@ namespace HDProjectWeb.Services
         Task<int> ContarRegistrosBusqueda(string periodo, int EpkUser, string busqueda, string estado1, string estado2);
         Task<IEnumerable<RQCompraCab>> BusquedaMultiple(string periodo, PaginacionViewModel paginacion, int EpkUser, string busqueda, string estado1, string estado2);
         Task<RQCompra> ObtenerporEpk(int Rco_codepk);
-        Task<int> AprobarReq(int cia_codcia, int suc_codsuc, int occ_codepk, int uap_codepk);
-        Task<int> RechazaReq(int cia_codcia, int suc_codsuc, int occ_codepk, int uap_codepk);
-        Task<int> DevuelveReq(int cia_codcia, int suc_codsuc, int occ_codepk, int uap_codepk);
+        Task<int> AprobarReq(int cia, int suc, int epk, int uap);
+        Task<int> RechazaReq(int cia, int suc, int epk, int uap, string mot);
+        Task<int> DevuelveReq(int cia, int suc, int epk, int uap);
     }
     public class RepositorioRQCompra:IRepositorioRQCompra
     {
@@ -108,24 +108,23 @@ namespace HDProjectWeb.Services
             return await connection.QueryFirstOrDefaultAsync<RQCompra>(@" SELECT * FROM V_WEB_REQCOMPRAS_Index
                   WHERE rco_codepk = @Rco_codepk ", new { Rco_codepk });
         }
-
         public async Task<int> AprobarReq(int cia,int suc,int epk,int uap)
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QuerySingleAsync<int>(@" PA_WEB_RQ_Aprueba
                  @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumRQ=@epk, @p_CodUsr=@uap ", new { cia, suc, epk, uap });
         }
-        public async Task<int> RechazaReq(int cia_codcia, int suc_codsuc, int occ_codepk, int uap_codepk)
+        public async Task<int> RechazaReq(int cia, int suc, int epk, int uap, string mot)
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.QuerySingleAsync<int>(@" PA_HD_WEB_RQ_Rechaza
-                 @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumRQ =@epk, @p_CodUsr=@uap", new { cia_codcia, suc_codsuc, occ_codepk, uap_codepk });
+            return await connection.QuerySingleAsync<int>(@" PA_WEB_RQ_Rechaza
+                 @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumRQ =@epk, @p_CodUsr=@uap, @p_Motivo = @mot", new { cia, suc, epk, uap, mot });
         }
-        public async Task<int> DevuelveReq(int cia_codcia, int suc_codsuc, int occ_codepk, int uap_codepk)
+        public async Task<int> DevuelveReq(int cia, int suc, int epk, int uap)
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QuerySingleAsync<int>(@" PA_HD_WEB_RQ_Devuelve
-                 @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumRQ=@epk, @p_CodUsr=@uap ", new { cia_codcia, suc_codsuc, occ_codepk, uap_codepk });
+                 @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumRQ=@epk, @p_CodUsr=@uap ", new { cia, suc, epk, uap });
         }
 
 

@@ -200,52 +200,55 @@ namespace HDProjectWeb.Controllers
             uap_codepk = await servicioUsuario.ObtenerEpkUsuario(usu);
             var result = await repositorioRQCompra.AprobarReq(cia_codcia, suc_codsuc, rco_codepk, uap_codepk);
             string message = "se aprobo con exito la Requisicion de Compra ";
-            if (result == 0)
+            if (result < 0)
             {
-                message = "ocurrio un error al intentar aprobar la Requisicion de Compra ";
+                message = "Ocurrio un error al intentar aprobar la Requisicion de Compra ";
             }
             ViewBag.message = message;
             ViewBag.usu = usu;
             ViewBag.num = num;
+            ViewBag.result = result;
             return View("ResultAprob");
         }
         [HttpPost]
-        public async Task<IActionResult> Rechazar(string cia, string suc, string occ, string usu, string num)
+        public async Task<IActionResult> Rechazar(string cia, string suc, string epk, string usu, string num,string mot)
         {
-            int cia_codcia, suc_codsuc, occ_codepk, uap_codepk;
+            int cia_codcia, suc_codsuc, rco_codepk, uap_codepk;
             cia_codcia = int.Parse(cia);
             suc_codsuc = int.Parse(suc);
-            occ_codepk = int.Parse(occ);
+            rco_codepk = int.Parse(epk);
             uap_codepk = await servicioUsuario.ObtenerEpkUsuario(usu);
-            var result = await repositorioRQCompra.RechazaReq(cia_codcia, suc_codsuc, occ_codepk, uap_codepk);
+            var result = await repositorioRQCompra.RechazaReq(cia_codcia, suc_codsuc, rco_codepk, uap_codepk, mot);
             string message = "Se rechazo con exito la Requisicion de Compra ";
-            if (result == 0)
+            if (result < 0)
             {
-                message = "no se rechazo la Requisicion de Compra ";
+                message = "Ocurrio un error al intentar rechazar la Requisicion de Compra ";
             }
             ViewBag.message = message;
             ViewBag.usu = usu;
             ViewBag.num = num;
+            ViewBag.result = result;
             return View("ResultAprob");
         }
         [HttpPost]
-        public async Task<IActionResult> Devolver(string cia, string suc, string occ, string usu, string num)
+        public async Task<IActionResult> Devolver(string cia, string suc, string epk, string usu, string num)
         {
-            int cia_codcia, suc_codsuc, occ_codepk, uap_codepk;
+            int cia_codcia, suc_codsuc, rco_codepk, uap_codepk;
             cia_codcia = int.Parse(cia);
             suc_codsuc = int.Parse(suc);
-            occ_codepk = int.Parse(occ);
+            rco_codepk = int.Parse(epk);
             uap_codepk = await servicioUsuario.ObtenerEpkUsuario(usu);
 
-            var result = await repositorioRQCompra.DevuelveReq(cia_codcia, suc_codsuc, occ_codepk, uap_codepk);
+            var result = await repositorioRQCompra.DevuelveReq(cia_codcia, suc_codsuc, rco_codepk, uap_codepk);
             string message = "Se devolvio con exito la Requisicion de Compra ";
-            if (result == 0)
+            if (result < 0)
             {
-                message = "no se devolvio la Requisicion de Compra ";
+                message = "Ocurrio un error: no se devolvio la Requisicion de Compra ";
             }
             ViewBag.message = message;
             ViewBag.usu = usu;
             ViewBag.num = num;
+            ViewBag.result = result;
             return View("ResultAprob");
         }
     }

@@ -17,14 +17,9 @@
         <input type="text" name="num" value="@ViewBag.num" style="display:none" />
         <button type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3">Aprobar</button>
     </form>
-    <form asp-controller="RQCompra" asp-action="Rechazar" method="post">
-        <input type="text" name="cia" value="@ViewBag.cia" style="display:none" />
-        <input type="text" name="suc" value="@ViewBag.suc" style="display:none" />
-        <input type="text" name="usu" value="@ViewBag.usu" style="display:none" />
-        <input type="text" name="epk" value="@ViewBag.epk" style="display:none" />
-        <input type="text" name="num" value="@ViewBag.num" style="display:none" />
-        <button type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3">Rechazar</button>
-    </form>
+
+    <button onclick="btn_abrir_modal_motivo()" type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3">Rechazar</button>
+   
     <form asp-controller="RQCompra" asp-action="Devolver" method="post">
         <input type="text" name="cia" value="@ViewBag.cia" style="display:none" />
         <input type="text" name="suc" value="@ViewBag.suc" style="display:none" />
@@ -33,7 +28,30 @@
         <input type="text" name="num" value="@ViewBag.num" style="display:none" />
         <button type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3">Devolver</button>
     </form>
-    
+    <button id="btn_abrir_modal_motivo" class="btn btn-outline-success" style="display:none" data-bs-toggle="modal" data-bs-target="#Modal_Mot">+</button>
+    <div class="modal" id="Modal_Mot">
+        <div class="modal-dialog modal-dialog-scrollable ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title ms-5">Ingrese Motivo de Rechazo</h4> 
+                </div>
+                <div class="modal-body">
+                    <form asp-controller="RQCompra" asp-action="Rechazar" method="post">
+                        <input type="text" name="cia" value="@ViewBag.cia" style="display:none" />
+                        <input type="text" name="suc" value="@ViewBag.suc" style="display:none" />
+                        <input type="text" name="usu" value="@ViewBag.usu" style="display:none" />
+                        <input type="text" name="epk" value="@ViewBag.epk" style="display:none" />
+                        <input type="text" name="num" value="@ViewBag.num" style="display:none" />
+                        <input type="text" name="mot" id="mot_rechazo_req" style="width:450px;height:100px" class="form-control"/>
+                        <button id="btn_envia_rechazo_req" type="submit" style="display:none">Enviar</button>
+                    </form>  
+                </div>
+                <div class="modal-footer">
+                        <button onclick="validaMotivo()" id="btn_cerrar_modal_motivo" type="button" class="btn btn-danger" data-bs-dismiss="modal">Enviar</button>        
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div id="Box-Main">
     <div class="col-md-4">

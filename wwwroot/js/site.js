@@ -348,7 +348,6 @@ function coloca_nomb() {
 // Busqueda con JS 
 (function (document) {
     'use strict';
-
     var LightTableFilter = (function (Arr) {
 
         var _input;
@@ -387,7 +386,6 @@ function coloca_nomb() {
 })(document);
 //https://www.tutofox.com/javascript/buscador-datos-en-la-tabla-con-javascript/#:~:text=El%20buscador%20esta%20hecho%20en,que%20desea%20buscar%20el%20registro.&text=El%20campo%20de%20buscador%20debes,en%20el%20input%20de%20buscador.
 
-
 //Aprobacion OC
 
 $(document).ready(function () {
@@ -398,7 +396,25 @@ $(document).ready(function () {
     $('.dataTables_length').addClass('bs-select');
 });
 
-
+//Evaluacion Req
+//Funcion para validar el input y enviar el rechazo del Req
+function validaMotivo() {
+    var mot = document.getElementById("mot_rechazo_req").value;
+    console.log(mot);
+    if (mot.length == 0) {
+        alert("¡Ingrese un motivo porfavor!")
+    } 
+    console.log("Longitud : " + mot.length);
+    $("#btn_envia_rechazo_req").click();
+}
+function btn_abrir_modal_motivo() {  
+    $("#btn_abrir_modal_motivo").click();
+}
+/*
+ let inputValue = document.getElementById("domTextElement").value; 
+  document.getElementById("valueInput").innerHTML = inputValue; 
+ 
+ */
 
 
 
