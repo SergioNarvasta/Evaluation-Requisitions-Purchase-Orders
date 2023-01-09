@@ -34,7 +34,7 @@ namespace HDProjectWeb.Controllers
             //crear.S10_usuario = codaux;
             //crear.S10_nomusu = servicioUsuario.ObtenerNombreUsuario(codaux);
             ViewBag.estado = "1";
-           
+            ViewBag.url = Url.Action();
             return View(crear);
         }
 
@@ -160,6 +160,7 @@ namespace HDProjectWeb.Controllers
             var periodo = servicioEstandar.ObtenerPeriodo();
             ViewBag.periodo = periodo;
             ViewBag.Rco_numero = Rco_Numero;
+            ViewBag.url = Url.Action();
             return View(rQCompra);
         }
 
