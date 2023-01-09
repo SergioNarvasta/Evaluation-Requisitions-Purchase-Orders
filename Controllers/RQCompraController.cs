@@ -211,7 +211,7 @@ namespace HDProjectWeb.Controllers
             return View("ResultAprob");
         }
         [HttpPost]
-        public async Task<IActionResult> Rechazar(string cia, string suc, string epk, string usu, string num,string mot)
+        public async Task<IActionResult> Rechazar(string cia, string suc, string epk, string usu, string num, string mot)
         {
             int cia_codcia, suc_codsuc, rco_codepk, uap_codepk;
             cia_codcia = int.Parse(cia);

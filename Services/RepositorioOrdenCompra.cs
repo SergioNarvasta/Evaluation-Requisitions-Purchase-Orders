@@ -13,7 +13,7 @@ namespace ProjectWeb_DRA.Services
         Task<IEnumerable<OrdenCompra>> Obtener(string periodo, PaginacionViewModel paginacion);
         Task<OrdenCompra> ObtenerporCodigoOCC(string Occ_numero);
         Task<OrdenCompra> ObtenerporEpk(int occ_codepk);
-        Task<int> Rechaza(int cia, int suc, int epk, int uap);
+        Task<int> Rechaza(int cia, int suc, int epk, int uap, string mot);
     }
     public class RepositorioOrdenCompra :IRepositorioOrdenCompra
     {
@@ -82,11 +82,11 @@ namespace ProjectWeb_DRA.Services
             return await connection.QuerySingleAsync<int>(@" PA_WEB_OC_Aprueba
                  @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumOC = @epk, @p_CodUsr = @uap ", new { cia, suc, epk, uap });
         }
-        public async Task<int> Rechaza(int cia, int suc, int epk, int uap)
+        public async Task<int> Rechaza(int cia, int suc, int epk, int uap,string mot)
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QuerySingleAsync<int>(@" PA_WEB_OC_Rechaza
-                 @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumOC = @epk, @p_CodUsr = @uap ", new { cia, suc, epk, uap });
+                 @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumOC = @epk, @p_CodUsr = @uap, @p_Motivo = @mot", new { cia, suc, epk, uap,mot });
         }
         public async Task<int> Devuelve(int cia, int suc, int epk, int uap)
         {

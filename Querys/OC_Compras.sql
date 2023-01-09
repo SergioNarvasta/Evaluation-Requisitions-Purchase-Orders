@@ -142,7 +142,6 @@ SELECT uap_codepk,*FROM REQ_USERS_APROBADORES_UAP
 
 --CORREGIR STORE
 
-
 SELECT*FROM V_WEB_REQCOMPRAS_Index
-                Where cia=1 AND suc=1 AND periodo =202212 AND  s10_codepk = 44  AND estado in(1,2)
+                Where cia=1 AND suc=1 AND periodo =202212 AND  uap_codepk = 44  AND estado in(1,2)
                 ORDER BY Rco_Numero DESC 

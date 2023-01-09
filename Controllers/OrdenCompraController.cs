@@ -116,7 +116,7 @@ namespace ProjectWeb_DRA.Controllers
             return View("ResultAprob");
         }
         [HttpPost]
-        public async Task<IActionResult> Rechazar(string cia, string suc, string epk, string usu, string num)
+        public async Task<IActionResult> Rechazar(string cia, string suc, string epk, string usu, string num, string mot)
         {
             int cia_codcia, suc_codsuc, occ_codepk, uap_codepk;
             cia_codcia = int.Parse(cia);

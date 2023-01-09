@@ -1,12 +1,12 @@
 ﻿@model ProjectWeb_DRA.Models.OrdenCompra
 @{
-    ViewData["Title"] = " Aprobacion Orden de Compra ";
+    ViewData["Title"] = " Evaluacion Orden de Compra ";
 }
 <head>
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
-<h2 class="text-center">APROBACION DE ORDEN DE COMPRA</h2> <br />
+<h2 class="text-center">EVALUACION ORDEN DE COMPRA</h2> <br />
 <div class="form-group d-flex flex-row">
     <form asp-controller="OrdenCompra" asp-action="Aprobar" method="post">
         <input type="text" name="cia" value="@ViewBag.cia" style="display:none"/>
@@ -16,13 +16,32 @@
         <input type="text" name="num" value="@ViewBag.num" style="display:none"/>
         <button type="submit" style="width:120px;height:40px" class="btn btn-primary ms-3 me-3">Aprobar</button>
     </form>
-    <form asp-controller="OrdenCompra" asp-action="Rechazar" method="post">
-        <input type="text" name="cia" class="ms-2" value="@ViewBag.cia" style="width:30px;display:none" />
-        <input type="text" name="suc" class="ms-2" value="@ViewBag.suc" style="width:30px;display:none" />
-        <input type="text" name="usu" class="ms-2" value="@ViewBag.usu" style="width:60px;display:none"/>
-        <input type="text" name="epk" class="ms-2" value="@ViewBag.epk" style="width:60px;display:none" />
-        <button type="submit" style="width:120px;height:40px" class="btn btn-primary ms-3 me-3">Rechazar</button>
-    </form>
+    <button type="submit" style="width:120px;height:40px" class="btn btn-primary ms-3 me-3">Rechazar</button>
+   
+    <button id="btn_abrir_modal_motivo" class="btn btn-outline-success" style="display:none" data-bs-toggle="modal" data-bs-target="#Modal_Mot">+</button>
+    <div class="modal" id="Modal_Mot">
+        <div class="modal-dialog modal-dialog-scrollable ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title ms-5">Ingrese Motivo de Rechazo</h4>
+                </div>
+                <div class="modal-body">
+                    <form asp-controller="OrdenCompra" asp-action="Rechazar" method="post">
+                        <input type="text" name="cia" value="@ViewBag.cia" style="display:none" />
+                        <input type="text" name="suc" value="@ViewBag.suc" style="display:none" />
+                        <input type="text" name="usu" value="@ViewBag.usu" style="display:none" />
+                        <input type="text" name="epk" value="@ViewBag.epk" style="display:none" />
+                        <input type="text" name="num" value="@ViewBag.num" style="display:none" />
+                        <input type="text" name="mot" id="mot_rechazo_req" style="width:450px;height:100px" class="form-control" />
+                        <button id="btn_envia_rechazo_req" type="submit" style="display:none">Enviar</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="validaMotivo()" id="btn_cerrar_modal_motivo" type="button" class="btn btn-danger" data-bs-dismiss="modal">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <form asp-controller="OrdenCompra" asp-action="Devolver" method="post">
         <input type="text" name="cia" class="ms-2" value="@ViewBag.cia" style="width:30px;display:none" />
         <input type="text" name="suc" class="ms-2" value="@ViewBag.suc" style="width:30px;display:none" />

@@ -148,8 +148,10 @@ EXEC PA_WEB_RQ_Aprueba @p_CodCia = 1, @p_CodSuc =1, @p_NumRQ =20221201, @p_CodUs
 UPDATE REQ_REQUI_COMPRA_RCO SET rco_sitrco = 1 where rco_codepk=20221201
 UPDATE REQ_APROB_REQCOM_ARC SET arc_indapr = 0 where rco_codepk=20221201
 
-SELECT uap_codepk,*FROM REQ_USERS_APROBADORES_UAP
-SELECT*FROM OCOMPRA_OCC
+--MOTIVOS DE RECHAZO 
+SELECT *FROM REQ_MOTIVO_DEVREQ_MDR
+
+
 
 SELECT A.occ_codepk, A.occ_numero,A.occ_feccre,A.occ_tcaocc,B.ccr_codccr,B.ccr_nomaux,A.occ_observ,A.occ_impigv,A.tco_codtco,C.tco_nombre,
                     A.occ_estado,iif(A.occ_estado=1,'APROBADO','PENDIENTE')as occ_destado,A.mon_codepk,D.mon_desmon,A.cpg_codepk,E.cpg_deslar,
@@ -163,17 +165,3 @@ SELECT A.occ_codepk, A.occ_numero,A.occ_feccre,A.occ_tcaocc,B.ccr_codccr,B.ccr_n
                WHERE A.occ_numero = @Occ_numero 
 
 GO
-USE DRA_V22
-CREATE TABLE [REQ_MOTIVO_DEVREQ_MDR] (
-    mdr_codepk int Identity(1,1) Primary Key,
-    cia_codcia  smallint      NOT NULL,
-    suc_codsuc  smallint      NOT NULL,
-    Rco_codepk  int           NOT NULL,
-    mdr_corite  int           NOT NULL,
-    mdr_fecmdr  DATETIME      NOT NULL,
-    uap_codepk  int            NOT NULL,
-    [MDR_TIPMDR]  CHAR (1)      NOT NULL,
-    [MDR_MOTMDR]  VARCHAR (200) NOT NULL, 
-);
-GO
-SELECT SYSTEM_USER
