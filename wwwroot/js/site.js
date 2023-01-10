@@ -122,8 +122,9 @@ function agregarFila() {
     $("#nitems_prd").val(nrows);
     console.log(nrows);
     var item = '00' + (nrows).toString();
-    var cod = '<input value="999900000018" type="text"/>';
-    var des = '<input />';
+    var citem = '<input asp-for="Item"   value="'+item+' " type="text" style="display:none"/>';
+    var cod = ' <input asp-for="Codigo" value="2" type="text" style="display:none"/> <input value="999900000018" type="text"/>';
+    var des = '<input   asp-for="Descri" />';
     var det = '<button  id="btn_detalle" type="button" class="btn btn-outline-success"  data-bs-toggle="modal" data-bs-target="#ModalDetPrd'+nrows+'">+</button>' +
         ' <div class="modal" id="ModalDetPrd'+nrows+'"> ' +
         ' <div class="modal-dialog"> ' +
@@ -133,7 +134,7 @@ function agregarFila() {
         ' </div> ' +
         ' <div class="modal-body d-flex flex-column justify-content-center" > ' +
         ' <label>Producto: 999900000018 </label> ' +
-        ' <textarea class="col-5 mt-2" style="width:350px;height:200px" > </textarea> ' +
+        ' <textarea asp-for="Glosa" class="col-5 mt-2" style="width:350px;height:200px" > </textarea> ' +
         ' </div> ' +
         ' <div class="modal-footer" > ' +
         ' <button onclick="" type = "button" class="btn btn-danger" data-bs-dismiss="modal" > Retornar </button> ' +
@@ -141,14 +142,31 @@ function agregarFila() {
         ' </div> ' +
         ' </div> ' +
         ' </div> ';
-    var uni = "UND";
-    var cant = '<input type="number"  value="0.0" />';
-    var codprv = "00000000";
+    var uni  = "UND";
+    var cuni = '<input  asp-for="Unidad" value="3" type="text" style="display:none"/>';
+    var cant = '<input asp-for="Cantidad" type="text"  value="0.0" />';
+    var codprv = '<input asp-for ="Codprov" value="000001" type="text"/>';
     var prov = '<input type="text" placeholder="Proveedor" />';
     var sust = '<input type="text" placeholder="Sustento.." />';
-    var fila = "<tr><td></td><td>" + item + "</td><td>" + cod + "</td><td>" + des + "</td><td>" + det + "</td><td>" + uni + "</td><td>" + cant + "</td><td>" + codprv + "</td><td>" + prov + "</td><td>" + sust + "</td> </tr>";
+    var fila = "<tr><td></td><td>" + item+citem + "</td><td>" + cod + "</td><td>" + des + "</td><td>" + det + "</td><td>" + uni +cuni+ "</td><td>" + cant + "</td><td>" + codprv + "</td><td>" + prov + "</td><td>" + sust + "</td> </tr>";
     $('#tblProductos tbody').append(fila);  
 }
+
+function RegistraDetalle() {
+    var url = '@Url.Action("DetReq", "RQCompra")';
+    $.ajax({
+        cache: false,
+        async: true,
+        type: "POST",
+        url: url,
+        data: {},
+        success: function (response) {
+            $('#resultado').html('');
+            $('#resultado').html(response);
+        }
+    });
+}
+
 //Agregar Items a Array
 $("#btn_registrar").on("click",function()
 {
@@ -421,6 +439,8 @@ function btn_abrir_modal_motivo() {
   document.getElementById("valueInput").innerHTML = inputValue; 
  
  */
+
+
 
 
 

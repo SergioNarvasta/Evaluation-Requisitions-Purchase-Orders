@@ -19,6 +19,8 @@ namespace HDProjectWeb.Services
         Task<int> AprobarReq(int cia, int suc, int epk, int uap);
         Task<int> RechazaReq(int cia, int suc, int epk, int uap, string mot);
         Task<int> DevuelveReq(int cia, int suc, int epk, int uap);
+        Task Registra_DetPrd(DetalleReq detalleReq);
+        Task<string> ObtenerMaxRCO();
     }
     public class RepositorioRQCompra:IRepositorioRQCompra
     {
@@ -37,7 +39,7 @@ namespace HDProjectWeb.Services
                  @cco_codepk = @cco_codepk, @rco_sitrco = @rco_sitrco, @rco_codusu = @rco_codusu,@ung_codepk = @ung_codepk, @rco_indval = @rco_indval, @rco_indest =  @rco_indest, @rco_rembls = @rco_rembls, @rco_presup = @rco_presup,
                  @rco_priori = @rco_priori, @tre_codepk = @tre_codepk, @rco_estado = @rco_estado, @dis_codepk = @dis_codepk,@s10_codepk = @s10_codepk, @occ_codepk = @occ_codepk ", rQCompra);
         }
-        public async Task RegistraDetalle(DetalleReq detalleReq)
+        public async Task Registra_DetPrd(DetalleReq detalleReq)
         {
             using var connection = new SqlConnection(connectionString);
             await connection.ExecuteAsync(@"", detalleReq);
@@ -107,6 +109,12 @@ namespace HDProjectWeb.Services
             return await connection.QueryFirstOrDefaultAsync<RQCompra>(@" SELECT * FROM V_WEB_REQCOMPRAS_Index
                   WHERE rco_codepk = @Rco_codepk ", new { Rco_codepk });
         }
+        public async Task<string> ObtenerMaxRCO()
+        {
+            using var connection = new SqlConnection(connectionString);
+            return await connection.QuerySingleAsync<string>(@"SELECT TOP 1 A.rco_numrco 
+                            FROM REQ_REQUI_COMPRA_RCO A ORDER BY A.rco_numrco DESC");
+        }
         public async Task<int> AprobarReq(int cia,int suc,int epk,int uap)
         {
             using var connection = new SqlConnection(connectionString);
@@ -122,7 +130,7 @@ namespace HDProjectWeb.Services
         public async Task<int> DevuelveReq(int cia, int suc, int epk, int uap)
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.QuerySingleAsync<int>(@" PA_HD_WEB_RQ_Devuelve
+            return await connection.QuerySingleAsync<int>(@" PA_WEB_RQ_Devuelve
                  @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumRQ=@epk, @p_CodUsr=@uap ", new { cia, suc, epk, uap });
         }
 

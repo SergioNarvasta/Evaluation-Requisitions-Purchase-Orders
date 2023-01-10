@@ -8,7 +8,8 @@ namespace HDProjectWeb.Models.Detalles
 {
     public class DetalleReq
     {
-        //Model for details products   
+        //Model for details products
+        public int Codigoepk { get; set; }
         public string Item { get; set; }
         public string Descri { get; set; }
         public string Codigo { get; set; }

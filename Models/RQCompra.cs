@@ -30,10 +30,7 @@ namespace HDProjectWeb.Models
         public string Rco_motivo { get; set; }    /***View****/
 
         [MaxLength(200, ErrorMessage = "El campo no debe de tener mas de 200 caracteres")]
-        public string Rco_glorco { get; set; } //Resumen
-
-        //[Required(ErrorMessage = "Campo obligatorio")]// Requerido
-        
+        public string Rco_glorco { get; set; } //Resumen       
         public int Cco_codepk { get; set; }    /***View****/
 
         [Required(ErrorMessage = "Campo obligatorio")] // Requerido
@@ -45,7 +42,6 @@ namespace HDProjectWeb.Models
         public string Rco_codusu { get; set; }
 
         [Required(ErrorMessage = "Campo obligatorio")] // Requerido
-        
         public int Ung_codepk { get; set; }      /***View****/
 
         [Required(ErrorMessage = "Campo obligatorio")] // Requerido (Categorizado) **********Revisar 
@@ -67,37 +63,37 @@ namespace HDProjectWeb.Models
         public string Rco_priori { get; set; }      /***View****/
 
         [Required(ErrorMessage = "Campo obligatorio")] // Requerido
-        
         public int Tre_codepk { get; set; }        /***View****/
 
         [Required(ErrorMessage = "Campo obligatorio")] // Requerido
         [MaxLength(1, ErrorMessage = "El campo no debe de tener mas de 1 caracteres")]
         public string Rco_estado { get; set; }
-
         public int Dis_codepk { get; set; } //Disciplina
-
         public int S10_codepk { get; set; } //User solicita
-
         public int Occ_codepk { get; set; }
         public string Occ_numero { get; set; }
         public string Dis_nomlar { get; set; }
-
         public string Cco_codcco { get; set; }
         public string Cco_descco { get; set; }
         public string S10_nomusu { get; set; }
         public string S10_codusu { get; set; }
-
-        //Atributos para Req Compra Detalle (RCD)
-        public List<DetalleReq> ListaDetalles { get; set; }
-
-
-        public DateTime Rco_fec_registro { get; set; }
-
-       // [Required(ErrorMessage = "Campo obligatorio")] //Campo Requerido
+ 
+        public DateTime Rco_fec_registro { get; set; }  
         public short Rco_indcie { get; set; } = 0;
 
         [MaxLength(200, ErrorMessage = "El campo no debe de tener mas de 200 caracteres")]
         public string Rco_obscie { get; set; } = "";
 
+        //@rcd_corite,@prd_codepk,@rcd_desprd,@rcd_glorcd,@rcd_canate,@ccr_codepk,@ume_codepk
+        public string Item { get; set; }
+        public string Descri { get; set; }
+        public string Codigo { get; set; }
+        public string Glosa { get; set; }
+        public string Unidad { get; set; }
+        public string Cantidad { get; set; }
+        public string Codprov { get; set; }
+
+        //Atributos para Req Compra Detalle (RCD)
+        public List<DetalleReq> ListaDetalles { get; set; }
     }
 }

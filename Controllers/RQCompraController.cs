@@ -3,6 +3,8 @@ using HDProjectWeb.Models;
 using HDProjectWeb.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using HDProjectWeb.Models.Detalles;
+using System;
 
 namespace HDProjectWeb.Controllers
 {
@@ -31,8 +33,20 @@ namespace HDProjectWeb.Controllers
             crear.S10_codepk = await servicioUsuario.ObtenerEpkUsuario(coduser);
             crear.S10_nomusu = await servicioUsuario.ObtenerNombreUsuario(coduser);
             crear.Rco_fec_registro = date;
+            string Rco_numero, Rco_cor;
+            Rco_cor = await repositorioRQCompra.ObtenerMaxRCO();
+            if (Rco_cor.Length == 0) 
+            {
+                Rco_numero = "RQ20230101"; 
+            } else {
+                string recorte = Rco_cor.Substring(Rco_cor.Length - 1, Rco_cor.Length);
+                int corite = int.Parse(recorte);
+                corite++;
+                Rco_numero = string.Concat(Rco_cor.AsSpan(1, Rco_cor.Length-1), corite.ToString());
+            }
             //crear.S10_usuario = codaux;
             //crear.S10_nomusu = servicioUsuario.ObtenerNombreUsuario(codaux);
+            ViewBag.Rco_numero = Rco_numero;
             ViewBag.estado = "1";
             ViewBag.url = Url.Action();
             return View(crear);
@@ -52,11 +66,17 @@ namespace HDProjectWeb.Controllers
             rQCompra.Rco_codepk = await servicioEstandar.GeneraRco_Codepk();
             await repositorioRQCompra.Crear(rQCompra);
 
-           /*oreach(DetalleReq detalleReq in rQCompra.ListaDetalles )
+           /* foreach(DetalleReq detalleReq in rQCompra.ListaDetalles)
             {
                //await servicioDetalle.Crear(DetalleReq);
             }*/
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> DetReq(DetalleReq det) 
+        {
+            await repositorioRQCompra.Registra_DetPrd(det);
+            return View("Crear");
         }
 
         [HttpPost]
