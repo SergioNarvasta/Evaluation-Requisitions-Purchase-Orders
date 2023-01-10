@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using HDProjectWeb.Services;
 using Microsoft.Data.SqlClient;
 
 namespace HDProjectWeb.Services
@@ -124,9 +123,12 @@ namespace HDProjectWeb.Services
         public async Task<int> GeneraRco_Codepk()
         {
             using var connection = new SqlConnection(connectionString);
-            int Rco = await connection.QuerySingleAsync<int>(@"SELECT MAX(rco_codepk) 
+            var Rco = await connection.QuerySingleAsync<string>(@"SELECT Cast(MAX(rco_codepk)as char(15)) 
                            FROM REQ_REQUI_COMPRA_RCO");
-            return Rco + 1;
+            if (Rco is null) {
+                return 1;
+            }
+            return int.Parse(Rco) + 1;
         }
     }
 }

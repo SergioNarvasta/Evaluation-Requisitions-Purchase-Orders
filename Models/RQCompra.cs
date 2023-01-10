@@ -18,7 +18,7 @@ namespace HDProjectWeb.Models
 
         [Required(ErrorMessage = "Campo obligatorio")] // Requerido
         [MaxLength(10, ErrorMessage = "El campo no debe de tener mas de 10 caracteres")]
-        public string Rco_numrco { get; set; }            /***View****/
+        public string Rco_numero { get; set; }            /***View****/
 
         [Required(ErrorMessage = "Campo obligatorio")]// Requerido
         
@@ -85,13 +85,14 @@ namespace HDProjectWeb.Models
         public string Rco_obscie { get; set; } = "";
 
         //@rcd_corite,@prd_codepk,@rcd_desprd,@rcd_glorcd,@rcd_canate,@ccr_codepk,@ume_codepk
-        public string Item { get; set; }
-        public string Descri { get; set; }
-        public string Codigo { get; set; }
-        public string Glosa { get; set; }
-        public string Unidad { get; set; }
-        public string Cantidad { get; set; }
-        public string Codprov { get; set; }
+        public string DPrd_item { get; set; }
+        public string DPrd_descri { get; set; }
+        public string DPrd_codigo { get; set; }
+        public string DPrd_glosa { get; set; }
+        public string DPrd_unidad { get; set; }
+        public string DPrd_cantidad { get; set; }
+        public string DPrd_codprov { get; set; }
+
 
         //Atributos para Req Compra Detalle (RCD)
         public List<DetalleReq> ListaDetalles { get; set; }

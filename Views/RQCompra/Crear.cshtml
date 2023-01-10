@@ -18,7 +18,7 @@
                         <th></th><th></th><th></th>
                         <th>
                             <div class="form-group d-flex flex-row">
-                                <button id="btn_registrar" type="submit" style="width:120px;height:40px" class="btn btn-primary">Registrar</button>
+                                <button id="btn_registrar" onfocus="colocaObjPrd()" type="submit" style="width:120px;height:40px" class="btn btn-primary">Registrar</button>
                                 <a class="btn btn-primary ms-3" asp-action="Crear" style="width:100px;height:40px"> Nuevo</a>
                                 <a asp-action="Index" style="width:100px;height:40px" class="btn btn-danger ms-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
@@ -34,8 +34,8 @@
                         <th class="col-sm-4">
                             <div class="form-group d-flex flex-row me-2">
                                 <label class="me-2">Requerimien </label>
-                                <input asp-for="Rco_numrco" class="form-control form-control-sm col-sm-4" style="width:325px" value="@ViewBag.ViewBag.Rco_numero" type="text" />
-                                <span asp-validation-for="Rco_numrco" class="text-danger"></span>
+                                <input asp-for="Rco_numero" class="form-control form-control-sm col-sm-4" style="width:325px" value="@ViewBag.Rco_numero" type="text" />
+                                <span asp-validation-for="Rco_numero" class="text-danger"></span>
                             </div>
                         </th>
                         <th>
@@ -328,6 +328,30 @@
                             <label>Reembls</label>
                             <input id="input_reembls" asp-for="Rco_rembls" type="text" style="width:20px" />
                             <span asp-validation-for="Rco_rembls" class="text-danger"></span>
+                        </th>
+                    </tr>
+                    <tr style="display:none">
+                        <th >
+                            <label>Item</label>
+                            <input id="DPrd_item" asp-for="DPrd_item" type="text" style="width:50px" />
+
+                            <label>Descri</label>
+                            <input id="DPrd_descri" asp-for="DPrd_descri" type="text" style="width:80px" />
+                            
+                            <label>CodigoPrd</label>
+                            <input id="DPrd_cod" asp-for="DPrd_codigo" type="text" style="width:50px" />
+                            
+                            <label>Glosa</label>
+                            <input id="DPrd_glosa" asp-for="DPrd_glosa" type="text" style="width:50px" />
+
+                            <label>Unidad</label>
+                            <input id="DPrd_unidad" asp-for="DPrd_unidad" type="text" style="width:40px" />
+
+                            <label>Cantidad</label>
+                            <input id="DPrd_cantidad" asp-for="DPrd_cantidad" type="text" style="width:40px" />
+
+                            <label>CodProv</label>
+                            <input id="DPrd_codprov" asp-for="DPrd_codprov" type="text" style="width:50px" />
                         </th>
                     </tr>
                 </tbody>

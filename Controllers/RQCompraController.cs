@@ -38,11 +38,11 @@ namespace HDProjectWeb.Controllers
             if (Rco_cor.Length == 0) 
             {
                 Rco_numero = "RQ20230101"; 
-            } else {
-                string recorte = Rco_cor.Substring(Rco_cor.Length - 1, Rco_cor.Length);
+            } else { 
+                string recorte = Rco_cor.Substring(Rco_cor.Length - 2, 1);
                 int corite = int.Parse(recorte);
                 corite++;
-                Rco_numero = string.Concat(Rco_cor.AsSpan(1, Rco_cor.Length-1), corite.ToString());
+                Rco_numero = string.Concat(Rco_cor.AsSpan(0, Rco_cor.Length-1), corite.ToString());
             }
             //crear.S10_usuario = codaux;
             //crear.S10_nomusu = servicioUsuario.ObtenerNombreUsuario(codaux);
@@ -64,19 +64,13 @@ namespace HDProjectWeb.Controllers
             rQCompra.Tin_codtin = servicioEstandar.TipoInventario();
             rQCompra.Rco_codusu = servicioUsuario.ObtenerCodUsuario();
             rQCompra.Rco_codepk = await servicioEstandar.GeneraRco_Codepk();
+            
             await repositorioRQCompra.Crear(rQCompra);
-
            /* foreach(DetalleReq detalleReq in rQCompra.ListaDetalles)
             {
                //await servicioDetalle.Crear(DetalleReq);
             }*/
             return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> DetReq(DetalleReq det) 
-        {
-            await repositorioRQCompra.Registra_DetPrd(det);
-            return View("Crear");
         }
 
         [HttpPost]
@@ -207,7 +201,7 @@ namespace HDProjectWeb.Controllers
             ViewBag.suc = suc;
             ViewBag.usu = servicioUsuario.ObtenerCodUsuario();
             ViewBag.epk = ReqCompra.Rco_codepk;
-            ViewBag.num = ReqCompra.Rco_numrco; 
+            ViewBag.num = ReqCompra.Rco_numero; 
             ViewBag.sit = ReqCompra.Rco_sitrco;
             ViewBag.url = Url.Action();
             return View(ReqCompra);
