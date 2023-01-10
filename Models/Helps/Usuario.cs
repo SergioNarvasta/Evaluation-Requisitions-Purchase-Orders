@@ -23,8 +23,9 @@ namespace HDProjectWeb.Models.Helps
         public async Task<IEnumerable<Usuario>> ListaAyudaUsuario()
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.QueryAsync<Usuario>(@"SELECT DISTINCT AUX_CODAUX as Codigo,S10_NOMUSU as Descri 
-                                                   FROM SYS_TABLA_USUARIOS_S10 WHERE S10_INDEST=1 AND LEN(AUX_CODAUX)>1 ORDER BY S10_NOMUSU");
+            return await connection.QueryAsync<Usuario>(@"Select uap_codemp as codigo, uap_deslar as descri 
+                          From REQ_USERS_APROBADORES_UAP
+                          Where cia_codcia=1 ORDER BY UAP_DESLAR");
         }
     }
 

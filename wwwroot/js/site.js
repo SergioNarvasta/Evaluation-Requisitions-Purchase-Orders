@@ -279,6 +279,8 @@ $(document).ready(function () {
         console.log("-Codigo:" + cod + "-Desc:" + des);
         $("#input_cod_disci").val(parseInt(cod,10));
         $("#input_des_disci").val(des);
+        //Limpiar la busqueda actual
+        //$("#busqueda_ayuda_dis").val('');
         $("#btn_cerrar_modal_disci").click();
     });
 });
@@ -297,6 +299,8 @@ $(document).ready(function () {
         $("#input_epk_cco").val(parseInt(epk));
         $("#input_cod_cco").val(cod);
         $("#input_des_cco").val(des);
+        //Limpiar la busqueda actual
+        //$("#busqueda_ayuda_cco").val('');
         $("#btn_cerrar_modal_cco").click();
     });
 });
@@ -312,6 +316,8 @@ $(document).ready(function () {
         console.log("-Codigo:" + cod + "-Desc:" + des + "Leng" + tr_data.length);
         $("#input_cod_usu").val(cod);
         $("#input_des_usu").val(des);
+        //Limpiar la busqueda actual
+        //$("#busqueda_ayuda_usu").val(null); Ya no limpia, cada busqueda en ayuda es independiente 09/01/23
         $("#btn_cerrar_modal_usu").click();
     });
 });

@@ -1,7 +1,7 @@
 ﻿@model HDProjectWeb.Models.RQCompra
 
 @{
-    ViewData["Title"] = "Nuevo";
+    ViewData["Title"] = "Registro Requisicion de Compra";
 }
 <head>
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
@@ -99,10 +99,10 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h4 class="modal-title ms-5">Centro de costo</h4>
-                                                <input class="form-control light-table-filter" data-table="order-table" type="text" placeholder="Filtrar.." style="width:380px;" />
+                                                <input id="busqueda_ayuda_cco" class="form-control light-table-filter" data-table="order-table-cco" type="text" placeholder="Filtrar.." style="width:380px;" />
                                             </div>
                                             <div class="modal-body" style="cursor:pointer">
-                                                <table class="table table-bordered ms-4 table-hover order-table">
+                                                <table class="table table-bordered ms-4 table-hover order-table-cco">
                                                     <tr class="table-primary">
                                                         <th>Codigo</th>
                                                         <th>Descripcion</th>
@@ -160,10 +160,10 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h4 class="modal-title ms-5">Usuarios</h4>
-                                                <input class="form-control light-table-filter" data-table="order-table" type="text" placeholder="Filtrar.." style="width:380px;" />
+                                                <input id="busqueda_ayuda_usu" class="form-control light-table-filter" data-table="order-table-usu" type="text" placeholder="Filtrar.." style="width:380px;" />
                                             </div>
                                             <div class="modal-body" style="cursor:pointer">
-                                                <table class="table table-bordered ms-4 table-hover order-table">
+                                                <table class="table table-bordered ms-4 table-hover order-table-usu">
                                                     <tr class="table-primary">
                                                         <th>Codigo</th>
                                                         <th>Descripcion</th>
@@ -229,10 +229,10 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h4 class="modal-title ms-5">Disciplina</h4>
-                                                <input class="form-control light-table-filter" data-table="order-table" type="text" placeholder="Filtrar.." style="width:380px;" />
+                                                <input id="busqueda_ayuda_dis" class="form-control light-table-filter" data-table="order-table-dis" type="text" placeholder="Filtrar.." style="width:380px;" />
                                             </div>
                                             <div class="modal-body" style="cursor:pointer">
-                                                <table class="table table-bordered ms-4 table-hover order-table">
+                                                <table class="table table-bordered ms-4 table-hover order-table-dis">
                                                     <tr class="table-primary">                                                     
                                                       <th>Codigo</th>
                                                       <th>Descripcion</th>
