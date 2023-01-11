@@ -376,6 +376,20 @@ $(document).ready(function () {
         if (input.length) { input.val(log); } else { if (log) alert(log); }
     });
 });
+
+//Subir archivo js 11012023
+const dropzone = document.getElementById('DropZone');
+const archivo = document.getElementById('archivo');
+
+archivo.addEventListener('change', function (e) {
+    console.log(archivo.files);
+    const FD = new FormData();
+    for (let file in archivo.files) { 
+        FD.append('files[]', file);
+    }
+    
+});
+
 function coloca_nomb() {
     var combo = document.getElementById("banner_captura");
     var selected = combo.innerHTML;

@@ -400,6 +400,12 @@
             </table>
                 <br /><br />
             </div>
+            <div id="DropZone">
+                <p>Seleccione o arrastre archivos</p>
+                <input type="file" name="archivo"/>
+            </div>
+
+
             <!-- Carga de archivo a red -->
             @using (Html.BeginForm("Upload", "Files", null, FormMethod.Post,true,
              new { enctype = "multipart/form-data", method = "post" }))
@@ -416,7 +422,7 @@
                     </div>
                 </div>
             }
-            <!-- Carga de archivo manual -->
+            <!-- Boton Eliminar  -->
             <div>
                 <div>
                     <a class="btn btn-danger"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill me-1" viewBox="0 0 16 16">
