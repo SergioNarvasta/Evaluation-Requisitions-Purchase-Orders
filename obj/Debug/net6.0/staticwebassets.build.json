@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "x4Ir+vMo0Z2n6gmiU+m3H3pdPt97gma1xGqRnTJmA3Q=",
+  "Hash": "jg2tCQsjnYu6cWo9qZRumVVcbtp8IR4u8WuncXZ/Ra8=",
   "Source": "ProjectWeb_DRA",
   "BasePath": "_content/ProjectWeb_DRA",
   "Mode": "Default",
@@ -1103,6 +1103,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\033205454-A.pdf",
+      "SourceId": "ProjectWeb_DRA",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\",
+      "BasePath": "_content/ProjectWeb_DRA",
+      "RelativePath": "files/033205454-A.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\files\\033205454-A.pdf"
+    },
+    {
+      "Identity": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\Microsoft Azure Data.pdf",
+      "SourceId": "ProjectWeb_DRA",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\",
+      "BasePath": "_content/ProjectWeb_DRA",
+      "RelativePath": "files/Microsoft Azure Data.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\files\\Microsoft Azure Data.pdf"
     },
     {
       "Identity": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\img\\agregar.png",

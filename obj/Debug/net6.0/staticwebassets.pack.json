@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\033205454-A.pdf",
+      "PackagePath": "staticwebassets\\files\\033205454-A.pdf"
+    },
+    {
+      "Id": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\Microsoft Azure Data.pdf",
+      "PackagePath": "staticwebassets\\files\\Microsoft Azure Data.pdf"
+    },
+    {
       "Id": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\img\\agregar.png",
       "PackagePath": "staticwebassets\\img\\agregar.png"
     },

@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
+    <Folder Include="wwwroot\files\" />
   </ItemGroup>
 
 </Project>

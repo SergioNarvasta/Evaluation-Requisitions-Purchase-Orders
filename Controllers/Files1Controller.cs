@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjectWeb_DRA.Models;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace ProjectWeb_DRA.Controllers
 {
-    public class FilesController : Controller
+    public class Files1Controller : Controller
     {
         public IWebHostEnvironment _webHostEnvironment;
 
-        public FilesController(IWebHostEnvironment webHostEnvironment)
+        public Files1Controller(IWebHostEnvironment webHostEnvironment)
         {
             _webHostEnvironment = webHostEnvironment;
         }
@@ -30,7 +29,7 @@ namespace ProjectWeb_DRA.Controllers
             return View(fileObj);
         }
         [HttpPost]
-        public IActionResult Index(IFormFile file, [FromServices] IHostingEnvironment hostingEnvironment)
+        public IActionResult Index(IFormFile file, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
             string filename = $"{hostingEnvironment.WebRootPath}\\files\\{file.FileName}";
             using (FileStream fileStream = System.IO.File.Create(filename))
