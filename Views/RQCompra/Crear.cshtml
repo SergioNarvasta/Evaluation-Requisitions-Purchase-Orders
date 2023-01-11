@@ -73,10 +73,7 @@
                              <div class="form-group d-flex flex-row ">
                                <label >U.Negocio</label>
                                 <select asp-for="Ung_codepk" id="cbo_unegocio" class="ms-4" onclick="colocaUnegocio()" style="width:325px">
-                                    <option value="1">Administration   </option>
-                                    <option value="2">Business Development    </option>
-                                    <option value="3">Engineering  </option>
-                                    <option value="4">Finance  </option>
+                                    @await Component.InvokeAsync("ListaUNegocio")
                                 </select>
                              </div>
                         </th>
