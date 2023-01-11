@@ -24,48 +24,45 @@ namespace HDProjectWeb.Controllers
         public async Task<IActionResult> Crear()
         {
             RQCompra crear = new();
-            var periodo = servicioEstandar.ObtenerPeriodo();
             var date = DateTime.Now;
-            ViewBag.periodo = periodo;
             string coduser = servicioUsuario.ObtenerCodUsuario();
-            crear.S10_codepk = await servicioUsuario.ObtenerEpkUsuario(coduser);
-            crear.S10_nomusu = await servicioUsuario.ObtenerNombreUsuario(coduser);
+            crear.Uap_codepk = await servicioUsuario.ObtenerEpkUsuario(coduser);
+            crear.Uap_deslar = await servicioUsuario.ObtenerNombreUsuario(coduser);
             crear.Rco_fec_registro = date;
+
+            //Obtener Correlativo de Rco
             string Rco_numero, Rco_cor;
             Rco_cor = await repositorioRQCompra.ObtenerMaxRCO();
             if (Rco_cor.Length == 0) 
             {
                 Rco_numero = "RQ20230101"; 
             } else { 
-                string recorte = Rco_cor.Substring(Rco_cor.Length - 2, 1);
+                string recorte = Rco_cor.Substring(Rco_cor.Length - 8, 8);
                 int corite = int.Parse(recorte);
                 corite++;
-                Rco_numero = string.Concat(Rco_cor.AsSpan(0, Rco_cor.Length-1), corite.ToString());
+                Rco_numero = string.Concat(Rco_cor.AsSpan(0, Rco_cor.Length-8), corite.ToString());
             }
-            //crear.S10_usuario = codaux;
-            //crear.S10_nomusu = servicioUsuario.ObtenerNombreUsuario(codaux);
-            ViewBag.Rco_numero = Rco_numero;
-            ViewBag.estado = "1";
+            crear.Rco_numero = Rco_numero;
             ViewBag.url = Url.Action();
             return View(crear);
         }
 
         [HttpPost]
         public async Task<IActionResult> Crear(RQCompra rQCompra)
-        {
-            /*if(!ModelState.IsValid)
-            {
-                return View(rQCompra); 
-            }     */
+        {   
             rQCompra.Cia_codcia = servicioEstandar.Compañia();
             rQCompra.Suc_codsuc = servicioEstandar.Sucursal();
             rQCompra.Tin_codtin = servicioEstandar.TipoInventario();
             rQCompra.Rco_codusu = servicioUsuario.ObtenerCodUsuario();
             rQCompra.Rco_codepk = await servicioEstandar.GeneraRco_Codepk();
-            
+
+            if (!ModelState.IsValid)
+            {
+                return View(rQCompra);
+            }
             int result = await repositorioRQCompra.Registra_Req(rQCompra);
 
-            string usu = rQCompra.S10_nomusu;
+            string usu = rQCompra.Uap_deslar;
             string num = rQCompra.Rco_numero;
             /* foreach(DetalleReq detalleReq in rQCompra.ListaDetalles)
              {

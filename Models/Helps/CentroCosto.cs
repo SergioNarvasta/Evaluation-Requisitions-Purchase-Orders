@@ -6,9 +6,9 @@ namespace HDProjectWeb.Models.Helps
 {
     public class CentroCosto
     {
-        public string Cco_codepk { get; set; }
-        public string Cco_codcco { get; set; }
-        public string Cco_descco { get; set; }
+        public string Epk { get; set; }
+        public string Codigo { get; set; }
+        public string Descri { get; set; }
     }
 
     public interface ICentroCostoService
@@ -26,9 +26,9 @@ namespace HDProjectWeb.Models.Helps
         public async Task<IEnumerable<CentroCosto>> ListaAyudaCentroCosto()
         {          
             using var connection = new SqlConnection(connectionString);
-            return await connection.QueryAsync<CentroCosto>(@"SELECT cco_codepk,CCO_CODCCO,cco_descco  
-                                                             FROM CENT_COST_CCO 
-                                                             WHERE CIA_CODCIA =1 AND cco_estado=1");
+            return await connection.QueryAsync<CentroCosto>(@"SELECT pry_codepk as Epk,pry_codpry as Codigo,pry_deslar as Descri  
+                          FROM PROYECTOS_PRY 
+                          WHERE CIA_CODCIA =1 AND pry_estado=1");
         }
     }
 }

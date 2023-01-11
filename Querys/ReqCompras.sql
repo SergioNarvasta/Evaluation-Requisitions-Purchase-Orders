@@ -1,12 +1,14 @@
 USE DRA_V22
 
+SELECT*FROM REQ_USERS_APROBADORES_UAP
+
 ALTER VIEW V_WEB_REQCOMPRAS_Index 
 AS
 Select          A.rco_codepk ,a.rco_numrco,
                 a.rco_numrco as Rco_Numero,             
             	a.rco_fecreg as Rco_Fec_Registro, 
             	Isnull(rtrim(F.uap_deslar),'') as Usuario_Aprueba,
-            	Isnull(rtrim(G.S10_NOMUSU),'') as User_Solicita,s10_codusu ,S10_NOMUSU,
+            	Isnull(rtrim(G.S10_NOMUSU),'') as User_Solicita,uap_deslar ,uap_codemp,
             	a.rco_motivo as Rco_Motivo,
             	rtrim(b.ung_deslar) as U_Negocio,b.ung_codepk ,
             	rtrim(C.cco_codcco) + '-' + rtrim(C.cco_descco) as Centro_Costo, C.cco_codepk,C.cco_codcco,C.cco_descco,
@@ -36,7 +38,7 @@ Select          A.rco_codepk ,a.rco_numrco,
 				 ' 'as OCC_ProveedorOCC,
 				 Cast(YEAR(A.rco_fecreg) as char(4))+ Substring('0'+ltrim(Cast(MONTH(A.rco_fecreg)as char(2))),len(ltrim(Cast(MONTH(A.rco_fecreg)as char(2)))),2)as periodo,
 				 A.rco_estado as estado,rco_estado,
-				 A.cia_codcia as cia,A.suc_codsuc as suc,A.s10_codepk ,A.rco_glorco
+				 A.cia_codcia as cia,A.suc_codsuc as suc,A.uap_codepk ,A.rco_glorco
 				  
              From REQ_REQUI_COMPRA_RCO A
              Left Join UNID_NEGOCIO_UNG    B on A.cia_codcia = B.cia_codcia and A.ung_codepk = B.ung_codepk
@@ -195,10 +197,22 @@ EXEC PA_WEB_ReqCompra_Inserta '01','01',2023011001,'RQ555544',1,'Prueba de Inser
 										LEFT JOIN PRODUCTOS_PRD L ON A.cia_codcia=L.cia_codcia AND B.prd_codepk=L.prd_codepk
 	                                    WHERE A.rco_numrco ='RQ89888889'
 
---Corregir la asignacion a s10_usuario
---Obtener Detalle Productos por Epk
+-- Corregir la asignacion a s10_usuario
+-- Obtener Detalle Productos por Epk
 -- View Editar por Epk
--- View Crear Coloca Combos Automaticos (al cambiar2,3,4 y por default 1)
---Cargar combos tre y ung con componentes async
+--* View Crear Coloca Combos Automaticos (al cambiar2,3,4 y por default 1) Jquery
+--* Cargar combos tre y ung con componentes async   .NET
+--Validacion de Campos en Frontend
 
-SELECT tre_codepk as codigo,tre_deslar as descri FROM REQ_TIPO_REQUISICION_TRE WHERE cia_codcia=1
+SELECT tre_codepk as codigo,tre_deslar as descri 
+FROM REQ_TIPO_REQUISICION_TRE WHERE cia_codcia=1 and tre_estado=1
+
+SELECT ung_codepk as codigo,ung_deslar as descri 
+FROM UNID_NEGOCIO_UNG WHERE cia_codcia=1 and ung_estado=1
+
+SELECT*FROM PROYECTOS_PRY
+SELECT*FROM CENT_COST_CCO
+
+SELECT pry_codepk,pry_codpry,pry_deslar  
+FROM PROYECTOS_PRY 
+WHERE CIA_CODCIA =1 AND pry_estado=1

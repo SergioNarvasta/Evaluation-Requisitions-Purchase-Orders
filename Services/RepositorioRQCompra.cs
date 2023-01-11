@@ -39,7 +39,7 @@ namespace HDProjectWeb.Services
                  @rco_numrco = @Rco_numero, @tin_codtin = @tin_codtin, @rco_motivo = @rco_motivo, @rco_glorco = @rco_glorco,
                  @cco_codepk = @cco_codepk, @rco_sitrco = @rco_sitrco, @rco_codusu = @rco_codusu, @ung_codepk = @ung_codepk, @rco_indval = @rco_indval,
                  @rco_indest = @rco_indest, @rco_rembls = @rco_rembls, @rco_presup = @rco_presup, @rco_priori = @rco_priori, @tre_codepk = @tre_codepk,
-                 @rco_estado = @rco_estado, @dis_codepk = @dis_codepk, @s10_codepk = @s10_codepk, @occ_codepk = @occ_codepk,
+                 @rco_estado = @rco_estado, @dis_codepk = @dis_codepk, @uap_codepk = @uap_codepk, @occ_codepk = @occ_codepk,
                  @rcd_corite = @DPrd_item,  @prd_codepk = @DPrd_codigo, @rcd_desprd = @DPrd_descri,@rcd_glorcd = @DPrd_glosa ,@rcd_canate=@DPrd_cantidad,
                  @ccr_codepk = @DPrd_codprov,@ume_codepk =@DPrd_unidad", rQCompra);
         }

@@ -330,8 +330,8 @@ $(document).ready(function () {
     $('tr#tr_cco').click(function (e) {
         var tr_data = $(this).text().trim();
         var epk = tr_data.substring(0,2);
-        var cod = tr_data.substring(11,17);
-        var des = tr_data.substring(18,tr_data.length).trim();
+        var cod = tr_data.substring(11,22);
+        var des = tr_data.substring(22,tr_data.length).trim();
         console.log("-EPK :" + epk + "-Codigo:" + cod + " -Desc:" + des + "  Leng" + tr_data.length);
         
         $("#input_epk_cco").val(parseInt(epk));

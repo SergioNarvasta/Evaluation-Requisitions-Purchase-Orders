@@ -10,7 +10,7 @@
 <h2 class="text-center">REGISTRO REQUISICION DE COMPRA </h2> <br />
 <div id="Box-Main">
     <div class="col-md-4">
-        <form asp-action="Crear">
+        <form asp-controller="RQCompra" asp-action="Crear" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <table id="Table-Main"> 
                 <tbody class="m-2">
@@ -34,14 +34,14 @@
                         <th class="col-sm-4">
                             <div class="form-group d-flex flex-row me-2">
                                 <label class="me-2">Requerimien </label>
-                                <input asp-for="Rco_numero" class="form-control form-control-sm col-sm-4" style="width:325px" value="@ViewBag.Rco_numero" type="text" />
+                                <input asp-for="Rco_numero" class="form-control form-control-sm col-sm-4" style="width:325px" type="text" disabled/>
                                 <span asp-validation-for="Rco_numero" class="text-danger"></span>
                             </div>
                         </th>
                         <th>
                             <div class="form-group d-flex flex-row ms-xl-5">
                                 <label class="ms-0">Fecha_Reg</label>
-                                <input asp-for="Rco_fec_registro" class="form-control form-control-sm ms-2" style="width:330px" />
+                                <input asp-for="Rco_fec_registro" class="form-control form-control-sm ms-2" style="width:330px" disabled/>
                                 <span asp-validation-for="Rco_fec_registro" class="text-danger"></span>
                             </div>
                         </th>
@@ -138,15 +138,15 @@
                     <tr class="mb-lg-5">
                         <th>
                             <div class="form-group d-flex flex-row me-5">
-                                <label class="control-label me-3">Usuario</label>
-                                <input asp-for="S10_codepk" id="input_epk_usu" class="form-control form-control-sm ms-2" style="width:50px;display:none" />
-                                <span asp-validation-for="S10_codepk" class="text-danger"></span>
+                                <label class="control-label me-sm-5">Usuario</label>
+                                <input asp-for="Uap_codepk" id="input_epk_usu" class="form-control form-control-sm ms-2" style="width:50px;display:none" />
+                                <span asp-validation-for="Uap_codepk" class="text-danger"></span>
 
-                                <input asp-for="S10_codusu" id="input_cod_usu" class="form-control form-control-sm ms-1" style="width:90px" onclick="abrir_modal_usu()" />
-                                <span asp-validation-for="S10_codusu" class="text-danger"></span>
+                                <input asp-for="Uap_codemp" id="input_cod_usu" class="form-control form-control-sm ms-1" style="width:90px" onclick="abrir_modal_usu()" />
+                                <span asp-validation-for="Uap_codemp" class="text-danger"></span>
 
-                                <input asp-for="S10_nomusu" id="input_des_usu" class="form-control form-control-sm ms-1" style="width:230px" />
-                                <span asp-validation-for="S10_nomusu" class="text-danger"></span>
+                                <input asp-for="Uap_deslar" id="input_des_usu" class="form-control form-control-sm ms-1" style="width:230px" />
+                                <span asp-validation-for="Uap_deslar" class="text-danger"></span>
 
                                 <!-- Modal con Ayuda -->
                                 <button id="btn_abrir_modal_usu" class="btn btn-outline-success" style="display:none" data-bs-toggle="modal" data-bs-target="#Modal_Usu">+ </button>
@@ -207,7 +207,7 @@
                             <div class="form-group d-flex flex-row">
                                 <label asp-for="Rco_motivo" class="control-label"></label>
                                 <textarea asp-for="Rco_motivo" class="form-control ms-xl-5" type="text" style="height:80px;width:325px" ></textarea>
-                                <span asp-validation-for="Rco_motivo" class="text-white"></span>
+                                <span asp-validation-for="Rco_motivo" class="text-danger"></span>
                             </div>
                          </th>
                         <th >
@@ -294,7 +294,7 @@
                          </th>
                      </tr>
                     <!-- 5TA FILA CAMPOS A ENVIAR-->
-                    <tr style="display:''">
+                    <tr style="display:none">
                         <th> 
                             <label>Estado</label>
                             <input id="input_estado" asp-for="Rco_estado" type="text" style="width:20px" />
@@ -383,7 +383,6 @@
             <!-- TABLA ADJUNTOS-->
             <br />
             <p class="justify-content-center text-"><strong>ADJUNTOS</strong></p>
-            <!--<label class="me-1">Cantidad Items : </label><input id="nitems_adj" type="text" style="width:50px" />-->
             <div class="">
                 <table id="tblAdjuntos" class="table table-bordered table-hover">
                 <thead class="table-primary">

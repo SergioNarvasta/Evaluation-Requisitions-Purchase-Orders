@@ -32,7 +32,9 @@ builder.Services.AddTransient<ICentroCostoService, CentroCostoService>();
 builder.Services.AddTransient<IDisciplinaService, DisciplinaService>();
 builder.Services.AddTransient<IUsuarioService, UsuarioService>();
 builder.Services.AddTransient<IAdjuntosService, AdjuntosService>();
+//Servicios para cargar Data en Combos
 builder.Services.AddTransient<ITipoReqService, TipoReqService>();
+builder.Services.AddTransient<IUNegocioService,UNegocioService>();  
 
 //Servicios de OCC 
 builder.Services.AddTransient<IDetallePrdService,DetallePrdService>();
