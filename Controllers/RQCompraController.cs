@@ -65,12 +65,24 @@ namespace HDProjectWeb.Controllers
             rQCompra.Rco_codusu = servicioUsuario.ObtenerCodUsuario();
             rQCompra.Rco_codepk = await servicioEstandar.GeneraRco_Codepk();
             
-            await repositorioRQCompra.Crear(rQCompra);
-           /* foreach(DetalleReq detalleReq in rQCompra.ListaDetalles)
+            int result = await repositorioRQCompra.Registra_Req(rQCompra);
+
+            string usu = rQCompra.S10_nomusu;
+            string num = rQCompra.Rco_numero;
+            /* foreach(DetalleReq detalleReq in rQCompra.ListaDetalles)
+             {
+                //await servicioDetalle.Crear(DetalleReq);
+             }*/
+            string message = "se registro con exito la Requisicion de Compra ";
+            if (result < 0)
             {
-               //await servicioDetalle.Crear(DetalleReq);
-            }*/
-            return View();
+                message = "Ocurrio un error al registrar la Requisicion de Compra ";
+            }
+            ViewBag.message = message;
+            ViewBag.usu = usu;
+            ViewBag.num = num;
+            ViewBag.result = result;
+            return View("ResultAprob");
         }
 
         [HttpPost]

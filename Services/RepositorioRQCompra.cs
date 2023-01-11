@@ -10,7 +10,7 @@ namespace HDProjectWeb.Services
         //Interface Obtener para la clase diseñada de vista RQCompra
         Task<RQCompra> ObtenerporCodigo(string Rco_numero);
         Task Actualizar(RQCompra rQCompraEd);
-        Task Crear(RQCompra rQCompra);
+        
         Task<IEnumerable<RQCompraCab>> Obtener(string periodo, PaginacionViewModel paginacion, int EpkUser, string orden, string estado1, string estado2);
         Task<int> ContarRegistros(string periodo, int EpkUser, string estado1, string estado2);  
         Task<int> ContarRegistrosBusqueda(string periodo, int EpkUser, string busqueda, string estado1, string estado2);
@@ -20,6 +20,7 @@ namespace HDProjectWeb.Services
         Task<int> RechazaReq(int cia, int suc, int epk, int uap, string mot);
         Task<int> DevuelveReq(int cia, int suc, int epk, int uap);
         Task<string> ObtenerMaxRCO();
+        Task<int> Registra_Req(RQCompra rQCompra);
     }
     public class RepositorioRQCompra:IRepositorioRQCompra
     {
@@ -31,17 +32,20 @@ namespace HDProjectWeb.Services
             connectionString = configuration.GetConnectionString("DefaultConnection");
             this.servicioEstandar = servicioEstandar;
         }
-        public async Task Crear(RQCompra rQCompra)
+        public async Task<int> Registra_Req(RQCompra rQCompra)
         {
             using var connection = new SqlConnection(connectionString);
-            await connection.ExecuteAsync (@" PA_WEB_ReqCompra_Inserta @cia_codcia = @cia_codcia ,@suc_codsuc = @suc_codsuc,@rco_codepk = @rco_codepk,
-                 @rco_numrco = @Rco_numero ,@tin_codtin = @tin_codtin,@rco_motivo = @rco_motivo,@rco_glorco = @rco_glorco,
-                 @cco_codepk = @cco_codepk, @rco_sitrco = @rco_sitrco, @rco_codusu = @rco_codusu,@ung_codepk = @ung_codepk, @rco_indval = @rco_indval,
-                 @rco_indest =  @rco_indest, @rco_rembls = @rco_rembls, @rco_presup = @rco_presup,@rco_priori = @rco_priori, @tre_codepk = @tre_codepk,
-                 @rco_estado = @rco_estado, @dis_codepk = @dis_codepk, @s10_codepk  = @s10_codepk, @occ_codepk = @occ_codepk,
+            return await connection.QuerySingleAsync<int>(@" PA_WEB_ReqCompra_Inserta @cia_codcia = @cia_codcia, @suc_codsuc = @suc_codsuc, @rco_codepk = @Rco_codepk,
+                 @rco_numrco = @Rco_numero, @tin_codtin = @tin_codtin, @rco_motivo = @rco_motivo, @rco_glorco = @rco_glorco,
+                 @cco_codepk = @cco_codepk, @rco_sitrco = @rco_sitrco, @rco_codusu = @rco_codusu, @ung_codepk = @ung_codepk, @rco_indval = @rco_indval,
+                 @rco_indest = @rco_indest, @rco_rembls = @rco_rembls, @rco_presup = @rco_presup, @rco_priori = @rco_priori, @tre_codepk = @tre_codepk,
+                 @rco_estado = @rco_estado, @dis_codepk = @dis_codepk, @s10_codepk = @s10_codepk, @occ_codepk = @occ_codepk,
                  @rcd_corite = @DPrd_item,  @prd_codepk = @DPrd_codigo, @rcd_desprd = @DPrd_descri,@rcd_glorcd = @DPrd_glosa ,@rcd_canate=@DPrd_cantidad,
-                 @ccr_codepk = @DPrd_codprov,@ume_codepk =@DPrd_unidad  ", rQCompra);
+                 @ccr_codepk = @DPrd_codprov,@ume_codepk =@DPrd_unidad", rQCompra);
         }
+        /*
+        @rcd_corite = @DPrd_item,  @prd_codepk = @DPrd_codigo, @rcd_desprd = @DPrd_descri,@rcd_glorcd = @DPrd_glosa ,@rcd_canate=@DPrd_cantidad,
+                 @ccr_codepk = @DPrd_codprov,@ume_codepk =@DPrd_unidad*/
         public async Task<IEnumerable<RQCompraCab>> Obtener(string periodo,PaginacionViewModel paginacion,int EpkUser,string orden,string estado1,string estado2) 
         {
             using var connection = new SqlConnection(connectionString);

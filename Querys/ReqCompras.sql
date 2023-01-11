@@ -153,11 +153,14 @@ SELECT *FROM REQ_MOTIVO_DEVREQ_MDR
 
 GO
 USE DRA_V22
-SELECT*FROM REQ_REQUI_COMPRA_RCO
+SELECT TOP 1 A.rco_numrco FROM REQ_REQUI_COMPRA_RCO  A ORDER BY A.rco_numrco DESC
 SELECT*FROM REQ_REQUI_COMPRA_RCD
 
+SELECT*FROM PRODUCTOS_PRD
+SELECT rco_numrco,FROM REQ_REQUI_COMPRA_RCO
+
 SELECT  B.rcd_corite as item  ,  L.prd_codprd as codigo,   B.rcd_desprd as descri,   B.rcd_glorcd as glosa,  
-	    rcd_canapr as cantidad,  J.ccr_codccr as codprov,  J.ccr_nomaux as nomprov,  K.ume_descor as unidad,
+	    B.rcd_canate as cantidad,  J.ccr_codccr as codprov,  J.ccr_nomaux as nomprov,  K.ume_descor as unidad,k.ume_codepk
 FROM REQ_REQUI_COMPRA_RCO A
 LEFT JOIN REQ_REQUI_COMPRA_RCD B ON A.cia_codcia=B.cia_codcia AND A.suc_codsuc=B.suc_codsuc AND A.rco_codepk=B.rco_codepk
 Left Join OCOMPRA_OCC I on a.cia_codcia=i.CIA_CODCIA and a.suc_codsuc=i.suc_codsuc and A.occ_codepk =I.occ_codepk
@@ -165,3 +168,13 @@ Left Join CUEN_CORR_CCR J on i.cia_codcia=j.CIA_CODCIA and i.ccr_codepk=j.ccr_co
 LEFT JOIN UMEDIDA_UME K ON A.cia_codcia=K.cia_codcia AND B.ume_codepk=K.ume_codepk
 LEFT JOIN PRODUCTOS_PRD L ON B.cia_codcia=L.cia_codcia AND B.prd_codepk=L.prd_codepk
 WHERE A.rco_numrco =@Rco_numero
+
+SELECT*FROM REQ_REQUI_COMPRA_RCO
+GO
+INSERT INTO REQ_REQUI_COMPRA_RCO(cia_codcia, suc_codsuc, rco_codepk, rco_numrco, tin_codtin) VALUES(1, 1, 1,'RQ3344',2)
+GO
+EXEC PA_WEB_ReqCompra_Inserta '01','01',2023011001,'RQ555544',1,'Prueba de Insercion con Detalle','Prueba HD',0,'1','Sistemas',1,1,1,1,0,1,1,'1',1,44,0,  '001','2','oficina','detalle','15','44','1'
+
+--'01','01',2023011001,'RQ555544',1,'Prueba de Insercion con Detalle','Prueba HD',0,'1','Sistemas',1,1,1,1,0,1,1,'1',1,44,0,  '001','2','Producto de oficina','detalle','15','44','1'
+
+						   
