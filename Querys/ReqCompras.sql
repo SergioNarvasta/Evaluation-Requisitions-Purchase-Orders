@@ -157,7 +157,7 @@ SELECT TOP 1 A.rco_numrco FROM REQ_REQUI_COMPRA_RCO  A ORDER BY A.rco_numrco DES
 SELECT*FROM REQ_REQUI_COMPRA_RCD
 
 SELECT*FROM PRODUCTOS_PRD
-SELECT rco_numrco,FROM REQ_REQUI_COMPRA_RCO
+SELECT * FROM REQ_REQUI_COMPRA_RCO
 
 SELECT  B.rcd_corite as item  ,  L.prd_codprd as codigo,   B.rcd_desprd as descri,   B.rcd_glorcd as glosa,  
 	    B.rcd_canate as cantidad,  J.ccr_codccr as codprov,  J.ccr_nomaux as nomprov,  K.ume_descor as unidad,k.ume_codepk
@@ -169,7 +169,8 @@ LEFT JOIN UMEDIDA_UME K ON A.cia_codcia=K.cia_codcia AND B.ume_codepk=K.ume_code
 LEFT JOIN PRODUCTOS_PRD L ON B.cia_codcia=L.cia_codcia AND B.prd_codepk=L.prd_codepk
 WHERE A.rco_numrco =@Rco_numero
 
-SELECT*FROM REQ_REQUI_COMPRA_RCO
+SELECT*FROM REQ_REQUI_COMPRA_RCD
+DELETE FROM REQ_REQUI_COMPRA_RCO WHERE rco_numrco = 'RQ3344'
 GO
 INSERT INTO REQ_REQUI_COMPRA_RCO(cia_codcia, suc_codsuc, rco_codepk, rco_numrco, tin_codtin) VALUES(1, 1, 1,'RQ3344',2)
 GO
@@ -177,4 +178,24 @@ EXEC PA_WEB_ReqCompra_Inserta '01','01',2023011001,'RQ555544',1,'Prueba de Inser
 
 --'01','01',2023011001,'RQ555544',1,'Prueba de Insercion con Detalle','Prueba HD',0,'1','Sistemas',1,1,1,1,0,1,1,'1',1,44,0,  '001','2','Producto de oficina','detalle','15','44','1'
 
-						   
+		
+		
+		SELECT*FROM V_WEB_REQCOMPRAS_Index
+                Where cia=1 AND suc=1 AND periodo =202301 AND uap_codepk = 44  AND estado in(1,1)
+                ORDER BY Rco_Numero DESC 
+				SELECT*FROM REQ_REQUI_COMPRA_RCD 
+
+				SELECT  B.rcd_corite as item ,L.prd_codprd as codigo,B.rcd_desprd as descri,B.rcd_glorcd as glosa,K.ume_codume as unidad,
+	                                    rcd_canate as cantidad,Isnull(J.ccr_codccr,'000001') as codprov, J.ccr_nomaux as nomprov
+	                                    FROM REQ_REQUI_COMPRA_RCO A
+	                                    LEFT JOIN REQ_REQUI_COMPRA_RCD B ON A.cia_codcia=B.cia_codcia AND A.suc_codsuc=B.suc_codsuc AND A.rco_codepk=B.rco_codepk
+	                                    Left Join OCOMPRA_OCC I on a.cia_codcia=i.CIA_CODCIA and a.suc_codsuc=i.suc_codsuc and A.occ_codepk =I.occ_codepk
+                                        Left Join CUEN_CORR_CCR J on i.cia_codcia=j.CIA_CODCIA and i.ccr_codepk=j.ccr_codepk
+										LEFT JOIN UMEDIDA_UME K ON A.cia_codcia=K.cia_codcia AND B.ume_codepk=K.ume_codepk
+										LEFT JOIN PRODUCTOS_PRD L ON A.cia_codcia=L.cia_codcia AND B.prd_codepk=L.prd_codepk
+	                                    WHERE A.rco_numrco ='RQ89888889'
+
+--Corregir la asignacion a s10_usuario
+--Obtener Detalle Productos por Epk
+-- View Editar por Epk
+-- View Crear Coloca Combos Automaticos (al cambiar2,3,4 y por default 1)

@@ -1,13 +1,13 @@
 ﻿@model HDProjectWeb.Models.RQCompra
 
 @{
-    ViewData["Title"] = " Evaluacion de Requisicion ";
+    ViewData["Title"] = " Editar Registro de Requisicion ";
 }
 <head>
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
-<h2 class="text-center">EVALUACION DE REQUISICION </h2> <br />
+<h2 class="text-center"> REQUISICION DE COMPRA </h2> <br />
 <div id="Box-Main">
     <div class="col-md-4">
         <form asp-action="Editar">
@@ -141,8 +141,8 @@
                     <tr class="mb-lg-5">
                         <th>
                             <div class="form-group d-flex flex-row me-5">
-                                <label asp-for="S10_codepk" class="control-label me-3"></label>
-                                <input asp-for="S10_codepk" id="input_epk_usu" class="form-control form-control-sm ms-2" style="width:50px" />
+                                <label  class="control-label me-3">Usuario</label>
+                                <input asp-for="S10_codepk" id="input_epk_usu" class="form-control form-control-sm ms-2" style="width:50px;display:none" />
                                 <span asp-validation-for="S10_codepk" class="text-danger"></span>
 
                                 <input asp-for="S10_codusu" id="input_cod_usu" class="form-control form-control-sm ms-1" style="width:90px" onclick="abrir_modal_usu()" />

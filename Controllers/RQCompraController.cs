@@ -3,8 +3,6 @@ using HDProjectWeb.Models;
 using HDProjectWeb.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using HDProjectWeb.Models.Detalles;
-using System;
 
 namespace HDProjectWeb.Controllers
 {
@@ -215,6 +213,7 @@ namespace HDProjectWeb.Controllers
             ViewBag.epk = ReqCompra.Rco_codepk;
             ViewBag.num = ReqCompra.Rco_numero; 
             ViewBag.sit = ReqCompra.Rco_sitrco;
+            ViewBag.Rco_numero = ReqCompra.Rco_numero;
             ViewBag.url = Url.Action();
             return View(ReqCompra);
         }

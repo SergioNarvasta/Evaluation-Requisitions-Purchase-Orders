@@ -112,7 +112,7 @@
                         <th>
                             <div class="form-group d-flex flex-row ms-5 me-5">
                                 <label class="control-label">C.Costo</label>
-                                <input id="input_epk_cco" asp-for="Cco_codepk" class="form-control form-control-sm col-sm-4 ms-4" style="width:60px;cplay:none" />
+                                <input id="input_epk_cco" asp-for="Cco_codepk" class="form-control form-control-sm col-sm-4 ms-4" style="width:60px;display:none" />
                                 <span asp-validation-for="Cco_codepk" class="text-danger"></span>
 
                                 <input id="input_cod_cco" asp-for="Cco_codcco" class="form-control form-control-sm col-sm-4 ms-4" style="width:75px" />
@@ -253,7 +253,7 @@
                     </tr>
                 </thead> 
                 <tbody id="tbody_prd" class="table table-bordered">
-                     @await Component.InvokeAsync("DetalleReq",ViewBag.Rco_numero);
+                     @await Component.InvokeAsync("DetalleReq",ViewBag.Rco_numero)
                 </tbody>                  
                 </table>
             </div>     
