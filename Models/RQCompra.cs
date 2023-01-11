@@ -69,12 +69,14 @@ namespace HDProjectWeb.Models
         [MaxLength(1, ErrorMessage = "El campo no debe de tener mas de 1 caracteres")]
         public string Rco_estado { get; set; }
         public int Dis_codepk { get; set; } //Disciplina
+
         public int S10_codepk { get; set; } //User solicita
         public int Occ_codepk { get; set; }
         public string Occ_numero { get; set; }
         public string Dis_nomlar { get; set; }
         public string Cco_codcco { get; set; }
         public string Cco_descco { get; set; }
+        [Display(Name ="Usuario")]
         public string S10_nomusu { get; set; }
         public string S10_codusu { get; set; }
  

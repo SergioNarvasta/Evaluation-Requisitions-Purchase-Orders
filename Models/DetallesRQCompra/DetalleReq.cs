@@ -33,8 +33,8 @@ namespace HDProjectWeb.Models.Detalles
         public async Task<IEnumerable<DetalleReq>> GetDetalleReq(string Rco_numero)
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.QueryAsync<DetalleReq>(@"SELECT  B.rcd_corite as item ,L.prd_codprd as codigo,B.rcd_desprd as descri,B.rcd_glorcd as glosa,K.ume_descor as unidad,
-	                                    rcd_canapr as cantidad,J.ccr_codccr as codprov, J.ccr_nomaux as nomprov
+            return await connection.QueryAsync<DetalleReq>(@"SELECT  B.rcd_corite as item ,L.prd_codprd as codigo,B.rcd_desprd as descri,B.rcd_glorcd as glosa,K.ume_codume as unidad,
+	                                    rcd_canate as cantidad,Isnull(J.ccr_codccr,'000001') as codprov, J.ccr_nomaux as nomprov
 	                                    FROM REQ_REQUI_COMPRA_RCO A
 	                                    LEFT JOIN REQ_REQUI_COMPRA_RCD B ON A.cia_codcia=B.cia_codcia AND A.suc_codsuc=B.suc_codsuc AND A.rco_codepk=B.rco_codepk
 	                                    Left Join OCOMPRA_OCC I on a.cia_codcia=i.CIA_CODCIA and a.suc_codsuc=i.suc_codsuc and A.occ_codepk =I.occ_codepk

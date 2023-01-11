@@ -1,0 +1,9 @@
+﻿@using HDProjectWeb.Models.Helps;
+
+
+@model IEnumerable<TipoReq>
+
+@foreach (var item in Model)
+{
+    <option value="@item.Codigo">@item.Descri</option>
+}

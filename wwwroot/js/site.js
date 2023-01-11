@@ -219,6 +219,16 @@ function agregarFilaAdj() {
     var fila = "<tr><td></td><td>" + item + "</td><td>" + name + "</td><td>" + file + "</td><td>" + codfile + "</td> </tr>";
     $('#tblAdjuntos tbody').append(fila);  
 }
+//Carga los valores automaticamente
+$(document).ready(function () {
+    colocaEstado();
+    colocaTipo();
+    colocaPrioridad();
+    colocaUnegocio();
+    colocaSituacion();
+    colocaPresup();
+    colocaReembls();
+});
 function colocaEstado() {
     var combo = document.getElementById("cbo_estado");
     var selected = combo.options[combo.selectedIndex].value;

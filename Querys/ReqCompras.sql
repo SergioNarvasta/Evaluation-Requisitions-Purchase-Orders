@@ -199,3 +199,6 @@ EXEC PA_WEB_ReqCompra_Inserta '01','01',2023011001,'RQ555544',1,'Prueba de Inser
 --Obtener Detalle Productos por Epk
 -- View Editar por Epk
 -- View Crear Coloca Combos Automaticos (al cambiar2,3,4 y por default 1)
+--Cargar combos tre y ung con componentes async
+
+SELECT tre_codepk as codigo,tre_deslar as descri FROM REQ_TIPO_REQUISICION_TRE WHERE cia_codcia=1

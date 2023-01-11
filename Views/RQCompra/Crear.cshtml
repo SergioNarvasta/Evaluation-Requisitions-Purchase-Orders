@@ -49,7 +49,7 @@
                         <th>
                             <div class="d-flex flex-row ms-xl-5">
                                 <label>Estado </label>
-                                <select asp-for="Rco_estado" id="cbo_estado" class="ms-4" onclick="colocaEstado()">
+                                <select asp-for="Rco_estado" id="cbo_estado" class="ms-4" onclick="colocaEstado()" disabled>
                                     <option value="1">VIGENTE</option>
                                     <option value="0">ANULADO</option>
                                 </select>                  
@@ -59,8 +59,7 @@
                             <div class="d-flex flex-row ms-xl-5">
                                 <label>Tipo_Req </label>
                                 <select asp-for="Tre_codepk" id="cbo_tipo" class="ms-2" onclick="colocaTipo()">
-                                    <option value="1">COMPRA REGULAR</option>
-                                    
+                                   @await Component.InvokeAsync("ListaTipoReq")  
                                 </select>
                             </div>
                         </th>
@@ -121,7 +120,7 @@
                         <th>
                             <div class="form-group d-flex flex-row ms-xl-5">
                                 <label class="">Situacion</label>
-                                <select asp-for="Rco_sitrco" id="cbo_situacion" class="ms-2" onclick="colocaSituacion()" >
+                                <select asp-for="Rco_sitrco" id="cbo_situacion" class="ms-2" onclick="colocaSituacion()" disabled>
                                     <option value="1">PENDIENTE</option>
                                     <option value="2">APROBADO </option>
                                     <option value="3">RECHAZADO</option>
@@ -142,7 +141,7 @@
                     <tr class="mb-lg-5">
                         <th>
                             <div class="form-group d-flex flex-row me-5">
-                                <label asp-for="S10_codepk" class="control-label me-3"></label>
+                                <label class="control-label me-3">Usuario</label>
                                 <input asp-for="S10_codepk" id="input_epk_usu" class="form-control form-control-sm ms-2" style="width:50px;display:none" />
                                 <span asp-validation-for="S10_codepk" class="text-danger"></span>
 
