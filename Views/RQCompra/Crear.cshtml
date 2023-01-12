@@ -1,8 +1,4 @@
-﻿@using ProjectWeb_DRA.Models;
-@{
-    FileClass ObjFileClass = new FileClass();
-}
-@model HDProjectWeb.Models.RQCompra
+﻿@model HDProjectWeb.Models.RQCompra
 
 @{
     ViewData["Title"] = "Registro Requisicion de Compra";
@@ -298,7 +294,7 @@
                          </th>
                      </tr>
                     <!-- 5TA FILA CAMPOS A ENVIAR-->
-                    <tr style="display:none">
+                    <tr style="display:''">
                         <th> 
                             <label>Estado</label>
                             <input id="input_estado" asp-for="Rco_estado" type="text" style="width:20px" />
@@ -404,14 +400,11 @@
             </table>
                 <br /><br />
             </div>
-            <div id="DropZone">
-                <p>Seleccione o arrastre archivos!!</p>
-                <input type="file" id="archivo" name="archivo" multiple/>
-            </div>
-
-            <br /><br />
-            <!-- Carga de archivo a red -->
-            @using (Html.BeginForm("Upload", "Files1", null, FormMethod.Post,true,
+            <input type="file" id="fileInput" /><br /><br />
+            <label>Base64String</label><br />
+            <textarea id="input_Base64String" type="text" style="width:90%;height:200px"></textarea>
+            <!-- Carga de archivo a red 
+            using (Html.BeginForm("Upload", "Files", null, FormMethod.Post,true,
              new { enctype = "multipart/form-data", method = "post" }))
             {
                 <div class="row">
@@ -425,8 +418,8 @@
                         </button>
                     </div>
                 </div>
-            }
-            <!-- Boton Eliminar  -->
+            } -->
+            <!-- Carga de archivo manual -->
             <div>
                 <div>
                     <a class="btn btn-danger"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill me-1" viewBox="0 0 16 16">
@@ -439,9 +432,7 @@
         </form>
     </div>
 </div>
-<!--  await Html.PartialAsync("/Views/Files1/_Files.cshtml",ObjFileClass) -->
 
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    
 }

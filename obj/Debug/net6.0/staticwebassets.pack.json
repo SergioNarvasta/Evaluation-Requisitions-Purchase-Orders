@@ -13,18 +13,6 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\Azure IoT Hub-Configuración del enrutamiento de mensajes.pdf",
-      "PackagePath": "staticwebassets\\files\\Azure IoT Hub-Configuración del enrutamiento de mensajes.pdf"
-    },
-    {
-      "Id": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\Azure Sphere.pdf",
-      "PackagePath": "staticwebassets\\files\\Azure Sphere.pdf"
-    },
-    {
-      "Id": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\Building Microservices with .NET Core.pdf",
-      "PackagePath": "staticwebassets\\files\\Building Microservices with .NET Core.pdf"
-    },
-    {
       "Id": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\img\\agregar.png",
       "PackagePath": "staticwebassets\\img\\agregar.png"
     },
@@ -55,6 +43,10 @@
     {
       "Id": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\img\\salir.png",
       "PackagePath": "staticwebassets\\img\\salir.png"
+    },
+    {
+      "Id": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\js\\blobManager.js",
+      "PackagePath": "staticwebassets\\js\\blobManager.js"
     },
     {
       "Id": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\js\\site.js",

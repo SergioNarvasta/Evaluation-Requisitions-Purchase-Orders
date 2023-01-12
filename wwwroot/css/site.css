@@ -19,17 +19,5 @@ body {
 #Box-Main {
     margin-left:40px;
 }
-#DropZone {
-    background: #ccc;
-}
-#DropZone p{
-    padding:10px;
-    background:white;
-    text-align:center;
-    border:2px dashed #333;
-}
-#DropZone input{
-    display:none;
-}
 
 

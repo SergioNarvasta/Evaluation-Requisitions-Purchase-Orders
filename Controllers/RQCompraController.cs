@@ -55,11 +55,27 @@ namespace HDProjectWeb.Controllers
             rQCompra.Tin_codtin = servicioEstandar.TipoInventario();
             rQCompra.Rco_codusu = servicioUsuario.ObtenerCodUsuario();
             rQCompra.Rco_codepk = await servicioEstandar.GeneraRco_Codepk();
+            if (rQCompra.Rco_numero is null) {
+                string Rco_numero, Rco_cor;
+                Rco_cor = await repositorioRQCompra.ObtenerMaxRCO();
+                if (Rco_cor.Length == 0)
+                {
+                    Rco_numero = "RQ20230101";
+                }
+                else
+                {
+                    string recorte = Rco_cor.Substring(Rco_cor.Length - 8, 8);
+                    int corite = int.Parse(recorte);
+                    corite++;
+                    Rco_numero = string.Concat(Rco_cor.AsSpan(0, Rco_cor.Length - 8), corite.ToString());
+                }
+                rQCompra.Rco_numero = Rco_numero;
+            }
 
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 return View(rQCompra);
-            }
+            }*/
             int result = await repositorioRQCompra.Registra_Req(rQCompra);
 
             string usu = rQCompra.Uap_deslar;
