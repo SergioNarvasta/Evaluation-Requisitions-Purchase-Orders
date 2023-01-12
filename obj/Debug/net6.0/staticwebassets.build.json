@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jg2tCQsjnYu6cWo9qZRumVVcbtp8IR4u8WuncXZ/Ra8=",
+  "Hash": "wESnEOEOMFQUmQaBQORe5U4FRYpOMSt60nZHBqqYxiw=",
   "Source": "ProjectWeb_DRA",
   "BasePath": "_content/ProjectWeb_DRA",
   "Mode": "Default",
@@ -1105,12 +1105,12 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\033205454-A.pdf",
+      "Identity": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\Azure IoT Hub-Configuración del enrutamiento de mensajes.pdf",
       "SourceId": "ProjectWeb_DRA",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\",
       "BasePath": "_content/ProjectWeb_DRA",
-      "RelativePath": "files/033205454-A.pdf",
+      "RelativePath": "files/Azure IoT Hub-Configuración del enrutamiento de mensajes.pdf",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1119,15 +1119,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\files\\033205454-A.pdf"
+      "OriginalItemSpec": "wwwroot\\files\\Azure IoT Hub-Configuración del enrutamiento de mensajes.pdf"
     },
     {
-      "Identity": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\Microsoft Azure Data.pdf",
+      "Identity": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\Azure Sphere.pdf",
       "SourceId": "ProjectWeb_DRA",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\",
       "BasePath": "_content/ProjectWeb_DRA",
-      "RelativePath": "files/Microsoft Azure Data.pdf",
+      "RelativePath": "files/Azure Sphere.pdf",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1136,7 +1136,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\files\\Microsoft Azure Data.pdf"
+      "OriginalItemSpec": "wwwroot\\files\\Azure Sphere.pdf"
+    },
+    {
+      "Identity": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\Building Microservices with .NET Core.pdf",
+      "SourceId": "ProjectWeb_DRA",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\",
+      "BasePath": "_content/ProjectWeb_DRA",
+      "RelativePath": "files/Building Microservices with .NET Core.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\files\\Building Microservices with .NET Core.pdf"
     },
     {
       "Identity": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\img\\agregar.png",

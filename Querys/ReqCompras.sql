@@ -213,6 +213,6 @@ FROM UNID_NEGOCIO_UNG WHERE cia_codcia=1 and ung_estado=1
 SELECT*FROM PROYECTOS_PRY
 SELECT*FROM CENT_COST_CCO
 
-SELECT pry_codepk,pry_codpry,pry_deslar  
+SELECT pry_codepk,pry_codpry,pry_deslar,* ,pry_estado 
 FROM PROYECTOS_PRY 
 WHERE CIA_CODCIA =1 AND pry_estado=1

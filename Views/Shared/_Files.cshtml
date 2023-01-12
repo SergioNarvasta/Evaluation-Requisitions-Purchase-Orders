@@ -1,11 +1,11 @@
 ﻿@using ProjectWeb_DRA.Models;
 
 @model FileClass
-
+<br />
 <form asp-controller="Files1" asp-action="Index" method="post" enctype="multipart/form-data">
-    <input type="file" name="file"/>
-    <br />
-    <button type="submit">Cargar</button>
+    <input type="file" name="file" />
+    <br /><br />
+    <button type="submit" class="btn btn-primary">Cargar Archivo</button>
 </form>
 @if (Model != null)
 {
@@ -15,7 +15,7 @@
         <tr>
             <th>Item</th>
             <th>Nombre Archivo</th>
-            <th></th>
+            <th>Visualizar</th>
         </tr>
     </thead>
     <tbody>
@@ -25,12 +25,13 @@
                     <td>@file.FileId</td>
                     <td>@file.Name</td>
                     <td>
-                        <a href="../Files1/Index?fileName=@file.Name">Current Page</a>
+                        <a class="btn btn-outline-success" href="../Files1/Index?fileName=@file.Name">Pagina Actual</a>
+                        <a class="btn btn-outline-primary" href="../Files1/PDFViewerNewTab?fileName=@file.Name" target="_blank">Nueva Pestaña</a>
                     </td>
                 </tr>
             }
         </tbody>
 </table>
 }
-<br /><br />
-<embed id="embPDF" src="/files/@Model.Name" style="width:70%; height:1000px;"/>
+<br />
+<embed id="embPDF" src="/files/@Model.Name" style="width:70%; height:1000px;margin-left:15%"/>

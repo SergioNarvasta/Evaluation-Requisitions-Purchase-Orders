@@ -1,4 +1,8 @@
-﻿@model HDProjectWeb.Models.RQCompra
+﻿@using ProjectWeb_DRA.Models;
+@{
+    FileClass ObjFileClass = new FileClass();
+}
+@model HDProjectWeb.Models.RQCompra
 
 @{
     ViewData["Title"] = "Registro Requisicion de Compra";
@@ -401,13 +405,16 @@
                 <br /><br />
             </div>
             <div id="DropZone">
-                <p>Seleccione o arrastre archivos</p>
-                <input type="file" name="archivo"/>
+                <p>Seleccione o arrastre archivos!!</p>
+                <input type="file" id="archivo" name="archivo" multiple/>
             </div>
 
+            
+           
 
+            <br /><br />
             <!-- Carga de archivo a red -->
-            @using (Html.BeginForm("Upload", "Files", null, FormMethod.Post,true,
+            @using (Html.BeginForm("Upload", "Files1", null, FormMethod.Post,true,
              new { enctype = "multipart/form-data", method = "post" }))
             {
                 <div class="row">
@@ -435,7 +442,9 @@
         </form>
     </div>
 </div>
+<!--  await Html.PartialAsync("/Views/Files1/_Files.cshtml",ObjFileClass) -->
 
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
 }

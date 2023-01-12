@@ -13,12 +13,16 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\033205454-A.pdf",
-      "PackagePath": "staticwebassets\\files\\033205454-A.pdf"
+      "Id": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\Azure IoT Hub-Configuración del enrutamiento de mensajes.pdf",
+      "PackagePath": "staticwebassets\\files\\Azure IoT Hub-Configuración del enrutamiento de mensajes.pdf"
     },
     {
-      "Id": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\Microsoft Azure Data.pdf",
-      "PackagePath": "staticwebassets\\files\\Microsoft Azure Data.pdf"
+      "Id": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\Azure Sphere.pdf",
+      "PackagePath": "staticwebassets\\files\\Azure Sphere.pdf"
+    },
+    {
+      "Id": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\files\\Building Microservices with .NET Core.pdf",
+      "PackagePath": "staticwebassets\\files\\Building Microservices with .NET Core.pdf"
     },
     {
       "Id": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\wwwroot\\img\\agregar.png",

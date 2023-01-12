@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjectWeb_DRA.Models;
+using System.IO;
 
 namespace ProjectWeb_DRA.Controllers
 {
@@ -12,7 +13,7 @@ namespace ProjectWeb_DRA.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
         [HttpGet]
-        public IActionResult Index(string filename="") {
+        public async Task <IActionResult> Index(string filename="") {
             FileClass fileObj = new FileClass();
             fileObj.Name= filename;
             string path = $"{_webHostEnvironment.WebRootPath}\\files\\";
@@ -26,10 +27,10 @@ namespace ProjectWeb_DRA.Controllers
                     Path= pdfPath
                 });  
             }
-            return View(fileObj);
+            return View("_Files",fileObj);
         }
         [HttpPost]
-        public IActionResult Index(IFormFile file, [FromServices] IWebHostEnvironment hostingEnvironment)
+        public async Task<IActionResult> Index(IFormFile file, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
             string filename = $"{hostingEnvironment.WebRootPath}\\files\\{file.FileName}";
             using (FileStream fileStream = System.IO.File.Create(filename))
@@ -37,10 +38,20 @@ namespace ProjectWeb_DRA.Controllers
                 file.CopyTo(fileStream);
                 fileStream.Flush();
             }
-                return View();
+                return View("_Files");
         }
+        public IActionResult PDFViewerNewTab(string filename)
+        {
+            string path = _webHostEnvironment.WebRootPath + "\\files\\" + filename;
+            return File(System.IO.File.ReadAllBytes(path), "application/pdf");
+        }
+        [HttpPost]
         public IActionResult Upload(IFormFile file)
         {
+            Byte[] byteArray = System.IO.File.ReadAllBytes(file.Name);
+            string FileString64 = Convert.ToBase64String(byteArray);
+
+
             try 
             {
                 if (file.Length == 0)

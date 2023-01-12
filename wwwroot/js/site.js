@@ -381,14 +381,39 @@ $(document).ready(function () {
 const dropzone = document.getElementById('DropZone');
 const archivo = document.getElementById('archivo');
 
-archivo.addEventListener('change', function (e) {
-    console.log(archivo.files);
+dropzone.addEventListener('dragover', e => {
+    e.preventDefault();
+})
+
+dropzone.addEventListener('drop', e => {
+    e.preventDefault();
+    e.dataTransfer.files;
+})
+archivo.addEventListener('drop', CargaArchivo);
+archivo.addEventListener('change',CargaArchivo );
+
+function CargaArchivo(e) {
+    //console.log(archivo.files);
+    e.preventDefault( );
+
     const FD = new FormData();
-    for (let file in archivo.files) { 
+    const listado_archivos = e.target.id =='archivos' ? 
+                                    archivo.file : 
+                                    e.dataTransfer.files;
+
+    for (let file of listado_archivos) {
         FD.append('files[]', file);
     }
-    
-});
+    fetch('https://localhost:7218/Files1/Upload', { method: 'POST', body: FD }).
+        then(rta => { rta.json }).
+        then(json => {
+            console.log(json);
+        }).
+        catch( e => { console.error(e); });
+
+        archivo.value = '';
+}
+
 
 function coloca_nomb() {
     var combo = document.getElementById("banner_captura");
