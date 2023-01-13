@@ -234,9 +234,7 @@ const button = dropArea.querySelector('button');
 const input = dropArea.querySelector("#input-file");
 let files;
 //Eventos
-button.addEventListener("click", (e) => {
-    input.click();
-});
+
 input.addEventListener("change", (e) => {
     files = this.files;
     dropArea.classList.add("active");
@@ -317,22 +315,53 @@ function ArchivoCargadoExito(){
 }
 
 /*********************** */
+//Carga de archivo 1
 const fileInput = document.querySelector('#fileInput');
-const btnTob64 = document.querySelector('#btnTob64');
-const btnToBlob = document.querySelector('#btnToBlob');
+const btnTob64 = document.querySelector('#btn_carga1');
 
 btnTob64.addEventListener('click', async (e) => {
     console.log(btnTob64.innerText);
     console.log('Convirtiendo mi blob');
     const myBlob = fileInput.files[0];
     const myB64 = await blobToBase64(myBlob);
-    document.getElementById('input_Base64String').value = myB64;
+    document.getElementById('b64string1').value = myB64;
+    ArchivoCargadoExito1();
     console.log(myB64);
 });
 
-btnToBlob.addEventListener('click', async (e) => {
-    console.log(btnToBlob.innerText);
+function ArchivoCargadoExito1(){
+    let nb64string1 = document.getElementById('b64string1').value;
+    if(nb64string1.length >0){
+        let estado = document.getElementById('est_file1');
+         estado.value="CARGADO";
+         estado.style.backgroundColor="#0FB607";
+        let Rco_numero = document.getElementById('sRco_numero').value; 
+         $("#cod_file1").val("REQCOM_"+Rco_numero+"001.pdf");
+    }
+}
+//Carga de archivo 2
+const fileInput2 = document.querySelector('#fileInput2');
+const btn2 = document.querySelector('#btn_carga2');
+
+btn2.addEventListener('click', async (e) => {
+    console.log('Convirtiendo archivo 2');
+    const myBlob = fileInput2.files[0];
+    const myB64 = await blobToBase64(myBlob);
+    document.getElementById('b64string2').value = myB64;
+    ArchivoCargadoExito2();
+    console.log(myB64);
 });
+
+function ArchivoCargadoExito2(){
+    let nb64string1 = document.getElementById('b64string2').value;
+    if(nb64string1.length >0){
+        let estado = document.getElementById('est_file2');
+         estado.value="CARGADO";
+         estado.style.backgroundColor="#0FB607";
+        let Rco_numero = document.getElementById('sRco_numero').value; 
+         $("#cod_file2").val("REQCOM_"+Rco_numero+"002.pdf");
+    }
+}
 /*********************************** */
 
 //Carga los valores automaticamente
@@ -344,6 +373,8 @@ $(document).ready(function () {
     colocaSituacion();
     colocaPresup();
     colocaReembls();
+    //Procesamos al cargar y recibir un cambio
+   
 });
 function colocaEstado() {
     var combo = document.getElementById("cbo_estado");

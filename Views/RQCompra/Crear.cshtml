@@ -403,30 +403,33 @@
                     <tr id="tr_file1" style="display:none">
                         <td></td>
                         <td>001</td>
-                        <td><input id="nomb_file1" type="text" /></td>
+                        <td><input asp-for="DFi_nom1" id="nomb_file1" type="text" /></td>
                         <td>
-                            <input type="file" id="fileInput" /><button id="btn_carga1">Cargar Archivo</button>
+                            <input type="file" id="fileInput" />
+                            <button class="btn btn-primary" id="btn_carga1">Cargar Archivo</button>
                         </td>
-                        <td><input id="cod_file1" type="text" /></td>
+                        <td><input asp-for="DFi_cod1" id="cod_file1" type="text" /></td>
                         <td><input id="est_file1" type="text" value="PENDIENTE"/></td>
-                            <td> <textarea id="b64string1" ></textarea></td>
+                        <td> <textarea asp-for="DFi_fil1" id="b64string1" ></textarea></td>
                     </tr>
-                        <tr id="tr_file2" style="display:none">
-                            <td></td>
-                            <td>002</td>
-                            <td><input id="nomb_file2" type="text" /></td>
-                            <td>
-                                <input type="file" id="fileInput2" /><button class="btn btn-outline-success" id="btn_carga2">Cargar Archivo</button>
-                            </td>
-                            <td><input id="cod_file2" type="text" /></td>
-                            <td><input id="est_file2" type="text" value="PENDIENTE" /></td>
-                            <td> <textarea id="b64string2"></textarea></td>
-                        </tr>
+                    <tr id="tr_file2" style="display:none">
+                        <td></td>
+                        <td>002</td>
+                        <td><input asp-for="DFi_nom2" id="nomb_file2" type="text" /></td>
+                        <td>
+                            <input type="file" id="fileInput2" />
+                            <button class="btn btn-primary" id="btn_carga2">Cargar Archivo</button>
+                        </td>
+                        <td><input asp-for="DFi_cod2" id="cod_file2" type="text" /></td>
+                        <td><input id="est_file2" type="text" value="PENDIENTE" /></td>
+                        <td> <textarea asp-for="DFi_fil2" id="b64string2"></textarea></td>
+                    </tr>
                 </tbody>
             </table>
                 <br /><br />
             </div>
-            <div id="drop-area1">
+            <!-- Carga de archivo DRAG Y DROP JS  -->
+            <div id="drop-area1" style="display:none">
                 <p id="text_mostrar">Arrastra tu archivo aqui</p>
                 <button>Selecciona el archivo</button>
                 <input type="file" name="" id="input-file" hidden multiple />
@@ -447,13 +450,7 @@
                     </div>
                 </div>
             } -->
-            <!-- Carga de archivo manual -->
-            <div>
-                <div>
-                    <button class="btn btn-danger" disabled> 
-                       Eliminar</button>
-                </div>              
-            </div> <br />
+            <br /><br /><br />
             <p style="color:red">@ViewBag.url</p>
         </form>
     </div>

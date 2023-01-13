@@ -71,6 +71,13 @@ namespace HDProjectWeb.Controllers
                 }
                 rQCompra.Rco_numero = Rco_numero;
             }
+            if (rQCompra.DFi_fil1 is not null) {
+                rQCompra.DFi_item1 = "001";
+            }
+            if (rQCompra.DFi_fil2 is not null)
+            {
+                rQCompra.DFi_item2 = "002";
+            }
 
             /*if (!ModelState.IsValid)
             {

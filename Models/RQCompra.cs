@@ -96,6 +96,14 @@ namespace HDProjectWeb.Models
         public string DPrd_cantidad { get; set; }
         public string DPrd_codprov { get; set; }
 
+        public string DFi_item1 { get; set; }
+        public string DFi_nom1 { get; set; }
+        public string DFi_cod1 { get; set; }
+        public string DFi_fil1 { get; set; }
+        public string DFi_item2 { get; set; }
+        public string DFi_nom2 { get; set; }
+        public string DFi_cod2 { get; set; }
+        public string DFi_fil2 { get; set; }
 
         //Atributos para Req Compra Detalle (RCD)
         public List<DetalleReq> ListaDetalles { get; set; }
