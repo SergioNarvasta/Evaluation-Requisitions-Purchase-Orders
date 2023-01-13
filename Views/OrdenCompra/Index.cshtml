@@ -21,11 +21,11 @@
             <input id="filtro_periodo"  type="text" name="periodo" style="width:60px;display:none" class="ms-4"/>
             <input id="filtro_estado"   type="text" name="estado"  value="2" style="width:30px;display:none" class="ms-4"/>
             <input id="filtro_orden"    type="text" name="orden" style="width:100px;display:none" class="ms-4" />
-            <button id="btn_filtrar" type="submit" class="btn btn-primary ms-5"><img class="me-1" src="/img/buscar.png"/>Filtrar</button>
+            <button id="btn_filtrar" type="submit" class="btn btn-primary ms-5"><img class="me-1" src="~/img/buscar.png" />Filtrar</button>
         </div>        
     </form>   
     <a class="btn btn-primary ms-5" asp-action="Crear"><img src="/img/agregar.png"/> Nuevo</a>
-    <a class="btn btn-danger ms-5" asp-controller="Home" asp-action="Index"><img class="me-1" src="/img/salir.png"/>Salir</a>
+    <a class="btn btn-danger ms-5" asp-controller="Home" asp-action="Index"><img class="me-1" src="~/img/salir.png" />Salir</a>
 </div>
 <br />
 <div class="d-flex flex-row ms-5">
@@ -39,7 +39,7 @@
     </div>
     <!-- Button Modal -->
     <button id="btn_modal" type="button" style="height:30px" class="btn btn-primary ms-4 me-4 btn-sm" data-bs-toggle="modal" data-bs-target="#myModal">
-        <img class="me-1" src="/img/cambiar1.png"/>Cambiar Periodo
+        <img class="me-1" src="~/img/cambiar1.png" />Cambiar Periodo
     </button>   
     <!--  Modal -->
     <div class="modal" id="myModal" >
