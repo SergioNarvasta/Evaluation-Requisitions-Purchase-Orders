@@ -21,6 +21,9 @@
 <h2 class="text-center">
     @ViewBag.usu @ViewBag.message @ViewBag.num
 </h2>
+@if (ViewBag.indiceRQ == "1") { 
+  <a class="btn btn-primary justify-content-center" asp-controller="RQCompra" asp-action="Index">Volver a Listado</a>
+}
 <br />
 <br />
 <br />
@@ -30,4 +33,9 @@
 <br /><br />
 <br /><br />
 <br /><br />
+<br />
+<br />
+<br />
+<br />
+<br />
 <br />

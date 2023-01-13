@@ -368,6 +368,34 @@ function ArchivoCargadoExito2(){
 }
 /*********************************** */
 
+// MOSTRAR ARCHIVO BASE 64 A PDF 
+function MostrarArchivo001(){
+var data = document.getElementById('Fileb64001').value;
+
+const blob = this.dataURItoBlob(data);
+const url = URL.createObjectURL(blob);
+// Abre el pdf en una nueva pestaña
+window.open(url, '_blank');
+}
+function MostrarArchivo002(){
+    var data = document.getElementById('Fileb64002').value;
+    
+    const blob = this.dataURItoBlob(data);
+    const url = URL.createObjectURL(blob);
+    // Abre el pdf en una nueva pestaña
+    window.open(url, '_blank');
+    }
+function dataURItoBlob(dataURI) {
+    const byteString = window.atob(dataURI);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const int8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      int8Array[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([int8Array], { type: 'application/pdf'});
+    return blob;
+  }
+
 //Carga los valores automaticamente
 $(document).ready(function () {
     colocaEstado();

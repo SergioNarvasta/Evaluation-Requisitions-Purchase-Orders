@@ -29,7 +29,7 @@ namespace HDProjectWeb.Models.Detalles
         public async Task<IEnumerable<Adjuntos>> GetAdjuntos(string Rco_numero)
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.QueryAsync<Adjuntos>(@"SELECT rcf_corite as item ,rcf_nomarc as nombre,'' as archivo, rcf_codarc as codarchivo 
+            return await connection.QueryAsync<Adjuntos>(@"SELECT rcf_corite as item ,rcf_nomarc as nombre,rcf_file as archivo, rcf_codarc as codarchivo 
                      FROM REQ_REQUI_FILES_RCF B LEFT JOIN REQ_REQUI_COMPRA_RCO A ON A.cia_codcia=B.cia_codcia AND A.rco_codepk=B.rco_codepk
                      WHERE A.rco_numrco =@Rco_numero", new { Rco_numero });
         }

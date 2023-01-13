@@ -210,9 +210,15 @@ FROM REQ_TIPO_REQUISICION_TRE WHERE cia_codcia=1 and tre_estado=1
 SELECT ung_codepk as codigo,ung_deslar as descri 
 FROM UNID_NEGOCIO_UNG WHERE cia_codcia=1 and ung_estado=1
 
-SELECT*FROM PROYECTOS_PRY
-SELECT*FROM CENT_COST_CCO
+SELECT*FROM REQ_REQUI_COMPRA_RCD
+
+SELECT*FROM REQ_REQUI_FILES_RCF
+INSERT INTO REQ_REQUI_FILES_RCF(cia_codcia,suc_codsuc,rco_codepk,rcf_corite,rcf_codarc,rcf_nomarc,rcf_file,rcf_estado)VALUES()
 
 SELECT pry_codepk,pry_codpry,pry_deslar  
 FROM PROYECTOS_PRY 
 WHERE CIA_CODCIA =1 AND pry_estado=1
+
+
+--Codigo de Archivo 
+--Vista Result poner boton volver a panel

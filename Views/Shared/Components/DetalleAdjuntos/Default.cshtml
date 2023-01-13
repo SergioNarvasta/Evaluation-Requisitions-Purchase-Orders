@@ -4,9 +4,11 @@
 @foreach (var item in Model)
 {
     <tr id="tr_adj">
+        <td></td>
         <td>@item.Item</td>
         <td>@item.Nombre </td>
-        <td>@item.Archivo </td>
+        <td><textarea id="Fileb64@(@item.Item)" style="width:200px;height:80px">@item.Archivo</textarea> </td>
         <td>@item.CodArchivo </td>
+        <td><a id="btn_vista_archivo@(@item.Item)" onclick="MostrarArchivo@(@item.Item)()" class="btn btn-primary">Vista_Previa</a></td>
     </tr>
 }

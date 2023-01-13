@@ -220,6 +220,10 @@ function agregarFilaAdj() {
     $('#tblAdjuntos tbody').append(fila);  
 }
 $('#btn_adicionar_adj').on('click', function () {
+    document.getElementById("cod_file2").readOnly = true;
+    document.getElementById("cod_file1").readOnly = true;
+    document.getElementById("est_file2").readOnly = true;
+    document.getElementById("est_file1").readOnly = true;
     let cant_file_act = document.getElementById('cant_activefile').value;
     let cant_file_sig = (parseInt(cant_file_act)+1).toString();
     var itemactivar = "#tr_file"+cant_file_sig;
@@ -373,6 +377,7 @@ $(document).ready(function () {
     colocaSituacion();
     colocaPresup();
     colocaReembls();
+   
     //Procesamos al cargar y recibir un cambio
    
 });

@@ -100,6 +100,7 @@ namespace HDProjectWeb.Controllers
             ViewBag.usu = usu;
             ViewBag.num = num;
             ViewBag.result = result;
+            ViewBag.indiceRQ = "1";
             return View("ResultAprob");
         }
 
@@ -206,6 +207,9 @@ namespace HDProjectWeb.Controllers
             ViewBag.Rco_numero = Rco_Numero;
             ViewBag.url = Url.Action();
             return View(rQCompra);
+        }
+        public IActionResult Eliminar() { 
+            return View();
         }
 
         [HttpPost]
