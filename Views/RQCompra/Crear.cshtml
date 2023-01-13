@@ -34,7 +34,7 @@
                         <th class="col-sm-4">
                             <div class="form-group d-flex flex-row me-2">
                                 <label class="me-2">Requerimien </label>
-                                <input asp-for="Rco_numero" class="form-control form-control-sm col-sm-4" style="width:325px" type="text" disabled/>
+                                <input id="sRco_numero" asp-for="Rco_numero" class="form-control form-control-sm col-sm-4" style="width:325px" type="text" disabled />
                                 <span asp-validation-for="Rco_numero" class="text-danger"></span>
                             </div>
                         </th>
@@ -294,7 +294,7 @@
                          </th>
                      </tr>
                     <!-- 5TA FILA CAMPOS A ENVIAR-->
-                    <tr style="display:''">
+                    <tr style="display:none">
                         <th> 
                             <label>Estado</label>
                             <input id="input_estado" asp-for="Rco_estado" type="text" style="width:20px" />
@@ -383,26 +383,54 @@
             <!-- TABLA ADJUNTOS-->
             <br />
             <p class="justify-content-center text-"><strong>ADJUNTOS</strong></p>
+            <input id="cant_activefile" type="text" value="0" style="display:none"/>
             <div class="">
                 <table id="tblAdjuntos" class="table table-bordered table-hover">
                 <thead class="table-primary">
                     <tr>
                         <th>
-                            <button onclick="agregarFilaAdj()" id="btn_adicionar_adj" type="button" class="btn btn-outline-primary" style="border:0px"><img src="/img/mas.png"/></button>
+                            <button id="btn_adicionar_adj" type="button" class="btn btn-outline-primary" style="border:0px"><img src="/img/mas.png"/></button>
                         </th>
                         <th>Item</th>
                         <th>Nombre Archivo</th>
                         <th>Archivo</th>
                         <th>Codigo Archivo</th>
+                        <th>Estado</th>
+                        <th>Base64</th>
                     </tr>
                 </thead>
-                <tbody>  </tbody>
+                <tbody>
+                    <tr id="tr_file1" style="display:none">
+                        <td></td>
+                        <td>001</td>
+                        <td><input id="nomb_file1" type="text" /></td>
+                        <td>
+                            <input type="file" id="fileInput" /><button id="btn_carga1">Cargar Archivo</button>
+                        </td>
+                        <td><input id="cod_file1" type="text" /></td>
+                        <td><input id="est_file1" type="text" value="PENDIENTE"/></td>
+                            <td> <textarea id="b64string1" ></textarea></td>
+                    </tr>
+                        <tr id="tr_file2" style="display:none">
+                            <td></td>
+                            <td>002</td>
+                            <td><input id="nomb_file2" type="text" /></td>
+                            <td>
+                                <input type="file" id="fileInput2" /><button class="btn btn-outline-success" id="btn_carga2">Cargar Archivo</button>
+                            </td>
+                            <td><input id="cod_file2" type="text" /></td>
+                            <td><input id="est_file2" type="text" value="PENDIENTE" /></td>
+                            <td> <textarea id="b64string2"></textarea></td>
+                        </tr>
+                </tbody>
             </table>
                 <br /><br />
             </div>
-            <input type="file" id="fileInput" /><br /><br />
-            <label>Base64String</label><br />
-            <textarea id="input_Base64String" type="text" style="width:90%;height:200px"></textarea>
+            <div id="drop-area1">
+                <p id="text_mostrar">Arrastra tu archivo aqui</p>
+                <button>Selecciona el archivo</button>
+                <input type="file" name="" id="input-file" hidden multiple />
+            </div>
             <!-- Carga de archivo a red 
             using (Html.BeginForm("Upload", "Files", null, FormMethod.Post,true,
              new { enctype = "multipart/form-data", method = "post" }))
@@ -422,10 +450,8 @@
             <!-- Carga de archivo manual -->
             <div>
                 <div>
-                    <a class="btn btn-danger"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill me-1" viewBox="0 0 16 16">
-                         <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                       </svg>
-                       Eliminar</a>
+                    <button class="btn btn-danger" disabled> 
+                       Eliminar</button>
                 </div>              
             </div> <br />
             <p style="color:red">@ViewBag.url</p>

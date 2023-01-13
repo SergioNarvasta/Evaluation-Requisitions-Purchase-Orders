@@ -219,6 +219,151 @@ function agregarFilaAdj() {
     var fila = "<tr><td></td><td>" + item + "</td><td>" + name + "</td><td>" + file + "</td><td>" + codfile + "</td> </tr>";
     $('#tblAdjuntos tbody').append(fila);  
 }
+$('#btn_adicionar_adj').on('click', function () {
+    let cant_file_act = document.getElementById('cant_activefile').value;
+    let cant_file_sig = (parseInt(cant_file_act)+1).toString();
+    var itemactivar = "#tr_file"+cant_file_sig;
+    $(itemactivar).show();
+    $(cant_activefile).val(cant_file_sig);
+    console.log("Objeto Activado :"+itemactivar);
+});
+
+const dropArea = document.getElementById("drop-area1");
+const dragText = dropArea.querySelector("p");
+const button = dropArea.querySelector('button');
+const input = dropArea.querySelector("#input-file");
+let files;
+//Eventos
+
+input.addEventListener("change", (e) => {
+    files = this.files;
+    dropArea.classList.add("active");
+    showFiles(files);
+    dropArea.classList.remove("active");
+});
+//Iteracciones con la pagina y subida de archivos
+//cuadro
+dropArea.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropArea.classList.add("active");
+    dragText.textContent = "Suelta aqui para subir archivo";
+});
+//arrastrar archivo
+dropArea.addEventListener("dragleave", (e) => {
+    e.preventDefault();
+    dropArea.classList.remove("active");
+    dragText.textContent = "Archivo Cargado";
+});
+//soltar archivo
+dropArea.addEventListener("drop", (e) => {
+    e.preventDefault();
+    files = e.dataTransfer.files;
+    showFiles(files);
+    dropArea.classList.remove("active");
+    //dragText.textContent = "Arrastra y suelta archivo";
+});
+
+function showFiles(files) {
+    if (files.length === undefined) {
+        processFile(files);
+    } else {
+        for (const file of files) {
+            processFile(file);
+        }
+    }
+}
+const blobToBase64 = (blob) => {
+    return new Promise( (resolve, reject) =>{
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = () => {
+            resolve(reader.result.split(',')[1]);
+        };
+    });
+};
+const b64ToBlob = async(b64, type)=>{
+    const blob = await fetch(`data:${type};base64,${b64}`);
+    return blob;
+};
+//Cargar el archivo de forma iteractiva con innerHTML
+function processFile(file) {
+        
+    const fileReader = new FileReader();
+    fileReader.addEventListener('load', async(e) => {
+        //Convierte Archivo en B64
+        const myB64 = await blobToBase64(file);
+        
+        document.getElementById('b64string1').value = myB64;
+        ArchivoCargadoExito();
+        console.log(myB64);
+        document.querySelector('#preview').innerHTML = image ;
+    });
+
+    fileReader.readAsDataURL(file);
+}
+function ArchivoCargadoExito(){
+    let nb64string1 = document.getElementById('b64string1').value;
+    if(nb64string1.length >0){
+        let estado = document.getElementById('est_file1');
+         estado.value="CARGADO";
+         estado.style.backgroundColor="#0FB607";
+        let Rco_numero = document.getElementById('sRco_numero').value; 
+         $("#cod_file1").val("REQCOM_"+Rco_numero+"001.pdf");
+         dragText.textContent = "Archivo Cargado con exito !!";
+    }
+
+}
+
+/*********************** */
+//Carga de archivo 1
+const fileInput = document.querySelector('#fileInput');
+const btnTob64 = document.querySelector('#btn_carga1');
+
+btnTob64.addEventListener('click', async (e) => {
+    console.log(btnTob64.innerText);
+    console.log('Convirtiendo mi blob');
+    const myBlob = fileInput.files[0];
+    const myB64 = await blobToBase64(myBlob);
+    document.getElementById('b64string1').value = myB64;
+    ArchivoCargadoExito1();
+    console.log(myB64);
+});
+
+function ArchivoCargadoExito1(){
+    let nb64string1 = document.getElementById('b64string1').value;
+    if(nb64string1.length >0){
+        let estado = document.getElementById('est_file1');
+         estado.value="CARGADO";
+         estado.style.backgroundColor="#0FB607";
+        let Rco_numero = document.getElementById('sRco_numero').value; 
+         $("#cod_file1").val("REQCOM_"+Rco_numero+"001.pdf");
+    }
+}
+//Carga de archivo 2
+const fileInput2 = document.querySelector('#fileInput2');
+const btn2 = document.querySelector('#btn_carga2');
+
+btn2.addEventListener('click', async (e) => {
+    console.log('Convirtiendo archivo 2');
+    const myBlob = fileInput2.files[0];
+    const myB64 = await blobToBase64(myBlob);
+    document.getElementById('b64string2').value = myB64;
+    ArchivoCargadoExito2();
+    console.log(myB64);
+});
+
+function ArchivoCargadoExito2(){
+    let nb64string1 = document.getElementById('b64string2').value;
+    if(nb64string1.length >0){
+        let estado = document.getElementById('est_file2');
+         estado.value="CARGADO";
+         estado.style.backgroundColor="#0FB607";
+        let Rco_numero = document.getElementById('sRco_numero').value; 
+         $("#cod_file2").val("REQCOM_"+Rco_numero+"002.pdf");
+    }
+}
+/*********************************** */
+
 //Carga los valores automaticamente
 $(document).ready(function () {
     colocaEstado();
@@ -228,6 +373,8 @@ $(document).ready(function () {
     colocaSituacion();
     colocaPresup();
     colocaReembls();
+    //Procesamos al cargar y recibir un cambio
+   
 });
 function colocaEstado() {
     var combo = document.getElementById("cbo_estado");
