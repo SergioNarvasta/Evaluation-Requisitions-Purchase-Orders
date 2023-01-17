@@ -22,6 +22,7 @@ namespace HDProjectWeb.Services
         Task<string> ObtenerMaxRCO();
         Task<int> Registra_Req(RQCompra rQCompra);
     }
+
     public class RepositorioRQCompra:IRepositorioRQCompra
     {
         private readonly string connectionString;
@@ -43,6 +44,7 @@ namespace HDProjectWeb.Services
               @rcf_corite1= @DFi_item1 ,@rcf_codarc1 = @DFi_cod1 ,@rcf_nomarc1 = @DFi_nom1,@rcf_file1 = @DFi_fil1,
               @rcf_corite2= @DFi_item2 ,@rcf_codarc2 = @DFi_cod2 ,@rcf_nomarc2 = @DFi_nom2,@rcf_file2 = @DFi_fil2 ", rQCompra);
         }
+
         /*
         @rcd_corite = @DPrd_item,  @prd_codepk = @DPrd_codigo, @rcd_desprd = @DPrd_descri,@rcd_glorcd = @DPrd_glosa ,@rcd_canate=@DPrd_cantidad,
                  @ccr_codepk = @DPrd_codprov,@ume_codepk =@DPrd_unidad*/
@@ -66,6 +68,7 @@ namespace HDProjectWeb.Services
                 ROWS ONLY", new { periodo, EpkUser ,estado1, estado2 }),
             };
         }
+
         public async Task<IEnumerable<RQCompraCab>> BusquedaMultiple(string periodo, PaginacionViewModel paginacion, int EpkUser, string busqueda,string estado1,string estado2)
         {
             using var connection = new SqlConnection(connectionString);
@@ -75,7 +78,8 @@ namespace HDProjectWeb.Services
                 OFFSET {paginacion.RecordsASaltar}
                 ROWS FETCH NEXT {paginacion.RecordsPorPagina} 
                 ROWS ONLY", new { periodo, EpkUser, busqueda, estado1, estado2 });         
-        }  
+        }
+
         public async Task<int> ContarRegistros(string periodo, int EpkUser, string estado1, string estado2)
         {
             using var connection = new SqlConnection(connectionString);
@@ -83,6 +87,7 @@ namespace HDProjectWeb.Services
                 Where cia=1 AND suc=1 AND periodo =@periodo AND uap_codepk = @EpkUser   AND estado in(@estado1,@estado2)", 
                 new { periodo,EpkUser, estado1, estado2 });
         }
+
         public async Task<int> ContarRegistrosBusqueda(string periodo, int EpkUser, string busqueda, string estado1,string estado2)
         {
             using var connection = new SqlConnection(connectionString);
@@ -91,6 +96,7 @@ namespace HDProjectWeb.Services
              AND Rco_Numero LIKE '%'+@busqueda+'%' OR User_Solicita LIKE '%'+@busqueda+'%' OR U_Negocio LIKE '%'+@busqueda+'%' OR Centro_Costo LIKE '%'+@busqueda+'%'",
                 new { periodo, EpkUser, busqueda, estado1,estado2 });
         }
+
         public async Task Actualizar(RQCompra rQCompraEd)            
         {
             using var connection = new SqlConnection(connectionString);
@@ -99,36 +105,42 @@ namespace HDProjectWeb.Services
                             @Rco_Prioridad =@Rco_prioridad,  @Rco_Justificacion=Rco_justificacion , @Rco_Reembolso =@Rco_reembolso,
                             @Rco_Presupuesto =@Rco_presupuesto,@Rco_Categorizado = @Rco_categorizado,  @Rco_Disciplina = @Rco_disciplina", rQCompraEd);
         }
+
         public async Task<RQCompra> ObtenerporCodigo(string Rco_numero) 
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QueryFirstOrDefaultAsync<RQCompra>(@" SELECT * FROM V_WEB_REQCOMPRAS_Index
                   WHERE Rco_Numero = @Rco_numero ", new {Rco_numero});
         }
+
         public async Task<RQCompra> ObtenerporEpk(int Rco_codepk)
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QueryFirstOrDefaultAsync<RQCompra>(@" SELECT * FROM V_WEB_REQCOMPRAS_Index
                   WHERE rco_codepk = @Rco_codepk ", new { Rco_codepk });
         }
+
         public async Task<string> ObtenerMaxRCO()
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QuerySingleAsync<string>(@"SELECT TOP 1 A.rco_numrco 
                             FROM REQ_REQUI_COMPRA_RCO A ORDER BY A.rco_numrco DESC");
         }
+
         public async Task<int> AprobarReq(int cia,int suc,int epk,int uap)
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QuerySingleAsync<int>(@" PA_WEB_RQ_Aprueba
                  @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumRQ=@epk, @p_CodUsr=@uap ", new { cia, suc, epk, uap });
         }
+
         public async Task<int> RechazaReq(int cia, int suc, int epk, int uap, string mot)
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QuerySingleAsync<int>(@" PA_WEB_RQ_Rechaza
                  @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumRQ =@epk, @p_CodUsr=@uap, @p_Motivo = @mot", new { cia, suc, epk, uap, mot });
         }
+        
         public async Task<int> DevuelveReq(int cia, int suc, int epk, int uap)
         {
             using var connection = new SqlConnection(connectionString);

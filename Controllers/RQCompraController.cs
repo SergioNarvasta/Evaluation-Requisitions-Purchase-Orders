@@ -78,7 +78,6 @@ namespace HDProjectWeb.Controllers
             {
                 rQCompra.DFi_item2 = "002";
             }
-
             /*if (!ModelState.IsValid)
             {
                 return View(rQCompra);
@@ -87,10 +86,6 @@ namespace HDProjectWeb.Controllers
 
             string usu = rQCompra.Uap_deslar;
             string num = rQCompra.Rco_numero;
-            /* foreach(DetalleReq detalleReq in rQCompra.ListaDetalles)
-             {
-                //await servicioDetalle.Crear(DetalleReq);
-             }*/
             string message = "se registro con exito la Requisicion de Compra ";
             if (result < 0)
             {
@@ -241,6 +236,7 @@ namespace HDProjectWeb.Controllers
             ViewBag.url = Url.Action();
             return View(ReqCompra);
         }
+        
         [HttpPost]
         public async Task<IActionResult> Aprobar(string cia, string suc, string epk, string usu,string num)
         {
