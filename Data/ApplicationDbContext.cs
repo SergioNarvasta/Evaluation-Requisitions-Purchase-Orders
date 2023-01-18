@@ -6,6 +6,7 @@ namespace ProjectWeb_DRA.Data
     public class ApplicationDbContext : IdentityDbContext
     {
         private readonly string connectionString;
+        
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration)
            : base(options)
         {
