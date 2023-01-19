@@ -38,12 +38,12 @@ namespace HDProjectWeb.Services
         public  async Task<int> ObtenerEpkUsuario(string CodUser)
         {
             using var connection = new SqlConnection(connectionString);
-            int cant = await connection.QuerySingleAsync<int>(@"SELECT COUNT(*) FROM REQ_USERS_APROBADORES_UAP A                                
+            int epk = await connection.QuerySingleAsync<int>(@"SELECT COUNT(*) FROM REQ_USERS_APROBADORES_UAP A                                
                                      WHERE A.uap_codemp = @CodUser OR A.uap_deslar= @CodUser OR A.uap_nombre =@CodUser ",
                                      new { CodUser });
-            if(cant == 0)
+            if(epk == 0)
             {
-                return await RegistraUsuario_S10();
+                return -1;
             }else
                 return await connection.QuerySingleAsync<int>(@"SELECT A.UAP_CODEPK FROM REQ_USERS_APROBADORES_UAP A                                
                                      WHERE A.uap_codemp = @CodUser OR A.uap_deslar= @CodUser OR A.uap_nombre =@CodUser ",

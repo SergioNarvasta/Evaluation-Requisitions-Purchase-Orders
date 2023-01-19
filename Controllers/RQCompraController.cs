@@ -170,6 +170,9 @@ namespace HDProjectWeb.Controllers
             string coduser = servicioUsuario.ObtenerCodUsuario();
             string orden = await servicioEstandar.ObtenerOrden();
             int epkUser = await servicioUsuario.ObtenerEpkUsuario(coduser);
+            if(epkUser <0){
+                return RedirectToAction("NoEncontrado","Home");
+            }
             string periodo = await servicioEstandar.ObtenerPeriodo();
             ViewBag.periodo =  periodo.Remove(4,2)+"-"+periodo.Remove(0,4);         
             var rQCompra   = await repositorioRQCompra.Obtener(periodo,paginacionViewModel,epkUser, orden,  estado1, estado2);
