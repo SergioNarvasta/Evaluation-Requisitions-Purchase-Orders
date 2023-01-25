@@ -82,6 +82,7 @@ namespace HDProjectWeb.Services
             else
                 return orden;
         }
+
         public async Task ActualizaOrden(string orden)
         {
             string codUser = servicioUsuario.ObtenerCodUsuario();
@@ -89,37 +90,44 @@ namespace HDProjectWeb.Services
             await connection.ExecuteAsync(@"UPDATE AspNetUsers SET ActiveOrder = @orden 
                      WHERE Email = @CodUser", new { codUser, orden });
         }
+
         public string Compañia()
         {
             string cia = "01";
             return cia; 
         }
+
         public int TipoInventario()
         {
             int Tin = 2;
             return Tin;
         }
+
         public string ObtenerCompañia(string codcia)
         {
             using var connection = new SqlConnection(connectionString);
             return  connection.QuerySingle<string>(@"SELECT CIA_NOMCIA 
                    FROM COMPANIA_CIA WHERE CIA_CODCIA = @codcia",new {codcia});
         }
+
         public string Sucursal()
         {
             string suc = "01";
             return suc;
         }
+
         public string Mes()
         {
             string mes =  DateTime.Now.Month.ToString();
             return mes;
         }
+
         public string Ano()
         {
             string ano = DateTime.Now.Year.ToString();
             return ano;
         }
+        
         public async Task<int> GeneraRco_Codepk()
         {
             using var connection = new SqlConnection(connectionString);

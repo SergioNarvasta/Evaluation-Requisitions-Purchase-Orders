@@ -144,6 +144,5 @@ namespace HDProjectWeb.Services
             return await connection.QuerySingleAsync<int>(@" PA_WEB_RQ_Devuelve
                  @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumRQ=@epk, @p_CodUsr=@uap ", new { cia, suc, epk, uap });
         }
-
     }
 }
