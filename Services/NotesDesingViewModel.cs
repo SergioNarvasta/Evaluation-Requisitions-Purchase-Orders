@@ -3,6 +3,9 @@
     public class NotesDesingViewModel
     {
         /*https://www.youtube.com/watch?v=PUK2w2bDnuA
+         * 
+         * GESTION DE USUARIOS UAP
+         * GESTION DE PERFILES DE USUARIOS
           {}
         -- INPUT PARA SUBIR ARCHIVO 
         <div class="form-group" style="width:300px">               

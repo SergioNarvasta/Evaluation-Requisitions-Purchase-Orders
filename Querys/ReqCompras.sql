@@ -94,29 +94,47 @@ GO
 
 ALTER PROCEDURE PA_WEB_ReqCompra_Inserta  @cia_codcia char(2),@suc_codsuc char(2),@rco_codepk int,@rco_numrco char(10),@tin_codtin smallint, @rco_motivo varchar(200),@rco_glorco varchar(200),
 @cco_codepk smallint, @rco_sitrco char(1), @rco_codusu varchar(30),@ung_codepk smallint,  @rco_indval smallint, @rco_indest smallint, @rco_rembls char(1),  @rco_presup char(1), @rco_priori char(1),
-@tre_codepk smallint ,@rco_estado varchar(1),@dis_codepk smallint,@uap_codepk int,@occ_codepk int
+@tre_codepk smallint ,@rco_estado varchar(1),@dis_codepk smallint,@uap_codepk int,@occ_codepk int,
 
+@rcd_corite char(10),  @prd_codepk int, @rcd_desprd varchar(50),@rcd_glorcd varchar(50) ,@rcd_canate numeric(10,2),@ccr_codepk int ,@ume_codepk int ,
 
+ @rcf_corite1 char(10) ,@rcf_codarc1 char(30) ,@rcf_nomarc1 varchar(30),@rcf_file1 varchar(MAX),
+ @rcf_corite2 char(10) ,@rcf_codarc2 char(30) ,@rcf_nomarc2 varchar(30),@rcf_file2 varchar(MAX),
+ @s_mensaje varchar(50)
 AS
 INSERT INTO REQ_REQUI_COMPRA_RCO(cia_codcia,suc_codsuc,rco_codepk,rco_numrco,tin_codtin,rco_fecreg,rco_motivo,rco_glorco,cco_codepk,rco_sitrco,ano_codano,mes_codmes,rco_codusu,ung_codepk,rco_indval,rco_rembls,rco_presup,rco_priori,tre_codepk,rco_estado,dis_codepk,uap_codepk,occ_codepk) 
 VALUES(@cia_codcia,@suc_codsuc,@rco_codepk,@rco_numrco,@tin_codtin,GETDATE(),@rco_motivo,@rco_glorco,@cco_codepk, @rco_sitrco,CAST(YEAR(GETDATE()) AS CHAR(4)),CAST(MONTH(GETDATE()) AS CHAR(2)), @rco_codusu,@ung_codepk,@rco_indval, @rco_rembls, @rco_presup,@rco_priori,@tre_codepk,@rco_estado,@dis_codepk,@uap_codepk,@occ_codepk)
+If @@ERROR <> 0 
+Begin
+	Set @s_mensaje = 'Error al Insertar datos en REQ_REQUI_COMPRA_RCO ' 
+	Raiserror(@s_mensaje,16,1)
+	Select -1 as Cod_Resultado, @s_Mensaje as Des_Resultado
+	Return -1
+End
+INSERT INTO REQ_REQUI_COMPRA_RCD (rco_codepk,cia_codcia,suc_codsuc,rcd_corite,prd_codepk,rcd_desprd,rcd_glorcd,rcd_canate) VALUES(@rco_codepk,@cia_codcia,@suc_codsuc,@rcd_corite,@prd_codepk,@rcd_desprd,@rcd_glorcd,@rcd_canate)
+If @@ERROR <> 0 
+Begin
+	Set @s_mensaje = 'Error al Insertar datos en REQ_REQUI_COMPRA_RCD '
+	Raiserror(@s_mensaje,16,1)
+	Select -2 as Cod_Resultado, @s_Mensaje as Des_Resultado
+	Return -2
+End
+INSERT INTO REQ_REQUI_FILES_RCF(rco_codepk,cia_codcia,rcf_corite,rcf_codarc,rcf_nomarc,rcf_file)VALUES(@rco_codepk,@cia_codcia,@rcf_corite1,@rcf_codarc1,@rcf_nomarc1,@rcf_file1);
+INSERT INTO REQ_REQUI_FILES_RCF(rco_codepk,cia_codcia,rcf_corite,rcf_codarc,rcf_nomarc,rcf_file)VALUES(@rco_codepk,@cia_codcia,@rcf_corite1,@rcf_codarc1,@rcf_nomarc1,@rcf_file1);
+If @@ERROR <> 0 
+Begin
+	Set @s_mensaje = 'Error al Insertar datos en REQ_REQUI_FILES_RCF '
+	Raiserror(@s_mensaje,16,1)
+	Select -3 as Cod_Resultado, @s_Mensaje as Des_Resultado
+	Return -3
+End
+Select 1 as Cod_Resultado, 'Registro con exito' as Des_Resultado
 GO
 
 EXEC PA_WEB_ReqCompra_Inserta @cia_codcia = @cia_codcia ,@suc_codsuc = @suc_codsuc,@rco_codepk = @rco_codepk,@rco_numrco = @rco_numrco ,@tin_codtin = @tin_codtin,@rco_motivo = @rco_motivo,@rco_glorco = @rco_glorco,
 @cco_codepk = @cco_codepk, @rco_sitrco = @rco_sitrco, @rco_codusu = @rco_codusu,@ung_codepk = @ung_codepk, @rco_indval = @rco_indval, @rco_indest =  @rco_indest, @rco_rembls = @rco_rembls, @rco_presup = @rco_presup,
 @rco_priori = @rco_priori, @tre_codepk = @tre_codepk, @rco_estado = @rco_estado, @dis_codepk = @dis_codepk,@s10_codepk = @s10_codepk, @occ_codepk = @occ_codepk,
 GO
-EXEC PA_WEB_ReqCompra_Inserta @cia_codcia = @cia_codcia, @suc_codsuc = @suc_codsuc, @rco_codepk = @Rco_codepk,
-              @rco_numrco = @Rco_numero, @tin_codtin = @tin_codtin, @rco_motivo = @rco_motivo, @rco_glorco = @rco_glorco,
-              @cco_codepk = @cco_codepk, @rco_sitrco = @rco_sitrco, @rco_codusu = @rco_codusu, @ung_codepk = @ung_codepk, @rco_indval = @rco_indval,
-              @rco_indest = @rco_indest, @rco_rembls = @rco_rembls, @rco_presup = @rco_presup, @rco_priori = @rco_priori, @tre_codepk = @tre_codepk,
-              @rco_estado = @rco_estado, @dis_codepk = @dis_codepk, @uap_codepk = @uap_codepk, @occ_codepk = @occ_codepk,
-
-              @rcd_corite = @DPrd_item,  @prd_codepk = @DPrd_codigo, @rcd_desprd = @DPrd_descri,@rcd_glorcd = @DPrd_glosa ,@rcd_canate=@DPrd_cantidad,
-              @ccr_codepk = @DPrd_codprov,@ume_codepk = @DPrd_unidad ,
-
-              @rcf_corite1= @DFi_item1 ,@rcf_codarc1 = @DFi_cod1 ,@rcf_nomarc1 = @DFi_nom1,@rcf_file1 = @DFi_fil1,
-              @rcf_corite2= @DFi_item2 ,@rcf_codarc2 = @DFi_cod2 ,@rcf_nomarc2 = @DFi_nom2,@rcf_file2 = @DFi_fil2
 
 --ENVIAR INT EN  [dbo].[PA_WEB_OC_Aprueba] @p_CodCia as Smallint, @p_CodSuc as Smallint, @p_NumOC as int, @p_CodUsr as int
 GO
@@ -145,6 +163,7 @@ SELECT rco_sitrco,*FROM REQ_REQUI_COMPRA_RCO
 SELECT*FROM V_WEB_REQCOMPRAS_Index 
 SELECT*FROM REQ_APROB_REQCOM_ARC
 SELECT*FROM REQ_USERS_APROBADORES_UAP
+INSERT INTO REQ_USERS_APROBADORES_UAP(cia_codcia,uap_descor,uap_estado,uap_nivusu,uap_coduap)VALUES(1,'SNarvasta','1','1','EMP001')
 GO
 --EJECUTA APROBACION
 EXEC PA_WEB_RQ_Rechaza @p_CodCia = 1, @p_CodSuc =1, @p_NumRQ =20221201, @p_CodUsr =44 ,@p_Motivo='Rechazo Prueba' 
@@ -215,16 +234,6 @@ FROM REQ_TIPO_REQUISICION_TRE WHERE cia_codcia=1 and tre_estado=1
 
 SELECT ung_codepk as codigo,ung_deslar as descri 
 FROM UNID_NEGOCIO_UNG WHERE cia_codcia=1 and ung_estado=1
-
-SELECT*FROM REQ_REQUI_COMPRA_RCD
-
-SELECT*FROM REQ_REQUI_FILES_RCF
-INSERT INTO REQ_REQUI_FILES_RCF(cia_codcia,suc_codsuc,rco_codepk,rcf_corite,rcf_codarc,rcf_nomarc,rcf_file,rcf_estado)VALUES()
-
-SELECT pry_codepk,pry_codpry,pry_deslar  
-FROM PROYECTOS_PRY 
-WHERE CIA_CODCIA =1 AND pry_estado=1
-
 
 --Codigo de Archivo 
 --Vista Result poner boton volver a panel
