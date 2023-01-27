@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using System;
 
 namespace HDProjectWeb.Services
 {
@@ -32,11 +33,11 @@ namespace HDProjectWeb.Services
         {
             string codUser = servicioUsuario.ObtenerCodUsuario();
             int mes = DateTime.Now.Month;
-            int ano = DateTime.Now.Year;
-            string periodo = ano.ToString() + mes.ToString();
+            int ano = DateTime.Now.Year ;
+            string periodo = string.Concat(ano.ToString(), ("00"+mes.ToString()).AsSpan(0,2));
             using var connection = new SqlConnection(connectionString);
             await connection.ExecuteAsync(@"UPDATE AspNetUsers SET ActivePeriod = @periodo 
-                     WHERE Email = @CodUser", new { codUser,periodo });
+                     WHERE Email = @CodUser", new { codUser, periodo });
         }
         public async Task<string> ObtenerPeriodo()
         {

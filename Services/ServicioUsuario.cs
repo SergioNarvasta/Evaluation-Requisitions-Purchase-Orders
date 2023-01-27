@@ -53,7 +53,6 @@ namespace HDProjectWeb.Services
         }
         public async Task<int> RegistraUsuario_UAP()
         { 
-
             Random r = new Random();
             string nom; int cia = 1; int suc=1; string est = "1"; string niv = "1";string cod;
             cod = string.Concat("EMP", r.Next(123456789,999999999).ToString().AsSpan(1,7));
@@ -61,13 +60,13 @@ namespace HDProjectWeb.Services
             using var connection = new SqlConnection(connectionString);
             return await connection.QuerySingleAsync<int>(@"INSERT INTO REQ_USERS_APROBADORES_UAP(cia_codcia,uap_descor,uap_estado,uap_nivusu,uap_coduap)
                           VALUES(@cia, @nom, @est, @niv, @cod);
-                          SELECT SCOPE_IDENTITY()", new { cia,suc,nom,est,niv,cod });
+                          SELECT SCOPE_IDENTITY()", new { cia, suc, nom, est, niv, cod });
         }
         public async Task<string> ObtenerNombreUsuario(string CodUser)
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.QuerySingleAsync<string>(@"SELECT A.UAP_DESLAR FROM REQ_USERS_APROBADORES_UAP A                                
-                                     WHERE A.uap_codemp = @CodUser OR A.uap_deslar= @CodUser OR A.uap_nombre =@CodUser ", new { CodUser });
+            return await connection.QuerySingleAsync<string>(@"SELECT A.UAP_DESCOR FROM REQ_USERS_APROBADORES_UAP A                                
+                                     WHERE A.uap_coduap = @CodUser OR A.uap_deslar= @CodUser OR A.uap_descor =@CodUser ", new { CodUser });
         }
     }
 }

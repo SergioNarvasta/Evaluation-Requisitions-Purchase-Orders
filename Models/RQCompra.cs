@@ -73,7 +73,7 @@ namespace HDProjectWeb.Models
 
         public int Uap_codepk { get; set; } //User solicita
         public string Uap_deslar { get; set; }
-        public string Uap_codemp { get; set; }
+        public string Uap_coduap { get; set; }
 
         [Required(ErrorMessage = "**")]
         public int Occ_codepk { get; set; }
