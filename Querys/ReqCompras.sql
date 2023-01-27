@@ -1,14 +1,15 @@
-USE DRA_V22
+USE NBG_V21
 
 SELECT*FROM REQ_USERS_APROBADORES_UAP
 
-ALTER VIEW V_WEB_REQCOMPRAS_Index 
+CREATE VIEW V_WEB_REQCOMPRAS_Index 
 AS
 Select          A.rco_codepk ,a.rco_numrco,
                 a.rco_numrco as Rco_Numero,             
             	a.rco_fecreg as Rco_Fec_Registro, 
             	Isnull(rtrim(F.uap_deslar),'') as Usuario_Aprueba,
-            	Isnull(rtrim(G.S10_NOMUSU),'') as User_Solicita,uap_deslar ,uap_codemp,
+            	Isnull(rtrim(A.rco_codusu),'') as User_Solicita,
+				uap_deslar ,uap_coduap,
             	a.rco_motivo as Rco_Motivo,
             	rtrim(b.ung_deslar) as U_Negocio,b.ung_codepk ,
             	rtrim(C.cco_codcco) + '-' + rtrim(C.cco_descco) as Centro_Costo, C.cco_codepk,C.cco_codcco,C.cco_descco,
@@ -45,7 +46,7 @@ Select          A.rco_codepk ,a.rco_numrco,
              Left Join CENT_COST_CCO       C on A.cia_codcia = C.cia_codcia and A.cco_codepk = C.cco_codepk
              Left Join DISCIPLINAS_DIS     E on A.cia_codcia = E.cia_codcia AND A.dis_codepk = E.dis_codepk
              LEFT JOIN REQ_USERS_APROBADORES_UAP F ON A.cia_codcia = F.cia_codcia AND A.uap_codepk = F.uap_codepk
-             LEFT JOIN  SYS_TABLA_USUARIOS_S10 G ON A.s10_codepk = G.s10_codepk
+             --LEFT JOIN  SYS_TABLA_USUARIOS_S10 G ON A.s10_codepk = G.s10_codepk
              Left Join REQ_TIPO_REQUISICION_TRE H On A.cia_codcia = H.cia_codcia And A.tre_codepk = H.tre_codepk
 			 LEFT JOIN OCOMPRA_OCC I ON A.cia_codcia=I.cia_codcia AND A.occ_codepk=I.occ_codepk
 GO
@@ -74,9 +75,9 @@ SELECT  B.rcd_corite as item ,L.prd_codprd as codigo,B.rcd_desprd as descri,B.rc
 	                                    WHERE A.rco_numrco =@Rco_numero
 --DETALLE ADJUNTOS
 
-SELECT rcf_corite as item ,rcf_nomarc as nombre,'' as archivo, rcf_codarc as codarchivo 
-FROM REQ_REQUI_FILES_RCF B LEFT JOIN REQ_REQUI_COMPRA_RCO A ON A.cia_codcia=B.cia_codcia AND A.rco_codepk=B.rco_codepk
-WHERE A.rco_numrco = ''
+SELECT rcf_corite as item ,rcf_nomarc as nombre,rcf_file as archivo, rcf_codarc as codarchivo 
+                     FROM REQ_REQUI_FILES_RCF B LEFT JOIN REQ_REQUI_COMPRA_RCO A ON A.cia_codcia=B.cia_codcia AND A.rco_codepk=B.rco_codepk
+                     WHERE A.rco_numrco =@Rco_numero
 --AYUDA CENTRO COSTO
 SELECT cco_codepk,CCO_CODCCO,cco_descco FROM CENT_COST_CCO 
                                                              WHERE CIA_CODCIA =1 AND cco_estado=1
@@ -84,37 +85,44 @@ SELECT cco_codepk,CCO_CODCCO,cco_descco FROM CENT_COST_CCO
 SELECT cia_codcia,dis_codepk,dis_nomlar FROM DISCIPLINAS_DIS 
                                                              WHERE cia_codcia=1 AND dis_estado =1
 --AYUDA USUARIOS
-SELECT DISTINCT AUX_CODAUX as Codigo,S10_NOMUSU as Descri 
-                                                   FROM SYS_TABLA_USUARIOS_S10 WHERE S10_INDEST=1 ORDER BY S10_NOMUSU
+Select uap_coduap as codigo, uap_deslar as descri 
+                          From REQ_USERS_APROBADORES_UAP
+                          Where cia_codcia=1 ORDER BY UAP_DESLAR
+GO
+
+/*---------------------------------------------------------------------*/
 
 ALTER PROCEDURE PA_WEB_ReqCompra_Inserta  @cia_codcia char(2),@suc_codsuc char(2),@rco_codepk int,@rco_numrco char(10),@tin_codtin smallint, @rco_motivo varchar(200),@rco_glorco varchar(200),
 @cco_codepk smallint, @rco_sitrco char(1), @rco_codusu varchar(30),@ung_codepk smallint,  @rco_indval smallint, @rco_indest smallint, @rco_rembls char(1),  @rco_presup char(1), @rco_priori char(1),
-@tre_codepk smallint ,@rco_estado varchar(1),@dis_codepk smallint,@s10_codepk int,@occ_codepk int
+@tre_codepk smallint ,@rco_estado varchar(1),@dis_codepk smallint,@uap_codepk int,@occ_codepk int
+
+
 AS
-INSERT INTO REQ_REQUI_COMPRA_RCO(cia_codcia,suc_codsuc,rco_codepk,rco_numrco,tin_codtin,rco_fecreg,rco_motivo,rco_glorco,cco_codepk,rco_sitrco,ano_codano,mes_codmes,rco_codusu,ung_codepk,rco_indval,rco_rembls,rco_presup,rco_priori,tre_codepk,rco_estado,dis_codepk,s10_codepk,occ_codepk) 
-VALUES(@cia_codcia,@suc_codsuc,@rco_codepk,@rco_numrco,@tin_codtin,GETDATE(),@rco_motivo,@rco_glorco,@cco_codepk, @rco_sitrco,CAST(YEAR(GETDATE()) AS CHAR(4)),CAST(MONTH(GETDATE()) AS CHAR(2)), @rco_codusu,@ung_codepk,@rco_indval, @rco_rembls, @rco_presup,@rco_priori,@tre_codepk,@rco_estado,@dis_codepk,@s10_codepk,@occ_codepk)
+INSERT INTO REQ_REQUI_COMPRA_RCO(cia_codcia,suc_codsuc,rco_codepk,rco_numrco,tin_codtin,rco_fecreg,rco_motivo,rco_glorco,cco_codepk,rco_sitrco,ano_codano,mes_codmes,rco_codusu,ung_codepk,rco_indval,rco_rembls,rco_presup,rco_priori,tre_codepk,rco_estado,dis_codepk,uap_codepk,occ_codepk) 
+VALUES(@cia_codcia,@suc_codsuc,@rco_codepk,@rco_numrco,@tin_codtin,GETDATE(),@rco_motivo,@rco_glorco,@cco_codepk, @rco_sitrco,CAST(YEAR(GETDATE()) AS CHAR(4)),CAST(MONTH(GETDATE()) AS CHAR(2)), @rco_codusu,@ung_codepk,@rco_indval, @rco_rembls, @rco_presup,@rco_priori,@tre_codepk,@rco_estado,@dis_codepk,@uap_codepk,@occ_codepk)
 GO
 
 EXEC PA_WEB_ReqCompra_Inserta @cia_codcia = @cia_codcia ,@suc_codsuc = @suc_codsuc,@rco_codepk = @rco_codepk,@rco_numrco = @rco_numrco ,@tin_codtin = @tin_codtin,@rco_motivo = @rco_motivo,@rco_glorco = @rco_glorco,
 @cco_codepk = @cco_codepk, @rco_sitrco = @rco_sitrco, @rco_codusu = @rco_codusu,@ung_codepk = @ung_codepk, @rco_indval = @rco_indval, @rco_indest =  @rco_indest, @rco_rembls = @rco_rembls, @rco_presup = @rco_presup,
 @rco_priori = @rco_priori, @tre_codepk = @tre_codepk, @rco_estado = @rco_estado, @dis_codepk = @dis_codepk,@s10_codepk = @s10_codepk, @occ_codepk = @occ_codepk,
 GO
+EXEC PA_WEB_ReqCompra_Inserta @cia_codcia = @cia_codcia, @suc_codsuc = @suc_codsuc, @rco_codepk = @Rco_codepk,
+              @rco_numrco = @Rco_numero, @tin_codtin = @tin_codtin, @rco_motivo = @rco_motivo, @rco_glorco = @rco_glorco,
+              @cco_codepk = @cco_codepk, @rco_sitrco = @rco_sitrco, @rco_codusu = @rco_codusu, @ung_codepk = @ung_codepk, @rco_indval = @rco_indval,
+              @rco_indest = @rco_indest, @rco_rembls = @rco_rembls, @rco_presup = @rco_presup, @rco_priori = @rco_priori, @tre_codepk = @tre_codepk,
+              @rco_estado = @rco_estado, @dis_codepk = @dis_codepk, @uap_codepk = @uap_codepk, @occ_codepk = @occ_codepk,
 
-SELECT* FROM SYS_TABLA_USUARIOS_S10
-SELECT* FROM AspNetUsers
-SELECT * FROM REQ_REQUI_COMPRA_RCO
-SELECT S10_CODEPK,* FROM SYS_TABLA_USUARIOS_S10 A LEFT JOIN AspNetUsers B ON A.S10_USUARIO = B.UserName @NomUser
---INSERTA USUARIOS EN S10 
-INSERT INTO SYS_TABLA_USUARIOS_S10(S10_USUARIO,S10_NOMUSU,S10_NOMCOR,S10_NIVUSU,S10_PASSWO) VALUES(@usu,@nom,@nomcor,@nivusu,@psd);
-SELECT SCOPE_IDENTITY()
+              @rcd_corite = @DPrd_item,  @prd_codepk = @DPrd_codigo, @rcd_desprd = @DPrd_descri,@rcd_glorcd = @DPrd_glosa ,@rcd_canate=@DPrd_cantidad,
+              @ccr_codepk = @DPrd_codprov,@ume_codepk = @DPrd_unidad ,
 
-SELECT*FROM V_WEB_REQCOMPRAS_Index
+              @rcf_corite1= @DFi_item1 ,@rcf_codarc1 = @DFi_cod1 ,@rcf_nomarc1 = @DFi_nom1,@rcf_file1 = @DFi_fil1,
+              @rcf_corite2= @DFi_item2 ,@rcf_codarc2 = @DFi_cod2 ,@rcf_nomarc2 = @DFi_nom2,@rcf_file2 = @DFi_fil2
 
 --ENVIAR INT EN  [dbo].[PA_WEB_OC_Aprueba] @p_CodCia as Smallint, @p_CodSuc as Smallint, @p_NumOC as int, @p_CodUsr as int
 GO
-USE DRA_V22
+USE NBG_V21
 --CREAR TABLA REQ_COMP
-ALTER TABLE [dbo].[REQ_APROB_REQCOM_ARC] (
+CREATE TABLE [dbo].[REQ_APROB_REQCOM_ARC] (
     [arc_codepk]  INT         PRIMARY KEY IDENTITY (1, 1) NOT NULL,
     [cia_codcia]  SMALLINT     NOT NULL,
     [suc_codsuc]  SMALLINT     NOT NULL,
@@ -171,31 +179,29 @@ LEFT JOIN UMEDIDA_UME K ON A.cia_codcia=K.cia_codcia AND B.ume_codepk=K.ume_code
 LEFT JOIN PRODUCTOS_PRD L ON B.cia_codcia=L.cia_codcia AND B.prd_codepk=L.prd_codepk
 WHERE A.rco_numrco =@Rco_numero
 
-SELECT*FROM REQ_REQUI_COMPRA_RCD
-DELETE FROM REQ_REQUI_COMPRA_RCO WHERE rco_numrco = 'RQ3344'
+
 GO
-INSERT INTO REQ_REQUI_COMPRA_RCO(cia_codcia, suc_codsuc, rco_codepk, rco_numrco, tin_codtin) VALUES(1, 1, 1,'RQ3344',2)
-GO
-EXEC PA_WEB_ReqCompra_Inserta '01','01',2023011001,'RQ555544',1,'Prueba de Insercion con Detalle','Prueba HD',0,'1','Sistemas',1,1,1,1,0,1,1,'1',1,44,0,  '001','2','oficina','detalle','15','44','1'
+--EJECUTA ESTORE INSERTA REQCOMPRA
+EXEC PA_WEB_ReqCompra_Inserta '01','01',2023011001,'RQ555544',1,'Prueba de Insercion con PA_WEB_ReqCompra_Inserta','Prueba HD',
+      0,'1','Sistemas',1,1,1,1,1,1,'1',1,44,0,1    --DetallePrd  '001','2','oficina','detalle','15','44','1'
 
 --'01','01',2023011001,'RQ555544',1,'Prueba de Insercion con Detalle','Prueba HD',0,'1','Sistemas',1,1,1,1,0,1,1,'1',1,44,0,  '001','2','Producto de oficina','detalle','15','44','1'
 
-		
-		
+
 		SELECT*FROM V_WEB_REQCOMPRAS_Index
                 Where cia=1 AND suc=1 AND periodo =202301 AND uap_codepk = 44  AND estado in(1,1)
                 ORDER BY Rco_Numero DESC 
 				SELECT*FROM REQ_REQUI_COMPRA_RCD 
 
-				SELECT  B.rcd_corite as item ,L.prd_codprd as codigo,B.rcd_desprd as descri,B.rcd_glorcd as glosa,K.ume_codume as unidad,
-	                                    rcd_canate as cantidad,Isnull(J.ccr_codccr,'000001') as codprov, J.ccr_nomaux as nomprov
-	                                    FROM REQ_REQUI_COMPRA_RCO A
-	                                    LEFT JOIN REQ_REQUI_COMPRA_RCD B ON A.cia_codcia=B.cia_codcia AND A.suc_codsuc=B.suc_codsuc AND A.rco_codepk=B.rco_codepk
-	                                    Left Join OCOMPRA_OCC I on a.cia_codcia=i.CIA_CODCIA and a.suc_codsuc=i.suc_codsuc and A.occ_codepk =I.occ_codepk
-                                        Left Join CUEN_CORR_CCR J on i.cia_codcia=j.CIA_CODCIA and i.ccr_codepk=j.ccr_codepk
-										LEFT JOIN UMEDIDA_UME K ON A.cia_codcia=K.cia_codcia AND B.ume_codepk=K.ume_codepk
-										LEFT JOIN PRODUCTOS_PRD L ON A.cia_codcia=L.cia_codcia AND B.prd_codepk=L.prd_codepk
-	                                    WHERE A.rco_numrco ='RQ89888889'
+	SELECT  B.rcd_corite as item ,L.prd_codprd as codigo,B.rcd_desprd as descri,B.rcd_glorcd as glosa,K.ume_codume as unidad,
+	    rcd_canate as cantidad,Isnull(J.ccr_codccr,'000001') as codprov, J.ccr_nomaux as nomprov
+	    FROM REQ_REQUI_COMPRA_RCO A
+	    LEFT JOIN REQ_REQUI_COMPRA_RCD B ON A.cia_codcia=B.cia_codcia AND A.suc_codsuc=B.suc_codsuc AND A.rco_codepk=B.rco_codepk
+	    Left Join OCOMPRA_OCC I on a.cia_codcia=i.CIA_CODCIA and a.suc_codsuc=i.suc_codsuc and A.occ_codepk =I.occ_codepk
+        Left Join CUEN_CORR_CCR J on i.cia_codcia=j.CIA_CODCIA and i.ccr_codepk=j.ccr_codepk
+		LEFT JOIN UMEDIDA_UME K ON A.cia_codcia=K.cia_codcia AND B.ume_codepk=K.ume_codepk
+		LEFT JOIN PRODUCTOS_PRD L ON A.cia_codcia=L.cia_codcia AND B.prd_codepk=L.prd_codepk
+	                           WHERE A.rco_numrco ='RQ89888889'
 
 -- Corregir la asignacion a s10_usuario
 -- Obtener Detalle Productos por Epk
@@ -203,7 +209,7 @@ EXEC PA_WEB_ReqCompra_Inserta '01','01',2023011001,'RQ555544',1,'Prueba de Inser
 --* View Crear Coloca Combos Automaticos (al cambiar2,3,4 y por default 1) Jquery
 --* Cargar combos tre y ung con componentes async   .NET
 --Validacion de Campos en Frontend
-
+GO
 SELECT tre_codepk as codigo,tre_deslar as descri 
 FROM REQ_TIPO_REQUISICION_TRE WHERE cia_codcia=1 and tre_estado=1
 

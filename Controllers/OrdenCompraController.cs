@@ -19,7 +19,7 @@ namespace ProjectWeb_DRA.Controllers
             this.servicioEstandar       = servicioEstandar;
             this.repositorioOrdenCompra = repositorioOrdenCompra;
             this.servicioUsuario        = servicioUsuario;   
-        }       
+        }
 
         [Authorize]
         [HttpGet]

@@ -11312,23 +11312,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\snarvasta\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\MI PC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\ProjectWeb_DRA.csproj",
+      "projectUniqueName": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\ProjectWeb_DRA.csproj",
       "projectName": "ProjectWeb_DRA",
-      "projectPath": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\ProjectWeb_DRA.csproj",
-      "packagesPath": "C:\\Users\\snarvasta\\.nuget\\packages\\",
-      "outputPath": "D:\\Docs_Sergio\\DRA\\ProjectWeb_DRA\\obj\\",
+      "projectPath": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\ProjectWeb_DRA.csproj",
+      "packagesPath": "C:\\Users\\MI PC\\.nuget\\packages\\",
+      "outputPath": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\snarvasta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\MI PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11420,7 +11416,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
