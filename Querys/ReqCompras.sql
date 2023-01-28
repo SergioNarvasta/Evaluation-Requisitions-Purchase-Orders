@@ -99,9 +99,10 @@ ALTER PROCEDURE PA_WEB_ReqCompra_Inserta  @cia_codcia char(2),@suc_codsuc char(2
 @rcd_corite char(10),  @prd_codepk int, @rcd_desprd varchar(50),@rcd_glorcd varchar(50) ,@rcd_canate numeric(10,2),@ccr_codepk int ,@ume_codepk int ,
 
  @rcf_corite1 char(10) ,@rcf_codarc1 char(30) ,@rcf_nomarc1 varchar(30),@rcf_file1 varchar(MAX),
- @rcf_corite2 char(10) ,@rcf_codarc2 char(30) ,@rcf_nomarc2 varchar(30),@rcf_file2 varchar(MAX),
- @s_mensaje varchar(50)
+ @rcf_corite2 char(10) ,@rcf_codarc2 char(30) ,@rcf_nomarc2 varchar(30),@rcf_file2 varchar(MAX)
+
 AS
+Declare @s_mensaje Varchar(200)
 INSERT INTO REQ_REQUI_COMPRA_RCO(cia_codcia,suc_codsuc,rco_codepk,rco_numrco,tin_codtin,rco_fecreg,rco_motivo,rco_glorco,cco_codepk,rco_sitrco,ano_codano,mes_codmes,rco_codusu,ung_codepk,rco_indval,rco_rembls,rco_presup,rco_priori,tre_codepk,rco_estado,dis_codepk,uap_codepk,occ_codepk) 
 VALUES(@cia_codcia,@suc_codsuc,@rco_codepk,@rco_numrco,@tin_codtin,GETDATE(),@rco_motivo,@rco_glorco,@cco_codepk, @rco_sitrco,CAST(YEAR(GETDATE()) AS CHAR(4)),CAST(MONTH(GETDATE()) AS CHAR(2)), @rco_codusu,@ung_codepk,@rco_indval, @rco_rembls, @rco_presup,@rco_priori,@tre_codepk,@rco_estado,@dis_codepk,@uap_codepk,@occ_codepk)
 If @@ERROR <> 0 
