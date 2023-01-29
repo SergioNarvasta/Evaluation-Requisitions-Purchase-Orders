@@ -1,10 +1,10 @@
-IF EXISTS ( SELECT name FROM sysdatabases WHERE name = 'ParkingSystem' )
-	DROP DATABASE ParkingSystem
+IF EXISTS ( SELECT name FROM sysdatabases WHERE name = 'dbparqueo' )
+	DROP DATABASE dbparqueo
 GO
 
-CREATE DATABASE ParkingSystem
+CREATE DATABASE dbparqueo
 GO
-USE ParkingSystem
+USE dbparqueo
 GO
 
 CREATE TABLE Cliente
