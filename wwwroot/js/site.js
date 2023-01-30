@@ -370,15 +370,20 @@ function ArchivoCargadoExito2(){
 
 // MOSTRAR ARCHIVO BASE 64 A PDF 
 function MostrarArchivo001(){
-var data = document.getElementById('Fileb64001').value;
+
+let data2 = $("#Fileb64001").text();
+console.log(data2);
+
+let data = document.getElementById('Fileb64001').value;
 
 const blob = this.dataURItoBlob(data);
 const url = URL.createObjectURL(blob);
 // Abre el pdf en una nueva pestaña
 window.open(url, '_blank');
+
 }
 function MostrarArchivo002(){
-    var data = document.getElementById('Fileb64002').value;
+    let data = document.getElementById('Fileb64002').value;
     
     const blob = this.dataURItoBlob(data);
     const url = URL.createObjectURL(blob);
