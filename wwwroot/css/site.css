@@ -46,3 +46,17 @@ body {
   background-color: cornsilk;
 }
 
+#btn_registrar{
+  display: none;
+}
+#input_motivo{
+  border: 1px solid white;
+}
+#over{
+  margin-top: -30px;
+  width: 250px;
+  height: 30px;
+  position: absolute;
+  background-color: white;
+}
+

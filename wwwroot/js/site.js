@@ -152,16 +152,37 @@ function agregarFila() {
     $('#tblProductos tbody').append(fila);  
 }
 function colocaObjPrd() {
-    document.getElementById("DPrd_item").value = document.getElementById("input_DPrd_item").value; 
-    document.getElementById("DPrd_descri").value = document.getElementById("input_DPrd_descri").value; 
-    document.getElementById("DPrd_cod").value = document.getElementById("input_DPrd_cod").value; 
-    document.getElementById("DPrd_glosa").value = document.getElementById("input_DPrd_glosa").value; 
-    document.getElementById("DPrd_unidad").value = document.getElementById("input_DPrd_unidad").value; 
+    document.getElementById("DPrd_item").value     = document.getElementById("input_DPrd_item").value; 
+    document.getElementById("DPrd_descri").value   = document.getElementById("input_DPrd_descri").value; 
+    document.getElementById("DPrd_cod").value      = document.getElementById("input_DPrd_cod").value; 
+    document.getElementById("DPrd_glosa").value    = document.getElementById("input_DPrd_glosa").value; 
+    document.getElementById("DPrd_unidad").value   = document.getElementById("input_DPrd_unidad").value; 
     document.getElementById("DPrd_cantidad").value = document.getElementById("input_DPrd_cantidad").value; 
-    document.getElementById("DPrd_codprov").value = document.getElementById("input_DPrd_codprov").value; 
+    document.getElementById("DPrd_codprov").value  = document.getElementById("input_DPrd_codprov").value; 
     console.log("Event Onfocus");
 }
-
+function validaForm(){
+    let motivo = document.getElementById('txa_motivo').value;
+    if(motivo.length == 0){
+        alert("Ingrese un motivo !");
+    }
+    let cco = document.getElementById('input_cod_cco').value;
+    if(cco.length == 0){
+        alert("Seleccione un Centro de Costo !");
+    }
+    let dis = document.getElementById('input_cod_disci').value;
+    if(dis.length == 0){
+        alert("Seleccione una disciplina !");
+    }
+    let occ = document.getElementById('input_occ').value;
+    if(occ.length == 0){
+        alert("Ingrese una Orden de Compra !");
+    }
+    $('#input_motivo').val(motivo);
+    colocaObjPrd();
+    $('#btn_registrar').click();
+}
+//XXXXXXXXXXXXXXXXXX//
 function RegistraDetalle() {
     var url = '@Url.Action("DetReq", "RQCompra")';
     $.ajax({
@@ -176,7 +197,7 @@ function RegistraDetalle() {
         }
     });
 }
-
+//XXXXXXXXXXXXXXXXXX//
 //Agregar Items a Array
 $("#btn_registrar").on("click",function()
 {
@@ -232,13 +253,14 @@ $('#btn_adicionar_adj').on('click', function () {
     console.log("Objeto Activado :"+itemactivar);
 });
 
+
+//XXXXXXXXXX INICIO XXXXXXXX//
 const dropArea = document.getElementById("drop-area1");
 const dragText = dropArea.querySelector("p");
 const button = dropArea.querySelector('button');
 const input = dropArea.querySelector("#input-file");
 let files;
 //Eventos
-
 input.addEventListener("change", (e) => {
     files = this.files;
     dropArea.classList.add("active");
@@ -266,7 +288,6 @@ dropArea.addEventListener("drop", (e) => {
     dropArea.classList.remove("active");
     //dragText.textContent = "Arrastra y suelta archivo";
 });
-
 function showFiles(files) {
     if (files.length === undefined) {
         processFile(files);
@@ -317,6 +338,7 @@ function ArchivoCargadoExito(){
     }
 
 }
+//XXXXXXXXX  FIN    XXXXXXXXX//
 
 /*********************** */
 //Carga de archivo 1
