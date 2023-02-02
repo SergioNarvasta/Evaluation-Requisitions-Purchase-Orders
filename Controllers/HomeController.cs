@@ -21,8 +21,10 @@ namespace HDProjectWeb.Controllers
             ViewBag.periodo = servicioEstandar.ObtenerPeriodo();
             string cia = servicioEstandar.Compañia();
             string nomcia = servicioEstandar.ObtenerCompañia(cia);
-            ViewBag.nomcia = nomcia;
-                
+            
+            ViewBag.nomcia = nomcia ;
+
+
             return View();
         }
 

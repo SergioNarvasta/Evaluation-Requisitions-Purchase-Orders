@@ -3,6 +3,9 @@
     public class NotesDesingViewModel
     {
         /*https://www.youtube.com/watch?v=PUK2w2bDnuA
+         * 
+         * GESTION DE USUARIOS UAP
+         * GESTION DE PERFILES DE USUARIOS
           {}
         -- INPUT PARA SUBIR ARCHIVO 
         <div class="form-group" style="width:300px">               
@@ -26,8 +29,12 @@
            col-sm-4           ->> Ancho de objeto small
         <div class="form-group d-flex flex-row ms-xl-5"> Width en obj textbox
 
+<<<<<<< HEAD
+            </div>    
+=======
 
          
+>>>>>>> 97469aca08b1a1fa7fb83ca561d045261d40772b
          */
 
 
