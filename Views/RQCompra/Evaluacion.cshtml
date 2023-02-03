@@ -3,30 +3,31 @@
 @{
     ViewData["Title"] = " Evaluacion de Requisicion ";
 }
-<head>
-    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-</head>
-<h2 class="text-center">EVALUACION DE REQUISICION </h2> <br />
+<div class="d-inline-flex" >
+   <h2 style="width:700px" class="ms-5" >EVALUACION DE REQUISICION</h2>
+    <div class="mt-2" style="margin-left:200px">
+        <select asp-for="Rco_estado" id="cbo_estado" class="ms-2 me-2" disabled>
+            <option value="1">VIGENTE</option>
+            <option value="0">ANULADO</option>
+        </select>
+        <label><strong>Codigo Interno</strong></label> <input asp-for="CodInterno" class="ms-2" style="width:50px" disabled />
+    </div>
+</div>
 <div class="form-group d-flex flex-row mb-2 ms-4">
     <form asp-controller="RQCompra" asp-action="Aprobar" method="post">
         <input type="text" name="cia" value="@ViewBag.cia" style="display:none" />
-        <input type="text" name="suc" value="@ViewBag.suc" style="display:none" />
         <input type="text" name="usu" value="@ViewBag.usu" style="display:none" />
         <input type="text" name="epk" value="@ViewBag.epk" style="display:none" />
         <input type="text" name="num" value="@ViewBag.num" style="display:none" />
-        <button type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3 @( int.Parse(ViewBag.sit) >1 ? "disabled": null )">Aprobar</button>
+        <button type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3 @( ViewBag.sit <1 ? "disabled": null )">Aprobar</button>
     </form>
-
-    <button onclick="btn_abrir_modal_motivo()" type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3 @( int.Parse(ViewBag.sit) >1 ? "disabled": null )">Rechazar</button>
-   
+    <button onclick="btn_abrir_modal_motivo()" type="submit" class="btn btn-primary ms-3 me-3 @( ViewBag.sit <1 ? "disabled": null )" style="width:120px;height:37px">Rechazar</button>
     <form asp-controller="RQCompra" asp-action="Devolver" method="post">
         <input type="text" name="cia" value="@ViewBag.cia" style="display:none" />
-        <input type="text" name="suc" value="@ViewBag.suc" style="display:none" />
         <input type="text" name="usu" value="@ViewBag.usu" style="display:none" />
         <input type="text" name="epk" value="@ViewBag.epk" style="display:none" />
         <input type="text" name="num" value="@ViewBag.num" style="display:none" />
-        <button type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3">Devolver</button>
+        <button type="submit" style="width:120px;height:37px" class="btn btn-primary ms-3 me-3 @( ViewBag.sit <1 ? "disabled": null )">Devolver</button>
     </form>
 
     <button id="btn_abrir_modal_motivo" class="btn btn-outline-success" style="display:none" data-bs-toggle="modal" data-bs-target="#Modal_Mot">+</button>
@@ -39,7 +40,6 @@
                 <div class="modal-body">
                     <form asp-controller="RQCompra" asp-action="Rechazar" method="post">
                         <input type="text" name="cia" value="@ViewBag.cia" style="display:none" />
-                        <input type="text" name="suc" value="@ViewBag.suc" style="display:none" />
                         <input type="text" name="usu" value="@ViewBag.usu" style="display:none" />
                         <input type="text" name="epk" value="@ViewBag.epk" style="display:none" />
                         <input type="text" name="num" value="@ViewBag.num" style="display:none" />
@@ -53,189 +53,122 @@
             </div>
         </div>
     </div>
-</div>
+</div> <br />
 <div id="Box-Main">
     <div class="col-md-4">
-            <table id="Table-Main"> 
-                <tbody class="m-2">
-                    <!-- 1RA FILA HORIZONTAL-->
-                    <tr class="mb-5">
-                        <th class="col-sm-4">
-                            <div class="form-group d-flex flex-row me-2">
-                                <label class="me-2">Requerimien </label>
-                                <input asp-for="Rco_numero" class="form-control form-control-sm col-sm-4" style="width:325px" type="text" />
-                                <span asp-validation-for="Rco_numero" class="text-danger"></span>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="form-group d-flex flex-row ms-xl-5">
-                                <label class="ms-0">Fecha_Reg</label>
-                                <input asp-for="Rco_fec_registro" class="form-control form-control-sm ms-2" style="width:330px" />
-                                <span asp-validation-for="Rco_fec_registro" class="text-danger"></span>
-                            </div>
-                        </th>                        
-                        <th>
-                            <div class="d-flex flex-row ms-xl-5">
-                                <label>Estado </label>
-                                <select asp-for="Rco_estado" id="cbo_estado" class="ms-4" disabled>
-                                    <option value="1">VIGENTE</option>
-                                    <option value="0">ANULADO</option>
-                                </select>                  
-                            </div>
-                        </th>
-                        <th>
-                            <div class="d-flex flex-row ms-xl-5">
-                                <label>Tipo_Req </label>
-                                <select asp-for="Tre_codepk" id="cbo_tipo" class="ms-2" disabled>
-                                    <option value="1">COMPRA REGULAR</option>
-                                    
-                                </select>
-                            </div>
-                        </th>
-                        <th>
-                            
-                        </th>
-                    </tr>
-                    <!-- 2DA FILA HORIZONTAL-->
-                    <tr >
-                        <th>
-                             <div class="form-group d-flex flex-row ">
-                               <label >U.Negocio</label>
-                                <select asp-for="Ung_codepk" id="cbo_unegocio" class="ms-4" onclick="colocaUnegocio()" style="width:325px">
-                                    <option value="1">Administration   </option>
-                                    <option value="2">Business Development    </option>
-                                    <option value="3">Engineering  </option>
-                                    <option value="4">Finance  </option>
-                                </select>
-                             </div>
-                        </th>
-                        <th>
-                            <div class="form-group d-flex flex-row ms-5 me-5">
-                                <label class="control-label">C.Costo</label>
-                                <input id="input_epk_cco" asp-for="Cco_codepk" class="form-control form-control-sm col-sm-4 ms-4" style="width:60px;display:none" />
-                                <span asp-validation-for="Cco_codepk" class="text-danger"></span>
+        <div class="d-inline-flex">
+            
+            <div class="form-group d-flex flex-row me-2">
+                <label class="me-2 "><strong>Num_Requerimiento</strong> </label>
+                <input asp-for="Rco_numero" class="form-control form-control-sm col-sm-4" style="width:200px" type="text" />
+            </div>
+            <div class="form-group d-flex flex-row ms-xl-5">
+                <label><strong>Fecha_Registro</strong></label>
+                <input asp-for="Rco_fec_registro" class="form-control form-control-sm ms-2" style="width:330px" />  
+            </div>
+            <div class="d-flex flex-row ms-xl-5">
+                <label><strong>Tipo_Requerimiento</strong> </label>
+                <select asp-for="Tre_codepk" id="cbo_tipo" class="ms-2" disabled>
+                    <option value="1">COMPRA REGULAR</option>
+                </select>
+            </div>
+        </div> <br />
+        <div class="d-inline-flex">
+            <div style="width:500px">
+                <div class="form-group d-flex flex-row mt-3">
+                    <div style="width:130px"><label><strong>Empresa</strong></label> </div>
+                    <input class="ms-2" asp-for="Empresa" style="width:230px" disabled />
+                </div>
+                <div class="form-group d-flex flex-row mt-2">
+                    <div style="width:130px"><label class=" me-4"><strong>Solicitante</strong></label> </div>
+                    <input asp-for="Uap_codemp" class="form-control form-control-sm ms-2" style="width:90px" />
+                    <input asp-for="Uap_deslar" class="form-control form-control-sm ms-1" style="width:230px" />
+                </div>
+                <div class="form-group d-flex flex-row mt-2">
+                    <div style="width:130px"><label class=" me-4"><strong>Proyecto</strong></label> </div>
+                    <input asp-for="Uap_codemp" class="form-control form-control-sm ms-2" style="width:90px" />
+                    <input asp-for="Uap_deslar" class="form-control form-control-sm ms-1" style="width:230px" />
+                </div>
+                <div class="form-group d-flex flex-row mt-2">
+                    <div style="width:130px"><label><strong>Presupuestado</strong></label></div>
+                    <select asp-for="Rco_presup" class="ms-2" disabled>
+                        <option value="2"> SI </option>
+                        <option value="1"> NO </option>
+                    </select>
+                </div>
+                <div class="form-group d-flex flex-row mt-2">
+                    <div style="width:130px"><label><strong>Reembolsable</strong></label></div>
+                    <select asp-for="Rco_rembls" class="ms-2" disabled>
+                        <option value="2"> SI </option>
+                        <option value="1"> NO </option>
+                    </select>
+                </div>
+                <div class="form-group d-flex flex-row mt-2">
+                    <div style="width:130px"><label><strong>Motivo</strong></label></div>
+                    <textarea asp-for="Rco_motivo" class="form-control ms-2" style="height:80px;width:325px"></textarea>
+                </div>
+            </div>
 
-                                <input id="input_cod_cco" asp-for="Cco_codcco" class="form-control form-control-sm col-sm-4 ms-4" style="width:75px" />
-                                <span asp-validation-for="Cco_codcco" class="text-danger"></span>
-                                <input id="input_des_cco" type="text" asp-for="Cco_descco" style="width:255px" class="form-control ms-1"/>
-                                <span asp-validation-for="Cco_descco" class="text-danger"></span>     
-                            </div>
-                        </th>
-                        <th>
-                            <div class="form-group d-flex flex-row ms-xl-5">
-                                <label class="">Situacion</label>
-                                <select asp-for="Rco_sitrco" id="cbo_situacion" class="ms-2"  disabled>
-                                    <option value="1">PENDIENTE</option>
-                                    <option value="2">APROBADO </option>
-                                    <option value="3">RECHAZADO</option>
-                                </select>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="d-flex flex-row ms-xl-5">
-                                <input class="form-check-input ms-5" type="checkbox" id="chkOCAprobado" value="1"/>
-                                <label class="form-check-label ms-2">OC Aprobado</label>
-                            </div>
-                        </th>
-                        <th>
-                            
-                        </th>
-                    </tr>
-                    <!-- 3RA FILA HORIZONTAL-->
-                    <tr class="mb-lg-5">
-                        <th>
-                            <div class="form-group d-flex flex-row me-5">
-                                <label class="control-label me-4">Usuario</label>
-                                <input asp-for="Uap_coduap" id="input_cod_usu" class="form-control form-control-sm ms-2" style="width:90px"  />
-                                <span asp-validation-for="Uap_coduap" class="text-danger"></span>
-                                <input asp-for="Uap_deslar" id="input_des_usu" class="form-control form-control-sm ms-1" style="width:230px" />
-                                <span asp-validation-for="Uap_deslar" class="text-danger"></span>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="form-group d-flex flex-row ms-5 me-5">
-                                <label  class="control-label ms-2 me-2">Resumen</label>
-                                <input asp-for="Rco_glorco" class="form-control form-control-sm col-sm-4" style="width:330px" />
-                                <span   class="text-danger"></span>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="form-group d-flex flex-row ms-xl-5">
-                                <label >Presupuesto</label>
-                                <select asp-for="Rco_presup" id="cbo_presup" class="ms-2" disabled>
-                                    <option value="1"> SI </option>
-                                    <option value="0"> NO </option>
-                                </select>
-                             
-                            </div>
-                        </th>
-                        <th>
-                            <div class="d-flex flex-row ms-xl-5">
-                                <input asp-for="Rco_indval" class="form-check-input ms-5" type="checkbox" id="chkCategorizado" />
-                                <label class="form-check-label ms-2">Categorizado</label>
-                                <span asp-validation-for="Rco_indval" class="text-danger"></span>
-                            </div>
-                        </th>
-                     
-                    </tr>
-                     <!-- 4TA FILA HORIZONTAL-->
-                    <tr style="height:80px">
-                        <th>
-                            <div class="form-group d-flex flex-row">
-                                <label asp-for="Rco_motivo" class="control-label"></label>
-                                <textarea asp-for="Rco_motivo" class="form-control ms-xl-5" type="text" style="height:80px;width:325px" ></textarea>
-                                <span asp-validation-for="Rco_motivo" class="text-white"></span>
-                            </div>
-                         </th>
-                        <th >
-                            <div class="form-group d-flex flex-row ms-xl-5" style="margin-bottom:10px">
-                                <label class="control-label">Disciplina</label>
-                                <input id="input_cod_disci" asp-for="Dis_codepk" class="form-control ms-2" style="width:50px" />
-                                <span asp-validation-for="Dis_codepk" class="text-danger"></span>
-                                <input id="input_des_disci" asp-for="Dis_nomlar" class="form-control ms-1" style="width:280px" />
-                                <span asp-validation-for="Dis_nomlar" class="text-danger"></span>                               
-                                
-                            </div>
-                            <div class="form-group d-flex flex-row ms-xl-5">
-                                <label class="control-label me-3">Solicitud</label>
-                                <input class="form-control form-control-sm" style="width:329px"/>
-                                <span class="text-danger"></span>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="form-group d-flex flex-row ms-xl-5" style="margin-bottom:10px">
-                                <label>Reembolso</label>
-                                <select asp-for="Rco_rembls" id="cbo_reembls" class="ms-3" disabled>
-                                    <option value="1"> SI </option>
-                                    <option value="0"> NO </option>
-                                </select>                               
-                            </div>
-                            <div class="form-group d-flex flex-row ms-xl-5">
-                                <label class="control-label">OCompra</label>
-                                <input asp-for="Occ_numero" class="form-control form-control-sm ms-2" style="width:120px" />                                
-                            </div>
-                        </th>
-                        <th>
-                            <div class="d-flex flex-row ms-xl-5" style="margin-bottom:10px">
-                                <input class="form-check-input ms-5" type="checkbox" id="chkCuadroComp" />
-                                <label class="form-check-label ms-2">Cuadro Comparativo</label>
-                                
-                            </div>
-                            <div class="d-flex flex-row ms-xl-5">
-                                <label>Prioridad </label>
-                                <select asp-for="Rco_priori" id="cbo_prioridad" class="ms-2" disabled>
-                                    <option value="1">MUY ALTA</option>
-                                    <option value="2">ALTA</option>
-                                    <option value="3">MEDIA</option>
-                                    <option value="4">BAJA</option>
-                                </select>
-                            </div>
-                        </th>
-                     </tr>
-                    
-                </tbody>
-            </table>
-            <br />          
+            <div style="width:500px">
+                <div class="mt-3"><label class="ms-xl-5" style="color:darkblue"><strong>Datos Generales</strong></label></div>
+                <div class="form-group d-flex flex-row mt-2">
+                    <div style="width:130px"><label class=" me-4"><strong>Aprobador</strong></label> </div>
+                    <input asp-for="Uap_codemp" class="form-control form-control-sm ms-2" style="width:90px" />
+                    <input asp-for="Uap_deslar" class="form-control form-control-sm ms-1" style="width:230px" />
+                </div>
+                <div class="form-group d-flex flex-row mt-2">
+                    <div style="width:130px"><label class=" me-4"><strong>Area</strong></label> </div>
+                    <input asp-for="Uap_codemp" class="form-control form-control-sm ms-2" style="width:90px" />
+                    <input asp-for="Uap_deslar" class="form-control form-control-sm ms-1" style="width:230px" />
+                </div>
+                <div class="form-group d-flex flex-row mt-2">
+                    <div style="width:130px"><label><strong>Disciplina</strong></label> </div>
+                    <input asp-for="Dis_codepk" class="form-control form-control-sm ms-2" style="width:90px" />
+                    <input asp-for="Dis_nomlar" class="form-control form-control-sm ms-1" style="width:230px" />
+                </div>
+                <div class="form-group d-flex flex-row mt-2">
+                    <div style="width:130px"><label><strong>Clase</strong></label> </div>
+                    <input asp-for="Ung_codepk" class="form-control form-control-sm ms-2" style="width:90px" />
+                    <input class="form-control form-control-sm ms-1" style="width:230px" />
+                </div>
+                <div class="d-flex flex-row mt-2">
+                    <div style="width:130px"><label><strong>Prioridad</strong></label> </div>
+                    <select asp-for="Rco_priori" class="ms-2" style="height:28px" disabled>
+                        <option value="1">MUY ALTA</option>
+                        <option value="2">ALTA</option>
+                        <option value="3">MEDIA</option>
+                        <option value="4">BAJA</option>
+                    </select>
+                    <textarea class="form-control ms-2" style="height:80px;width:220px"></textarea>
+                </div>
+            </div>
+            <div style="width:300px">
+                <div class="form-group d-flex flex-column mt-3">
+                    <div style="width:130px" class="ms-xl-5"><label><strong>Situacion</strong></label> </div>
+                    <select asp-for="Rco_sitrco" class="ms-2" style="width:180px" disabled>
+                        <option value="1">PENDIENTE</option>
+                        <option value="2">APROBADO </option>
+                        <option value="3">RECHAZADO</option>
+                    </select>
+                </div>
+                <div class="d-flex flex-row mt-2 ms-3">
+                    <input asp-for="Rco_indval" class="form-check-input" type="checkbox" />
+                    <label class="form-check-label ms-2">Categorizado</label>
+                </div>
+                <div class="d-flex flex-row mt-2 ms-3">
+                    <input asp-for="Rco_indval" class="form-check-input" type="checkbox" />
+                    <label class="form-check-label ms-2">Con Solicitud</label>
+                </div>
+                <div class="d-flex flex-row mt-2 ms-3">
+                    <input asp-for="Rco_indval" class="form-check-input" type="checkbox" />
+                    <label class="form-check-label ms-2">Cuadro Comparativo</label>
+                </div>
+                <div class="d-flex flex-row mt-2 ms-3">
+                    <input asp-for="Rco_indval" class="form-check-input" type="checkbox" />
+                    <label class="form-check-label ms-2">Con Orden de Compra</label>
+                </div>
+            </div>
+        </div>               
             <!-- TABLA PRODUCTOS -->
             <div class="table">
                 <table id="tblProductos" class="table table-bordered table-hover">
@@ -278,9 +211,9 @@
                     @await Component.InvokeAsync("DetalleAdjuntos",ViewBag.Rco_numero)                      
                 </tbody>
             </table>
-                <br /><br />
+                <br />
             </div>
-             <br />
+
             <p style="color:red">@ViewBag.url </p>
     </div>
 </div>
