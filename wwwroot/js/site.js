@@ -116,17 +116,17 @@ $(document).on('click', '#btnSaveForm', function (event) {
     });
 });
 /*********  View Crear **************/
-function agregarFila() { 
+function agregarFila() {
     var nrows = $("#tblProductos tr").length;
     //var nColumnas = $("#mi-tabla tr:last td").length;
     $("#nitems_prd").val(nrows);
     console.log(nrows);
     var item = '00' + (nrows).toString();
-    var citem = '<input id="input_DPrd_item"   value="'+item+'" type="text" style="display:none" class="form-control"/>';
+    var citem = '<input id="input_DPrd_item"   value="' + item + '" type="text" style="display:none" class="form-control"/>';
     var cod = ' <input  id="input_DPrd_cod" value="2" type="text" style="display:none" class="form-control"/> <input value="999900000018" type="text"/>';
     var des = '<input   id="input_DPrd_descri" type="text" class="form-control"/>';
-    var det = '<button  id="btn_detalle" type="button" class="btn btn-outline-success"  data-bs-toggle="modal" data-bs-target="#ModalDetPrd'+nrows+'">+</button>' +
-        ' <div class="modal" id="ModalDetPrd'+nrows+'"> ' +
+    var det = '<button  id="btn_detalle" type="button" class="btn btn-outline-success"  data-bs-toggle="modal" data-bs-target="#ModalDetPrd' + nrows + '">+</button>' +
+        ' <div class="modal" id="ModalDetPrd' + nrows + '"> ' +
         ' <div class="modal-dialog"> ' +
         ' <div class="modal-content"> ' +
         ' <div class="modal-header"> ' +
@@ -142,40 +142,40 @@ function agregarFila() {
         ' </div> ' +
         ' </div> ' +
         ' </div> ';
-    var uni  = "UND";
+    var uni = "UND";
     var cuni = '<input id="input_DPrd_unidad" class="form-control"value="3" type="text" style="display:none"/>';
     var cant = '<input id="input_DPrd_cantidad" class="form-control" type="text"  value="0.0" />';
     var codprv = '<input id="input_DPrd_codprov" class="form-control" value="000001" type="text"/>';
     var prov = '<input type="text" placeholder="Proveedor" />';
     var sust = '<input type="text" placeholder="Sustento.." />';
-    var fila = "<tr><td></td><td>" + item+citem + "</td><td>" + cod + "</td><td>" + des + "</td><td>" + det + "</td><td>" + uni +cuni+ "</td><td>" + cant + "</td><td>" + codprv + "</td><td>" + prov + "</td><td>" + sust + "</td> </tr>";
-    $('#tblProductos tbody').append(fila);  
+    var fila = "<tr><td></td><td>" + item + citem + "</td><td>" + cod + "</td><td>" + des + "</td><td>" + det + "</td><td>" + uni + cuni + "</td><td>" + cant + "</td><td>" + codprv + "</td><td>" + prov + "</td><td>" + sust + "</td> </tr>";
+    $('#tblProductos tbody').append(fila);
 }
 function colocaObjPrd() {
-    document.getElementById("DPrd_item").value     = document.getElementById("input_DPrd_item").value; 
-    document.getElementById("DPrd_descri").value   = document.getElementById("input_DPrd_descri").value; 
-    document.getElementById("DPrd_cod").value      = document.getElementById("input_DPrd_cod").value; 
-    document.getElementById("DPrd_glosa").value    = document.getElementById("input_DPrd_glosa").value; 
-    document.getElementById("DPrd_unidad").value   = document.getElementById("input_DPrd_unidad").value; 
-    document.getElementById("DPrd_cantidad").value = document.getElementById("input_DPrd_cantidad").value; 
-    document.getElementById("DPrd_codprov").value  = document.getElementById("input_DPrd_codprov").value; 
+    document.getElementById("DPrd_item").value = document.getElementById("input_DPrd_item").value;
+    document.getElementById("DPrd_descri").value = document.getElementById("input_DPrd_descri").value;
+    document.getElementById("DPrd_cod").value = document.getElementById("input_DPrd_cod").value;
+    document.getElementById("DPrd_glosa").value = document.getElementById("input_DPrd_glosa").value;
+    document.getElementById("DPrd_unidad").value = document.getElementById("input_DPrd_unidad").value;
+    document.getElementById("DPrd_cantidad").value = document.getElementById("input_DPrd_cantidad").value;
+    document.getElementById("DPrd_codprov").value = document.getElementById("input_DPrd_codprov").value;
     console.log("Event Onfocus");
 }
-function validaForm(){
+function validaForm() {
     let motivo = document.getElementById('txa_motivo').value;
-    if(motivo.length == 0){
+    if (motivo.length == 0) {
         alert("Ingrese un motivo !");
     }
     let cco = document.getElementById('input_cod_cco').value;
-    if(cco.length == 0){
+    if (cco.length == 0) {
         alert("Seleccione un Centro de Costo !");
     }
     let dis = document.getElementById('input_cod_disci').value;
-    if(dis.length == 0){
+    if (dis.length == 0) {
         alert("Seleccione una disciplina !");
     }
     let occ = document.getElementById('input_occ').value;
-    if(occ.length == 0){
+    if (occ.length == 0) {
         alert("Ingrese una Orden de Compra !");
     }
     $('#input_motivo').val(motivo);
@@ -199,23 +199,22 @@ function RegistraDetalle() {
 }
 //XXXXXXXXXXXXXXXXXX//
 //Agregar Items a Array
-$("#btn_registrar").on("click",function()
-{
+$("#btn_registrar").on("click", function () {
     var DetalleReq = [];
     var total = 0;
-    $("#tblProductos > tbody > tr").each(function(index,tr){
-       DetalleReq.push(
-         {
-           Codigo:$(this).find("td:nth-child(3)").html().substring(14,26),
-           //$(tr).find('input').eq(2).val() ,
-           Descri:$(tr).find('td:eq(3)').html(),
-           Glosa :$(tr).find('td:eq(4)').text(),
-           Unidad:$(tr).find('td:eq(5)').text(),
-           Cantidad:parseInt($(tr).find('input').eq(6).val()),
-           CodProv:  $(tr).find('input').eq(7).val(),
-           Nombprov: $(tr).find('input').eq(8).val()
-         });
-       //console.log(DetalleReq);
+    $("#tblProductos > tbody > tr").each(function (index, tr) {
+        DetalleReq.push(
+            {
+                Codigo: $(this).find("td:nth-child(3)").html().substring(14, 26),
+                //$(tr).find('input').eq(2).val() ,
+                Descri: $(tr).find('td:eq(3)').html(),
+                Glosa: $(tr).find('td:eq(4)').text(),
+                Unidad: $(tr).find('td:eq(5)').text(),
+                Cantidad: parseInt($(tr).find('input').eq(6).val()),
+                CodProv: $(tr).find('input').eq(7).val(),
+                Nombprov: $(tr).find('input').eq(8).val()
+            });
+        //console.log(DetalleReq);
     })
 })
 
@@ -226,19 +225,19 @@ function agregarFilaAdj() {
     console.log(nrows);
     var item = '00' + (nrows).toString();
     var name = '<input type="text" />';
-    var file = ' <div class="form-group" style="width:300px"> '+
-                 ' <div class="input-group d-flex flex-row" > ' +
-                   ' <label class="input-group-btn"> ' +
-                     ' <span class="btn btn-file"> ' +
-                       ' <input accept=".docx,.doc,.pdf" class="hidden" name="banner" type="file" id="banner" style="width:90px"> ' +
-                     ' </span> ' +
-                   ' </label> ' +
-                   ' <input class="form-control" id="banner_captura" readonly="readonly" name="banner_captura" type="text" value="" style="width:100px"> ' +
-                 ' </div> ' +
-               ' </div > ';
+    var file = ' <div class="form-group" style="width:300px"> ' +
+        ' <div class="input-group d-flex flex-row" > ' +
+        ' <label class="input-group-btn"> ' +
+        ' <span class="btn btn-file"> ' +
+        ' <input accept=".docx,.doc,.pdf" class="hidden" name="banner" type="file" id="banner" style="width:90px"> ' +
+        ' </span> ' +
+        ' </label> ' +
+        ' <input class="form-control" id="banner_captura" readonly="readonly" name="banner_captura" type="text" value="" style="width:100px"> ' +
+        ' </div> ' +
+        ' </div > ';
     var codfile = '<input id="nomb_file" type="text" />';
     var fila = "<tr><td></td><td>" + item + "</td><td>" + name + "</td><td>" + file + "</td><td>" + codfile + "</td> </tr>";
-    $('#tblAdjuntos tbody').append(fila);  
+    $('#tblAdjuntos tbody').append(fila);
 }
 $('#btn_adicionar_adj').on('click', function () {
     document.getElementById("cod_file2").readOnly = true;
@@ -246,11 +245,11 @@ $('#btn_adicionar_adj').on('click', function () {
     document.getElementById("est_file2").readOnly = true;
     document.getElementById("est_file1").readOnly = true;
     let cant_file_act = document.getElementById('cant_activefile').value;
-    let cant_file_sig = (parseInt(cant_file_act)+1).toString();
-    var itemactivar = "#tr_file"+cant_file_sig;
+    let cant_file_sig = (parseInt(cant_file_act) + 1).toString();
+    var itemactivar = "#tr_file" + cant_file_sig;
     $(itemactivar).show();
     $(cant_activefile).val(cant_file_sig);
-    console.log("Objeto Activado :"+itemactivar);
+    console.log("Objeto Activado :" + itemactivar);
 });
 
 
@@ -298,7 +297,7 @@ function showFiles(files) {
     }
 }
 const blobToBase64 = (blob) => {
-    return new Promise( (resolve, reject) =>{
+    return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(blob);
         reader.onloadend = () => {
@@ -306,35 +305,35 @@ const blobToBase64 = (blob) => {
         };
     });
 };
-const b64ToBlob = async(b64, type)=>{
+const b64ToBlob = async (b64, type) => {
     const blob = await fetch(`data:${type};base64,${b64}`);
     return blob;
 };
 //Cargar el archivo de forma iteractiva con innerHTML
 function processFile(file) {
-        
+
     const fileReader = new FileReader();
-    fileReader.addEventListener('load', async(e) => {
+    fileReader.addEventListener('load', async (e) => {
         //Convierte Archivo en B64
         const myB64 = await blobToBase64(file);
-        
+
         document.getElementById('b64string1').value = myB64;
         ArchivoCargadoExito();
         console.log(myB64);
-        document.querySelector('#preview').innerHTML = image ;
+        document.querySelector('#preview').innerHTML = image;
     });
 
     fileReader.readAsDataURL(file);
 }
-function ArchivoCargadoExito(){
+function ArchivoCargadoExito() {
     let nb64string1 = document.getElementById('b64string1').value;
-    if(nb64string1.length >0){
+    if (nb64string1.length > 0) {
         let estado = document.getElementById('est_file1');
-         estado.value="CARGADO";
-         estado.style.backgroundColor="#0FB607";
-        let Rco_numero = document.getElementById('sRco_numero').value; 
-         $("#cod_file1").val("REQCOM_"+Rco_numero+"001.pdf");
-         dragText.textContent = "Archivo Cargado con exito !!";
+        estado.value = "CARGADO";
+        estado.style.backgroundColor = "#0FB607";
+        let Rco_numero = document.getElementById('sRco_numero').value;
+        $("#cod_file1").val("REQCOM_" + Rco_numero + "001.pdf");
+        dragText.textContent = "Archivo Cargado con exito !!";
     }
 
 }
@@ -355,14 +354,14 @@ btnTob64.addEventListener('click', async (e) => {
     console.log(myB64);
 });
 
-function ArchivoCargadoExito1(){
+function ArchivoCargadoExito1() {
     let nb64string1 = document.getElementById('b64string1').value;
-    if(nb64string1.length >0){
+    if (nb64string1.length > 0) {
         let estado = document.getElementById('est_file1');
-         estado.value="CARGADO";
-         estado.style.backgroundColor="#0FB607";
-        let Rco_numero = document.getElementById('sRco_numero').value; 
-         $("#cod_file1").val("REQCOM_"+Rco_numero+"001.pdf");
+        estado.value = "CARGADO";
+        estado.style.backgroundColor = "#0FB607";
+        let Rco_numero = document.getElementById('sRco_numero').value;
+        $("#cod_file1").val("REQCOM_" + Rco_numero + "001.pdf");
     }
 }
 //Carga de archivo 2
@@ -378,50 +377,50 @@ btn2.addEventListener('click', async (e) => {
     console.log(myB64);
 });
 
-function ArchivoCargadoExito2(){
+function ArchivoCargadoExito2() {
     let nb64string1 = document.getElementById('b64string2').value;
-    if(nb64string1.length >0){
+    if (nb64string1.length > 0) {
         let estado = document.getElementById('est_file2');
-         estado.value="CARGADO";
-         estado.style.backgroundColor="#0FB607";
-        let Rco_numero = document.getElementById('sRco_numero').value; 
-         $("#cod_file2").val("REQCOM_"+Rco_numero+"002.pdf");
+        estado.value = "CARGADO";
+        estado.style.backgroundColor = "#0FB607";
+        let Rco_numero = document.getElementById('sRco_numero').value;
+        $("#cod_file2").val("REQCOM_" + Rco_numero + "002.pdf");
     }
 }
 /*********************************** */
 
 // MOSTRAR ARCHIVO BASE 64 A PDF 
-function MostrarArchivo001(){
+function MostrarArchivo001() {
 
-let data2 = $("#Fileb64001").text();
-console.log(data2);
+    let data2 = $("#Fileb64001").text();
+    console.log(data2);
 
-let data = document.getElementById('Fileb64001').value;
+    let data = document.getElementById('Fileb64001').value;
 
-const blob = this.dataURItoBlob(data);
-const url = URL.createObjectURL(blob);
-// Abre el pdf en una nueva pestaña
-window.open(url, '_blank');
-
-}
-function MostrarArchivo002(){
-    let data = document.getElementById('Fileb64002').value;
-    
     const blob = this.dataURItoBlob(data);
     const url = URL.createObjectURL(blob);
     // Abre el pdf en una nueva pestaña
     window.open(url, '_blank');
-    }
+
+}
+function MostrarArchivo002() {
+    let data = document.getElementById('Fileb64002').value;
+
+    const blob = this.dataURItoBlob(data);
+    const url = URL.createObjectURL(blob);
+    // Abre el pdf en una nueva pestaña
+    window.open(url, '_blank');
+}
 function dataURItoBlob(dataURI) {
     const byteString = window.atob(dataURI);
     const arrayBuffer = new ArrayBuffer(byteString.length);
     const int8Array = new Uint8Array(arrayBuffer);
     for (let i = 0; i < byteString.length; i++) {
-      int8Array[i] = byteString.charCodeAt(i);
+        int8Array[i] = byteString.charCodeAt(i);
     }
-    const blob = new Blob([int8Array], { type: 'application/pdf'});
+    const blob = new Blob([int8Array], { type: 'application/pdf' });
     return blob;
-  }
+}
 
 //Carga los valores automaticamente
 $(document).ready(function () {
@@ -432,9 +431,9 @@ $(document).ready(function () {
     colocaSituacion();
     colocaPresup();
     colocaReembls();
-   
+
     //Procesamos al cargar y recibir un cambio
-   
+
 });
 function colocaEstado() {
     var combo = document.getElementById("cbo_estado");
@@ -522,7 +521,7 @@ $(document).ready(function () {
         var cod = tr_data.substring(0, 2);
         var des = tr_data.substring(2, tr_data.length).trim();
         console.log("-Codigo:" + cod + "-Desc:" + des);
-        $("#input_cod_disci").val(parseInt(cod,10));
+        $("#input_cod_disci").val(parseInt(cod, 10));
         $("#input_des_disci").val(des);
         //Limpiar la busqueda actual
         //$("#busqueda_ayuda_dis").val('');
@@ -536,11 +535,11 @@ function abrir_modal_disci() {
 $(document).ready(function () {
     $('tr#tr_cco').click(function (e) {
         var tr_data = $(this).text().trim();
-        var epk = tr_data.substring(0,2);
-        var cod = tr_data.substring(11,22);
-        var des = tr_data.substring(22,tr_data.length).trim();
+        var epk = tr_data.substring(0, 2);
+        var cod = tr_data.substring(11, 22);
+        var des = tr_data.substring(22, tr_data.length).trim();
         console.log("-EPK :" + epk + "-Codigo:" + cod + " -Desc:" + des + "  Leng" + tr_data.length);
-        
+
         $("#input_epk_cco").val(parseInt(epk));
         $("#input_cod_cco").val(cod);
         $("#input_des_cco").val(des);
@@ -654,11 +653,11 @@ function validaMotivo() {
     console.log(mot);
     if (mot.length == 0) {
         alert("¡Ingrese un motivo porfavor!")
-    } 
+    }
     console.log("Longitud : " + mot.length);
     $("#btn_envia_rechazo_req").click();
 }
-function btn_abrir_modal_motivo() {  
+function btn_abrir_modal_motivo() {
     $("#btn_abrir_modal_motivo").click();
 }
 /*
