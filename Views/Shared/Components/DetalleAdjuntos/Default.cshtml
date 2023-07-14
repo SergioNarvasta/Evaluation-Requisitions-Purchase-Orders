@@ -7,6 +7,13 @@
         <td></td>
         <td>@item.Item</td>
         <td>@item.Nombre </td>
+        <td>
+            <textarea id="Fileb64@(@item.Item)" style="width:200px;height:80px;display:none">@item.Archivo</textarea>
+            <a href="" id="btn_vista_archivo@(@item.Item)" style="color:red;text-decoration:underline;cursor:pointer"
+                 onclick="MostrarArchivo@(@item.Item)()">
+              @item.CodArchivo
+            </a>
+        </td>
         <td><textarea id="Fileb64@(@item.Item.TrimEnd())" style="width:200px;height:80px">@item.Archivo</textarea> </td>
         <td>@item.CodArchivo </td>
         <td><a id="btn_vista_archivo@(@item.Item)" onclick="MostrarArchivo@(@item.Item)()" class="btn btn-primary">Vista_Previa</a></td>
