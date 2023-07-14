@@ -18,8 +18,9 @@
                         <th></th><th></th><th></th>
                         <th>
                             <div class="form-group d-flex flex-row">
-                                <button id="btn_registrar" onfocus="colocaObjPrd()" type="submit" style="width:120px;height:40px" class="btn btn-primary">Registrar</button>
-                                <a class="btn btn-primary ms-3" asp-action="Crear" style="width:100px;height:40px"> Nuevo</a>
+                                <button onclick="validaForm()" class="btn btn-primary" style="width:120px;height:40px">Registrar</button>
+                                <button id="btn_registrar"  type="submit" style="display:''" class="btn btn-primary">Registrar</button>
+                                
                                 <a asp-action="Index" style="width:100px;height:40px" class="btn btn-danger ms-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
                                         <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z" />
@@ -205,18 +206,15 @@
                     <tr style="height:80px">
                         <th>
                             <div class="form-group d-flex flex-row">
-                                <label asp-for="Rco_motivo" class="control-label"></label>
-                                <textarea asp-for="Rco_motivo" class="form-control ms-xl-5" type="text" style="height:80px;width:325px" ></textarea>
-                                <span asp-validation-for="Rco_motivo" class="text-danger"></span>
+                                <label  class="control-label">Motivo</label>
+                                <textarea id="txa_motivo" class="form-control ms-xl-5" type="text" style="height:80px;width:325px" ></textarea>                         
                             </div>
                          </th>
                         <th >
                             <div class="form-group d-flex flex-row ms-xl-5" style="margin-bottom:10px">
                                 <label class="control-label">Disciplina</label>
-                                <input id="input_cod_disci" onclick="abrir_modal_disci()" asp-for="Dis_codepk" class="form-control ms-2" style="width:50px" />
-                                <span asp-validation-for="Dis_codepk" class="text-danger"></span>
-                                <input id="input_des_disci" asp-for="Dis_nomlar" class="form-control ms-1" style="width:280px" />
-                                <span asp-validation-for="Dis_nomlar" class="text-danger"></span>                               
+                                <input id="input_cod_disci" onclick="abrir_modal_disci()" asp-for="Dis_codepk" class="form-control ms-2" style="width:50px" value=""/>
+                                <input id="input_des_disci" asp-for="Dis_nomlar" class="form-control ms-1" style="width:280px" />                                                              
                                 <!-- Modal con Ayuda -->
                                 <button id="btn_abrir_modal_disci" class="btn btn-outline-success" style="display:none" data-bs-toggle="modal" data-bs-target="#Modal_Dis">+ </button>
                                 <a   asp-action="AyudaDisciplina" class="btn btn-outline-primary" style="display:none" > Dis</a>
@@ -246,7 +244,7 @@
                             <div class="form-group d-flex flex-row ms-xl-5">
                                 <label class="control-label me-3">Solicitud</label>
                                 <input class="form-control form-control-sm" style="width:329px"/>
-                                <span class="text-danger"></span>
+                                
                             </div>
                         </th>
                         <th>
@@ -259,7 +257,7 @@
                             </div>
                             <div class="form-group d-flex flex-row ms-xl-5">
                                 <label class="control-label">OCompra</label>
-                                <input asp-for="Occ_codepk" class="form-control form-control-sm ms-2" style="width:120px" />
+                                <input id="input_occ" asp-for="Occ_codepk" class="form-control form-control-sm ms-2" style="width:120px"value="" />
                                 <span asp-validation-for="Occ_codepk" class="text-danger"></span>
                             </div>
                         </th>
@@ -297,35 +295,25 @@
                     <tr style="display:none">
                         <th> 
                             <label>Estado</label>
-                            <input id="input_estado" asp-for="Rco_estado" type="text" style="width:20px" />
-                            <span asp-validation-for="Rco_estado" class="text-danger"></span>
-                        
+                            <input id="input_estado" asp-for="Rco_estado" type="text" style="width:20px" />                                                    
                             <label>Tipo</label>
-                            <input id="input_tipo" asp-for="Tre_codepk" type="text" style="width:20px" />
-                            <span asp-validation-for="Tre_codepk" class="text-danger"></span>
-                      
+                            <input id="input_tipo"   asp-for="Tre_codepk" type="text" style="width:20px" />
                             <label>Prioridad</label>
-                            <input id="input_prioridad" asp-for="Rco_priori" type="text" style="width:20px" />
-                            <span asp-validation-for="Rco_priori" class="text-danger"></span>
-                        
+                            <input id="input_prioridad" asp-for="Rco_priori" type="text" style="width:20px" />                           
                             <label>UNG</label>
                             <input id="input_unegocio" asp-for="Ung_codepk" type="text"  style="width:30px" />
-                            <span asp-validation-for="Ung_codepk" class="text-danger"></span>
                         </th>
                         <th>
                             <label>Situacion</label>
-                            <input id="input_situacion" asp-for="Rco_sitrco" type="text" style="width:20px" />
-                            <span asp-validation-for="Rco_sitrco" class="text-danger"></span>
-
+                            <input id="input_situacion" asp-for="Rco_sitrco" type="text" style="width:20px"/>
                             <label>Presup</label>
-                            <input id="input_presup" asp-for="Rco_presup" type="text" style="width:20px" />
-                            <span asp-validation-for="Rco_presup" class="text-danger"></span>
-
+                            <input id="input_presup" asp-for="Rco_presup" type="text" style="width:20px"/>
                             <label>Reembls</label>
-                            <input id="input_reembls" asp-for="Rco_rembls" type="text" style="width:20px" />
-                            <span asp-validation-for="Rco_rembls" class="text-danger"></span>
+                            <input id="input_reembls" asp-for="Rco_rembls" type="text" style="width:20px"/>                       
                         </th>
+                        
                     </tr>
+                    <tr><th><input id="input_motivo" asp-for="Rco_motivo" type="text"/><div id="over"></div></th></tr>
                     <tr style="display:none">
                         <th >
                             <label>Item</label>
@@ -351,8 +339,7 @@
                         </th>
                     </tr>
                 </tbody>
-            </table>
-            <br />         
+            </table>       
             <!-- TABLA PRODUCTOS -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
             <div class="table">

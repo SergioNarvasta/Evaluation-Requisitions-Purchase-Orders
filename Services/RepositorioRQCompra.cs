@@ -45,9 +45,6 @@ namespace HDProjectWeb.Services
               @rcf_corite2= @DFi_item2 ,@rcf_codarc2 = @DFi_cod2 ,@rcf_nomarc2 = @DFi_nom2,@rcf_file2 = @DFi_fil2 ", rQCompra);
         }
 
-        /*
-        @rcd_corite = @DPrd_item,  @prd_codepk = @DPrd_codigo, @rcd_desprd = @DPrd_descri,@rcd_glorcd = @DPrd_glosa ,@rcd_canate=@DPrd_cantidad,
-                 @ccr_codepk = @DPrd_codprov,@ume_codepk =@DPrd_unidad*/
         public async Task<IEnumerable<RQCompraCab>> Obtener(string periodo,PaginacionViewModel paginacion,int EpkUser,string orden,string estado1,string estado2) 
         {
             using var connection = new SqlConnection(connectionString);
@@ -147,8 +144,5 @@ namespace HDProjectWeb.Services
             return await connection.QuerySingleAsync<int>(@" PA_WEB_RQ_Devuelve
                  @p_CodCia = @cia, @p_CodSuc = @suc, @p_NumRQ=@epk, @p_CodUsr=@uap ", new { cia, suc, epk, uap });
         }
-
-
-
     }
 }

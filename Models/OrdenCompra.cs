@@ -29,15 +29,13 @@ namespace ProjectWeb_DRA.Models
         public string Occ_sitapr { get; set; }
        // public string encryp_tostring { get; set; } = Occ_encryp.toString();
 
-
         public string Encriptar(string _cadenaAencriptar)
         {
             string result;
             byte[] encryted = System.Text.Encoding.Unicode.GetBytes(_cadenaAencriptar);
             result = Convert.ToBase64String(encryted);
             return result;
-        }
-        
+        } 
 
     }
 }

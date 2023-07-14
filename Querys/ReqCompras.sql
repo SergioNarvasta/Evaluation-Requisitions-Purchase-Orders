@@ -112,7 +112,11 @@ Begin
 	Select -1 as Cod_Resultado, @s_Mensaje as Des_Resultado
 	Return -1
 End
+If len(@rcd_corite)>1
+Begin
 INSERT INTO REQ_REQUI_COMPRA_RCD (rco_codepk,cia_codcia,suc_codsuc,rcd_corite,prd_codepk,rcd_desprd,rcd_glorcd,rcd_canate) VALUES(@rco_codepk,@cia_codcia,@suc_codsuc,@rcd_corite,@prd_codepk,@rcd_desprd,@rcd_glorcd,@rcd_canate)
+End
+
 If @@ERROR <> 0 
 Begin
 	Set @s_mensaje = 'Error al Insertar datos en REQ_REQUI_COMPRA_RCD '
@@ -120,8 +124,14 @@ Begin
 	Select -2 as Cod_Resultado, @s_Mensaje as Des_Resultado
 	Return -2
 End
+If len(@rcf_corite1)>1
+Begin
 INSERT INTO REQ_REQUI_FILES_RCF(rco_codepk,cia_codcia,rcf_corite,rcf_codarc,rcf_nomarc,rcf_file)VALUES(@rco_codepk,@cia_codcia,@rcf_corite1,@rcf_codarc1,@rcf_nomarc1,@rcf_file1);
+End
+If len(@rcf_corite2)>1
+Begin
 INSERT INTO REQ_REQUI_FILES_RCF(rco_codepk,cia_codcia,rcf_corite,rcf_codarc,rcf_nomarc,rcf_file)VALUES(@rco_codepk,@cia_codcia,@rcf_corite1,@rcf_codarc1,@rcf_nomarc1,@rcf_file1);
+End
 If @@ERROR <> 0 
 Begin
 	Set @s_mensaje = 'Error al Insertar datos en REQ_REQUI_FILES_RCF '
