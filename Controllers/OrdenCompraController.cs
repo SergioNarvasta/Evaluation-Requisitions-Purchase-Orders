@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProjectWeb_DRA.Models;
 using ProjectWeb_DRA.Services;
 
-namespace ProjectWeb_DRA.Controllers
+namespace ProjectWeb_DRA.Controllers 
 {
     public class OrdenCompraController : Controller
     {
@@ -19,7 +19,7 @@ namespace ProjectWeb_DRA.Controllers
             this.servicioEstandar       = servicioEstandar;
             this.repositorioOrdenCompra = repositorioOrdenCompra;
             this.servicioUsuario        = servicioUsuario;   
-        }
+        } //SGRQOC
 
         [Authorize]
         [HttpGet]
@@ -46,6 +46,7 @@ namespace ProjectWeb_DRA.Controllers
             
             return View(respuesta);
         }
+
         [HttpPost]
         public async Task<IActionResult> Index(string periodo)
         {
@@ -79,10 +80,9 @@ namespace ProjectWeb_DRA.Controllers
         public async Task<IActionResult> Evaluacion(int epk)
         {
             var OCompra = await repositorioOrdenCompra.ObtenerporEpk(epk);
-            if (OCompra is null)
-            {
-                return RedirectToAction("NoEncontrado", "Home");
-            }
+
+            if (OCompra is null) return RedirectToAction("NoEncontrado", "Home");
+          
             //var OCompra = await repositorioOrdenCompra.ObtenerporCodigoOCC(Occ_numero);
             string cia, suc;
             cia = servicioEstandar.Compañia();
@@ -96,6 +96,7 @@ namespace ProjectWeb_DRA.Controllers
             ViewBag.url = Url.Action();
             return View(OCompra);
         }
+
         [HttpPost]
         public async Task<IActionResult> Aprobar(string cia,string suc,string epk,string usu,string num)
         {

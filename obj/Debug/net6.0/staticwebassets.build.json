@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VMQcaXPJLWVw1H48cQnOnG6XULBJbBmzffsPb4kXgOQ=",
+  "Hash": "zEKqehn9F5Zt7aH/dLPK61bl8OgstivXKvASnT10lT0=",
   "Source": "ProjectWeb_DRA",
   "BasePath": "_content/ProjectWeb_DRA",
   "Mode": "Default",
@@ -1273,6 +1273,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\wwwroot\\js\\site_bk02022023.js",
+      "SourceId": "ProjectWeb_DRA",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\wwwroot\\",
+      "BasePath": "_content/ProjectWeb_DRA",
+      "RelativePath": "js/site_bk02022023.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\site_bk02022023.js"
+    },
+    {
+      "Identity": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\wwwroot\\js\\site_bk10022023.js",
+      "SourceId": "ProjectWeb_DRA",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\wwwroot\\",
+      "BasePath": "_content/ProjectWeb_DRA",
+      "RelativePath": "js/site_bk10022023.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\site_bk10022023.js"
     },
     {
       "Identity": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

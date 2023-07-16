@@ -53,6 +53,14 @@
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
+      "Id": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\wwwroot\\js\\site_bk02022023.js",
+      "PackagePath": "staticwebassets\\js\\site_bk02022023.js"
+    },
+    {
+      "Id": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\wwwroot\\js\\site_bk10022023.js",
+      "PackagePath": "staticwebassets\\js\\site_bk10022023.js"
+    },
+    {
       "Id": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },

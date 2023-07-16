@@ -14,8 +14,9 @@
               @item.CodArchivo
             </a>
         </td>
-        <td><textarea id="Fileb64@(@item.Item.TrimEnd())" style="width:200px;height:80px">@item.Archivo</textarea> </td>
+        <td style="display:none"><textarea id="Fileb64@(@item.Item.TrimEnd())" style="width:200px;height:80px">@item.Archivo</textarea> </td>
         <td>@item.CodArchivo </td>
-        <td><a id="btn_vista_archivo@(@item.Item)" onclick="MostrarArchivo@(@item.Item)()" class="btn btn-primary">Vista_Previa</a></td>
+        <td style="display:none" ><a id="btn_vista_archivo@(@item.Item)" onclick="MostrarArchivo@(@item.Item)()" class="btn btn-primary">Vista_Previa</a>
+    </td>
     </tr>
 }
