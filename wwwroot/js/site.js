@@ -33,12 +33,14 @@ function colocaPeriodo() {
         $("#btn_modal").click();
     }
 }
+
 function cambiaEstado() {
     var combo = document.getElementById("cbo_cambiaEst");
     var selected = combo.options[combo.selectedIndex].value;
     console.log(selected);
     $("#filtro_estado").val(selected);
 }
+
 function resetColorThead() {
     var celda = document.getElementById("th_Rco_numrco");
     celda.style.backgroundColor = "#87CEFA";
@@ -182,22 +184,7 @@ function validaForm(){
     colocaObjPrd();
     $('#btn_registrar').click();
 }
-//XXXXXXXXXXXXXXXXXX//
-function RegistraDetalle() {
-    var url = '@Url.Action("DetReq", "RQCompra")';
-    $.ajax({
-        cache: false,
-        async: true,
-        type: "POST",
-        url: url,
-        data: {},
-        success: function (response) {
-            $('#resultado').html('');
-            $('#resultado').html(response);
-        }
-    });
-}
-//XXXXXXXXXXXXXXXXXX//
+
 //Agregar Items a Array
 $("#btn_registrar").on("click",function()
 {
