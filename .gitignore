@@ -1,0 +1,19 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/ProjectEvaluation/projectweb_dra.metadata.v7.bin
+/.vs/ProjectEvaluation/projectweb_dra.projects.v7.bin
+/.vs/ProjectEvaluation/projectweb_dra.metadata.v7.bin
+/.vs/ProjectWeb_DRA/FileContentIndex/2822c35a-5ea2-4fc0-8457-c20f15b0ffa0.vsidx
+/.vs/ProjectWeb_DRA/FileContentIndex/138b6bfb-51c7-4739-a5cd-c71f7647d360.vsidx
+/.vs/ProjectWeb_DRA/FileContentIndex/bfe27697-0a7d-41d8-9020-c6ad82b2ffad.vsidx
+/.vs/ProjectWeb_DRA/FileContentIndex/3f668212-2583-4de7-b86b-9380ef57eef5.vsidx
+/.vs/ProjectWeb_DRA/FileContentIndex/ab7d6682-5f83-4802-98df-aba701bdaa33.vsidx
+/.vs/ProjectWeb_DRA/DesignTimeBuild/.dtbcache.v2
+/.vs/ProjectEvaluation/projectweb_dra.projects.v7.bin
+/.vs/ProjectWeb_DRA/FileContentIndex/77844e30-7c82-4534-8986-2267802f0309.vsidx
+/.vs/ProjectWeb_DRA/FileContentIndex/d58aa6e7-a7fe-4a76-87d7-e6fbc820b53f.vsidx
+/.vs/ProjectWeb_DRA/v17/.futdcache.v2
+/.vs/ProjectWeb_DRA/v17/.suo
+*.vsidx
