@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zEKqehn9F5Zt7aH/dLPK61bl8OgstivXKvASnT10lT0=",
+  "Hash": "QP1VQWUO2nI5YQ+XaEmoKgmSbf1HILGwokW2xLG0BBc=",
   "Source": "ProjectWeb_DRA",
   "BasePath": "_content/ProjectWeb_DRA",
   "Mode": "Default",
@@ -1256,6 +1256,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\blobManager.js"
+    },
+    {
+      "Identity": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\wwwroot\\js\\ordenCompra.js",
+      "SourceId": "ProjectWeb_DRA",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\wwwroot\\",
+      "BasePath": "_content/ProjectWeb_DRA",
+      "RelativePath": "js/ordenCompra.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\ordenCompra.js"
     },
     {
       "Identity": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\wwwroot\\js\\site.js",

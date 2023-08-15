@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\js\\blobManager.js"
     },
     {
+      "Id": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\wwwroot\\js\\ordenCompra.js",
+      "PackagePath": "staticwebassets\\js\\ordenCompra.js"
+    },
+    {
       "Id": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

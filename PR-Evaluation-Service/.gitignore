@@ -18,3 +18,5 @@
 /.vs/ProjectWeb_DRA/v17/.suo
 *.vsidx
 /obj/Debug/net6.0/project.razor.vs.json
+*.dll
+/obj
