@@ -20,3 +20,4 @@
 /obj/Debug/net6.0/project.razor.vs.json
 *.dll
 /obj
+/bin
