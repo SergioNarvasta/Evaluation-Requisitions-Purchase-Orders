@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "Dapper/2.0.123": {
+      "Dapper/2.0.143": {
         "type": "package",
         "compile": {
           "lib/net5.0/Dapper.dll": {
@@ -4106,15 +4106,15 @@
     }
   },
   "libraries": {
-    "Dapper/2.0.123": {
-      "sha512": "RDFF4rBLLmbpi6pwkY7q/M6UXHRJEOerplDGE5jwEkP/JGJnBauAClYavNKJPW1yOTWRPIyfj4is3EaJxQXILQ==",
+    "Dapper/2.0.143": {
+      "sha512": "Vh0U+Fins3IpS7APUlrzga3+1mswWngB5fZ0xj4w+FQR5JhJzA5uHV5rSepkahvmshNZUA0YcHtae9vFQpiVTw==",
       "type": "package",
-      "path": "dapper/2.0.123",
+      "path": "dapper/2.0.143",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Dapper.png",
-        "dapper.2.0.123.nupkg.sha512",
+        "dapper.2.0.143.nupkg.sha512",
         "dapper.nuspec",
         "lib/net461/Dapper.dll",
         "lib/net461/Dapper.xml",
@@ -11298,7 +11298,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Dapper >= 2.0.123",
+      "Dapper >= 2.0.143",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 6.0.10",
       "Microsoft.AspNetCore.Identity >= 2.2.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.12",
@@ -11353,7 +11353,7 @@
         "dependencies": {
           "Dapper": {
             "target": "Package",
-            "version": "[2.0.123, )"
+            "version": "[2.0.143, )"
           },
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
             "target": "Package",

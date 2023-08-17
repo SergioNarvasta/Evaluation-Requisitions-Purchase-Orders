@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ne24J93XeVSs+Ba4wv7T5b8SxU18P2q4cVXNYSV6ANK9vLQ4om3EH19MM2I9euAmmH/lZ8WpfAnm5+e4aV2MDw==",
+  "dgSpecHash": "sTSpOlflCMA9UliCnrzvrRCIdF04lOQlAF5ehBhKfpFJoqZUWADeSGvWsOQwMUvgR3lmnA+7ALNGWVJHxK95jw==",
   "success": true,
   "projectFilePath": "F:\\3.PROYECTOS\\PR-Evaluation-Service\\PR-Evaluation-Service\\ProjectWeb_DRA.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\MI PC\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
+    "C:\\Users\\MI PC\\.nuget\\packages\\dapper\\2.0.143\\dapper.2.0.143.nupkg.sha512",
     "C:\\Users\\MI PC\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\MI PC\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\MI PC\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",

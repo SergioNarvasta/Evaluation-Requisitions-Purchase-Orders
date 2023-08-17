@@ -43,7 +43,7 @@
           "dependencies": {
             "Dapper": {
               "target": "Package",
-              "version": "[2.0.123, )"
+              "version": "[2.0.143, )"
             },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
