@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectWeb_DRA", "ProjectWeb_DRA.csproj", "{AE110975-863D-4B8D-8822-30C7BBE3D804}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERPO.Web", "ERPO.Web.csproj", "{AE110975-863D-4B8D-8822-30C7BBE3D804}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aplication", "..\Aplication\Aplication.csproj", "{F7513F49-055A-4585-BE19-5FC642E49202}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERPO.Application", "..\Aplication\ERPO.Application.csproj", "{F7513F49-055A-4585-BE19-5FC642E49202}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "..\Domain\Domain.csproj", "{F94F1434-8475-497D-84C3-D0F535F49A95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERPO.Domain", "..\Domain\ERPO.Domain.csproj", "{F94F1434-8475-497D-84C3-D0F535F49A95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infraestructure", "..\Infraestructure\Infraestructure.csproj", "{16E7AB3D-BF5B-4DF8-80C4-3FBA705715F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERPO.Infraestructure", "..\Infraestructure\ERPO.Infraestructure.csproj", "{16E7AB3D-BF5B-4DF8-80C4-3FBA705715F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "..\Utils\Utils.csproj", "{E2D29F75-250E-4947-81B1-35E76ABEBB91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERPO.Utils", "..\Utils\ERPO.Utils.csproj", "{E2D29F75-250E-4947-81B1-35E76ABEBB91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Domain\ERPO.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
