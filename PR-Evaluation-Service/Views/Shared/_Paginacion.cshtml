@@ -1,10 +1,8 @@
-﻿
-@model PaginacionRespuesta
+﻿@model PaginacionRespuesta
 @{
     var plantillalink = string.Concat(Model.BaseURL, "?Pagina={0}&recordsPorPagina={1}");
     var activarBotonAnterior = Model.Pagina > 1;
     var activarBotonSiguiente = Model.Pagina < Model.CantidadPaginas;
-    //  { }
 }
  
 <nav>
